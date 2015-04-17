@@ -40,7 +40,7 @@ export default Ember.Mixin.create({
     showHTTPAlert: function(title, err, okCallback) {
         var reason = err.reason;
         var content = reason['jqXHR'].responseText;
-        return this.showAlert(title, content, okCallback);
+        return this.showAlert(title, content, null, null, okCallback);
     },
 
     showConfirm: function(title, content, okCallback, cancelCallback, button_class, button_text) {
@@ -58,12 +58,17 @@ export default Ember.Mixin.create({
             Ember.Object.create({dismiss: 'modal', type: "default", label: "Cancel", clicked: 'modalCancelled', size: 'sm'}),
             Ember.Object.create({dismiss: 'modal', type: button_class, label: button_text, clicked: 'modalConfirmed', size: 'sm'})
         ];
-        return this.showModal(title, content, buttons, okCallback, cancelCallback);
+        return this.showModal(title, content, null, null, buttons, okCallback, cancelCallback);
     },
 
-    showModal: function(title, content, buttons, okCallback, cancelCallback) {
+    showComponentModal: function(title, component, componentData) {
+        this.set('_modalName', 'ComponentModal');
+        this.showModal(title, null, component, componentData);
+    },
+
+    showModal: function(title, content, component, componentData, buttons, okCallback, cancelCallback) {
         this.set('_modalOKCallback', okCallback);
         this.set('_modalCancelCallback', cancelCallback);
-        return this.ModalManager.open(this.get('_modalName'), title, buttons, content, this);
+        return this.ModalManager.open(this.get('_modalName'), title, buttons, content, component, componentData, this);
     },
 });
