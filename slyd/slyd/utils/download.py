@@ -9,6 +9,7 @@ from six import StringIO
 from datetime import datetime
 
 from slyd.projecttemplates import templates
+from slybot.plugins.scrapely_annotations.builder import Annotations
 import six
 
 REQUIRED_FILES = {'setup.py', 'scrapy.cfg', 'extractors.json', 'items.json',
@@ -22,6 +23,7 @@ FILE_TEMPLATES = {
     'spiders/__init__.py': '',
     'spiders/settings.py': templates['SETTINGS']
 }
+apply_annotations = Annotations().save_extraction_data
 
 
 class ProjectArchiver(object):
@@ -65,14 +67,14 @@ class ProjectArchiver(object):
                 path, contents, added = self._add_spider(file_path,
                                                          spider_templates,
                                                          extractors)
-                seen_files.update(added)
                 if contents is not None:
                     self._add_file(file_path, contents, now)
             else:
                 self._add_file(file_path, self.read_file(file_path), now)
-                seen_files.add(file_path)
-        missing = (set(self.file_templates) & self.required_files) - seen_files
-        for file_path in missing:
+        file_list = set(f.filename for f in self._archive.filelist)
+        for file_path in self.required_files:
+            if file_path in file_list:
+                continue
             self._add_file(file_path, self.file_templates[file_path], now)
 
     def _add_file(self, filename, contents, tstamp):
@@ -110,7 +112,7 @@ class ProjectArchiver(object):
         spider = self._spider_name(file_path)
         file_path = self._spider_path(file_path)
         spider_data = self.read_file(file_path, deserialize=True)
-        if spider_data.get('deleted'):
+        if spider_data is None or spider_data.get('deleted'):
             return file_path, spider_data, {file_path}
         names = set(spider_data.pop('template_names', []))
         spider_templates = [tp for tp in templates.get(spider, [])
@@ -146,12 +148,19 @@ class ProjectArchiver(object):
             template = self.read_file(template_path, deserialize=True)
             if template is None:
                 continue
+            if template.get('version', '') >= '0.13.0':
+                # Update `annotated_body`
+                annotations = template['plugins']['annotations-plugin']
+                apply_annotations(annotations, template)
             template_extractors = template.get('extractors', {})
-            for field, eids in template_extractors.items():
-                existing[field] = [eid for eid in eids
-                                   if eid in extractors]
-            template['extractors'] = existing
-            templates.append(template)
+            try:
+                for field, eids in template_extractors.items():
+                    existing[field] = [eid for eid in eids
+                                       if eid in extractors]
+                template['extractors'] = existing
+                templates.append(template)
+            except AttributeError:
+                template['extractors'] = {}
         return templates, added
 
     def _spider_name(self, file_path):

@@ -168,7 +168,7 @@ export var SlydApi = Ember.Object.extend({
         hash.url = this.get('projectSpecUrl') + 'spiders/' + (spiderName || this.get('spider'));
         return this.makeAjaxCall(hash).then(function(spiderData) {
             spiderData['name'] = (spiderName || this.get('spider'));
-            spiderData['templates'] = spiderData['templates'].map(function(template) {
+            spiderData.templates = (spiderData.templates || []).map(function(template) {
                 // Assign a name to templates. This is needed as Autoscraping templates
                 // are not named.
                 if (Ember.isEmpty(template['name'])) {
@@ -553,6 +553,39 @@ export var SlydApi = Ember.Object.extend({
         });
     },
 
+    hasTag: function(projectName, tagName) {
+        var hash = {};
+        hash.type = 'POST';
+        hash.url = this.getApiUrl();
+        hash.data = { cmd: 'has_tag', args: [projectName, tagName] };
+        return this.makeAjaxCall(hash).catch(function(err) {
+            err.title = 'Failed to load tags';
+            throw err;
+        });
+    },
+
+    addTag: function(tagName) {
+        var hash = {};
+        hash.type = 'POST';
+        hash.url = this.getApiUrl() + '/' + this.get('project') + '/spec/spiders';
+        hash.data = { cmd: 'add_tag', args: [tagName] };
+        return this.makeAjaxCall(hash).catch(function(err) {
+            err.title = 'Failed to add tag: "' + tagName + '"';
+            throw err;
+        });
+    },
+
+    rollbackToTag: function(tagName) {
+        var hash = {};
+        hash.type = 'POST';
+        hash.url = this.getApiUrl() + '/' + this.get('project') + '/spec/spiders';
+        hash.data = { cmd: 'checkout_tag', args: [tagName, true] };
+        return this.makeAjaxCall(hash).catch(function(err) {
+            err.title = 'Failed rollback to "' + tagName + '"';
+            throw err;
+        });
+    },
+
     publishProject: function(projectName, force) {
         var hash = {};
         hash.type = 'POST';
@@ -613,22 +646,18 @@ export var SlydApi = Ember.Object.extend({
     @for this
     @param {String} [pageUrl] the URL of the page to fetch.
     @param {String} [spiderName] the name of the spider to use.
-    @param {String} [parentFp] the fingerprint of the parent page.
     @return {Promise} a promise that fulfills with an {Object} containing
         the document contents (page), the response data (response), the
         extracted items (items), the request fingerprint (fp), an error
         message (error) and the links that will be followed (links).
     */
-    fetchDocument: function(pageUrl, spiderName, parentFp, baseurl) {
+    fetchDocument: function(pageUrl, spiderName, baseurl) {
         var hash = {};
         hash.type = 'POST';
         var data = { spider: spiderName || this.get('spider'),
                      request: { url: pageUrl } };
         if (baseurl) {
             data.baseurl = baseurl;
-        }
-        if (parentFp) {
-            data['parent_fp'] = parentFp;
         }
         hash.data = data;
         hash.url = this.get('botUrl') + 'fetch';
@@ -711,8 +740,6 @@ export var SlydApi = Ember.Object.extend({
         } catch (_) {
             cmd = '-';
         }
-        headers['x-portia'] = [this.get('sessionid'), this.get('timer').totalTime(),
-                               this.get('username'), cmd].join(':');
         hash.data = JSON.stringify(hash.data);
         hash.headers = headers;
         return ajax(hash).catch(function(reason) {

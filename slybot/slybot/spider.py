@@ -1,92 +1,90 @@
 from __future__ import absolute_import
-import json
-import re
 
-from operator import itemgetter
-from copy import deepcopy
 import itertools
-from six.moves.urllib_parse import urlparse
+import json
 
-from w3lib.http import basic_auth_header
-
-from scrapy.http import Request, HtmlResponse, FormRequest
-import six
-try:
-    from scrapy.spiders import Spider
-except ImportError:
-    # BaseSpider class was deprecated in Scrapy 0.21
-    from scrapy.spider import BaseSpider as Spider
+from copy import deepcopy
 
 from loginform import fill_login_form
 
-from slybot.utils import (iter_unique_scheme_hostname, load_plugins,
-                          load_plugin_names, IndexedDict)
-from slybot.linkextractor import create_linkextractor_from_specs
+from scrapy.http import FormRequest, HtmlResponse, Request, XmlResponse
+from scrapy.spiders.sitemap import SitemapSpider
+from scrapy.utils.spider import arg_to_iter
+
+import six
+from six.moves.urllib_parse import urlparse
+
 from slybot.generic_form import GenericForm
+from slybot.linkextractor import create_linkextractor_from_specs
+from slybot.starturls import (
+    FragmentGenerator, IdentityGenerator, StartUrlCollection, UrlGenerator
+)
+from slybot.utils import (
+    include_exclude_filter, IndexedDict, iter_unique_scheme_hostname,
+    load_plugin_names, load_plugins,
+)
+from w3lib.http import basic_auth_header
 
 STRING_KEYS = ['start_urls', 'exclude_patterns', 'follow_patterns',
                'allowed_domains', 'js_enabled', 'js_enable_patterns',
                'js_disable_patterns']
 
 
-class IblSpider(Spider):
-
+class IblSpider(SitemapSpider):
     def __init__(self, name, spec, item_schemas, all_extractors, settings=None,
                  **kw):
+        self.start_url_generators = {
+            'start_urls': IdentityGenerator(),
+            'generated_urls': UrlGenerator(settings, kw),
+
+            'url': IdentityGenerator(),
+            'generated': FragmentGenerator(),
+            # 'feed_urls': FeedUrls(self, settings, kw)
+        }
+        self.generic_form = GenericForm(**kw)
         super(IblSpider, self).__init__(name, **kw)
-        self._job_id = settings.get('JOB', '')
         spec = deepcopy(spec)
-        for key, val in kw.items():
+        self._add_spider_args_to_spec(spec, kw)
+        self.plugins = self._configure_plugins(
+            settings, spec, item_schemas, all_extractors)
+        self._configure_js(spec, settings)
+
+        self.login_requests, self.form_requests = [], []
+        self._start_urls = self._create_start_urls(spec)
+        self._start_requests = self._create_start_requests(spec)
+        self._create_init_requests(spec)
+        self._add_allowed_domains(spec)
+        self.page_actions = spec.get('page_actions', [])
+
+    def _add_spider_args_to_spec(self, spec, args):
+        for key, val in args.items():
             if isinstance(val, six.string_types) and key in STRING_KEYS:
                 val = val.splitlines()
             spec[key] = val
 
-        self._item_template_pages = sorted(
-            ((t['scrapes'], t) for t in spec['templates']
-             if t.get('page_type', 'item') == 'item'), key=itemgetter(0))
-
-        self._templates = [templ for _, templ in self._item_template_pages]
-
-        self.plugins = IndexedDict()
-        for plugin_class, plugin_name in zip(load_plugins(settings),
-                                             load_plugin_names(settings)):
-            instance = plugin_class()
-            instance.setup_bot(settings, spec, item_schemas, all_extractors)
-            self.plugins[plugin_name] = instance
-
-        self.js_enabled = False
-        self.SPLASH_HOST = None
-        if settings.get('SPLASH_URL'):
-            self.SPLASH_HOST = urlparse(settings.get('SPLASH_URL')).hostname
-            self.js_enabled = spec.get('js_enabled', False)
-        if self.js_enabled and (settings.get('SPLASH_PASS') is not None or
-                                settings.get('SPLASH_USER') is not None):
-            self.splash_auth = basic_auth_header(
-                settings.get('SPLASH_USER', ''),
-                settings.get('SPLASH_PASS', ''))
-        self._filter_js_urls = self._build_js_url_filter(spec)
-        self.login_requests = []
-        self.form_requests = []
-        self._start_requests = []
-        self.generic_form = GenericForm(**kw)
-        self._create_init_requests(spec.get("init_requests", []))
-        self._process_start_urls(spec)
-        self.allowed_domains = spec.get(
-            'allowed_domains',
-            self._get_allowed_domains(self._templates)
+    def _create_start_urls(self, spec):
+        url_type = spec.get('start_urls_type', 'start_urls')
+        return StartUrlCollection(
+            arg_to_iter(spec[url_type]),
+            self.start_url_generators,
+            url_type
         )
-        if not self.allowed_domains:
-            self.allowed_domains = None
 
-    def _process_start_urls(self, spec):
-        self.start_urls = spec.get('start_urls')
-        for url in self.start_urls:
-            request = Request(url, callback=self.parse, dont_filter=True)
-            self._add_splash_meta(request)
-            self._start_requests.append(request)
+    def _create_start_requests(self, spec):
+        init_requests = spec.get('init_requests', [])
+        for rdata in init_requests:
+            if rdata["type"] == "start":
+                yield self._create_start_request_from_specs(rdata)
+
+        for start_url in self._start_urls:
+            if not isinstance(start_url, Request):
+                start_url = Request(start_url, callback=self.parse,
+                                    dont_filter=True)
+            yield self._add_splash_meta(start_url)
 
     def _create_init_requests(self, spec):
-        for rdata in spec:
+        init_requests = spec.get('init_requests', [])
+        for rdata in init_requests:
             if rdata["type"] == "login":
                 request = Request(url=rdata.pop("loginurl"), meta=rdata,
                                   callback=self.parse_login_page,
@@ -97,10 +95,11 @@ class IblSpider(Spider):
                 self.form_requests.append(
                     self.get_generic_form_start_request(rdata)
                 )
-            elif rdata["type"] == "start":
-                self._start_requests.append(
-                    self._create_start_request_from_specs(rdata)
-                )
+
+    def _add_allowed_domains(self, spec):
+        self.allowed_domains = spec.get('allowed_domains', [])
+        if self.allowed_domains is not None and not self.allowed_domains:
+            self.allowed_domains = self._get_allowed_domains(spec)
 
     def parse_login_page(self, response):
         username = response.request.meta["username"]
@@ -154,10 +153,12 @@ class IblSpider(Spider):
         for result in self.parse(response):
             yield result
 
-    def _get_allowed_domains(self, templates):
-        urls = [x['url'] for x in templates]
-        urls += [x.url for x in self._start_requests]
-        return [x[1] for x in iter_unique_scheme_hostname(urls)]
+    def _get_allowed_domains(self, spec):
+        urls = [x['url'] for x in spec['templates']]
+        urls += [x['url'] for x in spec.get('init_requests', [])
+                 if x['type'] == 'start']
+        urls += self._start_urls.allowed_domains
+        return [domain for scheme, domain in iter_unique_scheme_hostname(urls)]
 
     def start_requests(self):
         start_requests = []
@@ -196,14 +197,24 @@ class IblSpider(Spider):
         content_type = response.headers.get('Content-Type', '')
         if isinstance(response, HtmlResponse):
             return self.handle_html(response)
-        elif "application/rss+xml" in content_type:
-            return self.handle_rss(response)
-        else:
-            self.logger.debug(
-                "Ignoring page with content-type=%r: %s" % (content_type,
-                                                            response.url)
-            )
-            return []
+        if (isinstance(response, XmlResponse) or
+                response.url.endswith(('.xml', '.xml.gz'))):
+            response._set_body(self._get_sitemap_body(response))
+            return self.handle_xml(response)
+        self.logger.debug(
+            "Ignoring page with content-type=%r: %s" % (content_type,
+                                                        response.url)
+        )
+        return []
+
+    def _configure_plugins(self, settings, spec, schemas, extractors):
+        plugins = IndexedDict()
+        for plugin_class, plugin_name in zip(load_plugins(settings),
+                                             load_plugin_names(settings)):
+            instance = plugin_class()
+            instance.setup_bot(settings, spec, schemas, extractors, self.logger)
+            plugins[plugin_name] = instance
+        return plugins
 
     def _plugin_hook(self, name, *args):
         results = []
@@ -223,42 +234,49 @@ class IblSpider(Spider):
                 item_or_request = self._add_splash_meta(item_or_request)
             yield item_or_request
 
-    def handle_rss(self, response):
-        return self._handle('handle_rss', response, set([]))
+    def handle_xml(self, response):
+        return self._handle('handle_xml', response, set([]))
 
     def handle_html(self, response):
         return self._handle('handle_html', response)
+
+    def _configure_js(self, spec, settings):
+        self.js_enabled = False
+        self.SPLASH_HOST = None
+        if settings.get('SPLASH_URL'):
+            self.SPLASH_HOST = urlparse(settings.get('SPLASH_URL')).hostname
+            self.js_enabled = spec.get('js_enabled', False)
+        if self.js_enabled and (settings.get('SPLASH_PASS') is not None or
+                                settings.get('SPLASH_USER') is not None):
+            self.splash_auth = basic_auth_header(
+                settings.get('SPLASH_USER', ''),
+                settings.get('SPLASH_PASS', ''))
+        self.splash_wait = settings.getint('SPLASH_WAIT', 5)
+        self.splash_timeout = settings.getint('SPLASH_TIMEOUT', 30)
+        self.splash_js_source = settings.get(
+            'SPLASH_JS_SOURCE', 'function(){}')
+        self.splash_lua_source = settings.get('SPLASH_LUA_SOURCE', '')
+        self._filter_js_urls = self._build_js_url_filter(spec)
 
     def _build_js_url_filter(self, spec):
         if not self.js_enabled:
             return lambda x: None
         enable_patterns = spec.get('js_enable_patterns')
         disable_patterns = spec.get('js_disable_patterns')
-        filterf = None
-        enablef = None
-        if enable_patterns:
-            pattern = enable_patterns[0] if len(enable_patterns) == 1 else \
-                "(?:%s)" % '|'.join(enable_patterns)
-            enablef = re.compile(pattern).search
-            filterf = enablef
-        if disable_patterns:
-            pattern = disable_patterns[0] if len(disable_patterns) == 1 else \
-                "(?:%s)" % '|'.join(disable_patterns)
-            disablef = re.compile(pattern).search
-            if not enablef:
-                filterf = lambda x: not disablef(x)
-            else:
-                filterf = lambda x: enablef(x) and not disablef(x)
-        return filterf if filterf else lambda x: x
+        return include_exclude_filter(enable_patterns, disable_patterns)
 
     def _add_splash_meta(self, request):
         if self.js_enabled and self._filter_js_urls(request.url):
             cleaned_url = urlparse(request.url)._replace(params='', query='',
                                                          fragment='').geturl()
+            endpoint = 'execute' if self.splash_lua_source else 'render.html'
             request.meta['splash'] = {
-                'endpoint': 'render.html?job_id=%s' % self._job_id,
+                'endpoint': endpoint,
                 'args': {
-                    'wait': 5,
+                    'wait': self.splash_wait,
+                    'timeout': self.splash_timeout,
+                    'js_source': self.splash_js_source,
+                    'lua_source': self.splash_lua_source,
                     'images': 0,
                     'url': request.url,
                     'baseurl': cleaned_url

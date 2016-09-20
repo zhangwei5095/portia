@@ -1,6 +1,7 @@
 from six.moves.urllib_parse import urlparse
 import os
 import json
+import re
 
 from collections import OrderedDict
 
@@ -22,8 +23,11 @@ def iter_unique_scheme_hostname(urls):
 
 def open_project_from_dir(project_dir):
     specs = {"spiders": {}}
-    with open(os.path.join(project_dir, "project.json")) as f:
-        specs["project"] = json.load(f)
+    try:
+        with open(os.path.join(project_dir, "project.json")) as f:
+            specs["project"] = json.load(f)
+    except IOError:
+        specs["project"] = {}
     with open(os.path.join(project_dir, "items.json")) as f:
         specs["items"] = json.load(f)
     with open(os.path.join(project_dir, "extractors.json")) as f:
@@ -42,6 +46,13 @@ def open_project_from_dir(project_dir):
                                                             spider_name,
                                                             template_names)
                         spec.setdefault("templates", []).extend(templates)
+                    else:
+                        templates = []
+                        for template in spec.get('templates', []):
+                            if template.get('version') < '0.13.0':
+                                templates.append(template)
+                            else:
+                                templates.append(_build_sample(template))
                     specs["spiders"][spider_name] = spec
                 except ValueError as e:
                     raise ValueError(
@@ -57,7 +68,16 @@ def load_external_templates(spec_base, spider_name, template_names):
     """
     for name in template_names:
         with open(os.path.join(spec_base, spider_name, name + ".json")) as f:
-            yield json.load(f)
+            sample = json.load(f)
+            yield _build_sample(sample)
+
+
+def _build_sample(sample):
+    from slybot.plugins.scrapely_annotations.builder import Annotations
+    data = sample.get('plugins', {}).get('annotations-plugin')
+    if data:
+        Annotations().save_extraction_data(data, sample)
+    return sample
 
 
 def htmlpage_from_response(response):
@@ -101,6 +121,25 @@ def load_plugin_names(settings):
         return [generate_name(path) for path in settings['PLUGINS']]
     else:
         return ['Annotations']
+
+
+def include_exclude_filter(include_patterns, exclude_patterns):
+    filterf = None
+    includef = None
+    if include_patterns:
+        pattern = include_patterns[0] if len(include_patterns) == 1 else \
+            "(?:%s)" % '|'.join(include_patterns)
+        includef = re.compile(pattern).search
+        filterf = includef
+    if exclude_patterns:
+        pattern = exclude_patterns[0] if len(exclude_patterns) == 1 else \
+            "(?:%s)" % '|'.join(exclude_patterns)
+        excludef = re.compile(pattern).search
+        if not includef:
+            filterf = lambda x: not excludef(x)
+        else:
+            filterf = lambda x: includef(x) and not excludef(x)
+    return filterf if filterf else bool
 
 
 class IndexedDict(OrderedDict):

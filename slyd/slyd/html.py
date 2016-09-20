@@ -6,14 +6,12 @@
 """
 from __future__ import absolute_import
 import re
-import six
 
 from six.moves.urllib_parse import urljoin
 
 from scrapely.htmlpage import HtmlTag, HtmlTagType, parse_html
 from slybot.utils import htmlpage_from_response
-from slybot.baseurl import insert_base_url
-from .splash.css_utils import process_css, wrap_url
+from .splash.css_utils import process_css, wrap_url, unescape
 from .utils import serialize_tag, add_tagids
 
 URI_ATTRIBUTES = ("action", "background", "cite", "classid", "codebase",
@@ -25,23 +23,6 @@ _ALLOWED_CHARS_RE = re.compile('[^!-~]') # [!-~] = ascii printable characters
 def _contains_js(url):
     return _ALLOWED_CHARS_RE.sub('', url).lower().startswith('javascript:')
 
-try:
-    from html import unescape
-except ImportError:
-    # https://html.spec.whatwg.org/multipage/syntax.html#character-references
-    # http://stackoverflow.com/questions/18689230/why-do-html-entity-names-with-dec-255-not-require-semicolon
-    _ENTITY_RE = re.compile("&#(\d+|x[a-f\d]+);?", re.I)
-    def _replace_entity(match):
-        entity = match.group(1)
-        if entity[0].lower() == 'x':
-            return six.unichr(int(entity[1:], 16))
-        else:
-            return six.unichr(int(entity, 10))
-
-    def unscape(mystr):
-        """replaces all numeric html entities by its unicode equivalent.
-        """
-        return _ENTITY_RE.sub(_replace_entity, mystr)
 
 def html4annotation(htmlpage, baseurl=None, proxy_resources=None):
     """Convert the given html document for the annotation UI
@@ -50,8 +31,6 @@ def html4annotation(htmlpage, baseurl=None, proxy_resources=None):
     """
     htmlpage = add_tagids(htmlpage)
     cleaned_html = descriptify(htmlpage, baseurl, proxy=proxy_resources)
-    if baseurl:
-        cleaned_html = insert_base_url(cleaned_html, baseurl)
     return cleaned_html
 
 
@@ -78,6 +57,9 @@ def descriptify(doc, base=None, proxy=None):
                 elif element.tag_type == HtmlTagType.CLOSE_TAG:
                     newdoc.append('</%s>' % element.tag)
                     inserted_comment = False
+            elif element.tag == 'base':
+                element.attributes = {}
+                newdoc.append(serialize_tag(element))
             else:
                 for key, val in element.attributes.copy().items():
                     # Empty intrinsic events
@@ -85,9 +67,11 @@ def descriptify(doc, base=None, proxy=None):
                         element.attributes[key] = ""
                     elif base and proxy and key == "style" and val is not None:
                         element.attributes[key] = process_css(val, -1, base)
+                    elif element.tag in ('frame', 'iframe') and key == 'src':
+                        element.attributes[key] = '/static/frames-not-supported.html'
                     # Rewrite javascript URIs
                     elif key in URI_ATTRIBUTES and val is not None:
-                            if _contains_js(unscape(val)):
+                            if _contains_js(unescape(val)):
                                 element.attributes[key] = "#"
                             elif base and proxy and not (element.tag == "a" and key == 'href'):
                                 element.attributes[key] = wrap_url(val, -1,

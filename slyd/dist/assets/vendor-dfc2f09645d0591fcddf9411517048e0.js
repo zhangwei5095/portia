@@ -9418,7 +9418,7 @@ return jQuery;
  *            Portions Copyright 2008-2011 Apple Inc. All rights reserved.
  * @license   Licensed under MIT license
  *            See https://raw.github.com/emberjs/ember.js/master/LICENSE
- * @version   1.11.3
+ * @version   1.11.4
  */
 
 (function() {
@@ -16611,26 +16611,6 @@ enifed('ember-htmlbars/system/lookup-helper', ['exports', 'ember-metal/core', 'e
   exports.ISNT_HELPER_CACHE = ISNT_HELPER_CACHE;
 
 });
-enifed('ember-htmlbars/system/make-view-helper', ['exports', 'ember-metal/core', 'ember-htmlbars/system/helper'], function (exports, Ember, Helper) {
-
-  'use strict';
-
-  /**
-  @module ember
-  @submodule ember-htmlbars
-  */
-
-  function makeViewHelper(ViewClass) {
-    function helperFunc(params, hash, options, env) {
-      
-      return env.helpers.view.helperFunction.call(this, [ViewClass], hash, options, env);
-    }
-
-    return new Helper['default'](helperFunc);
-  }
-  exports['default'] = makeViewHelper;
-
-});
 enifed('ember-htmlbars/system/make_bound_helper', ['exports', 'ember-metal/core', 'ember-htmlbars/system/helper', 'ember-metal/streams/stream', 'ember-metal/streams/utils'], function (exports, Ember, Helper, Stream, utils) {
 
   'use strict';
@@ -16676,6 +16656,26 @@ enifed('ember-htmlbars/system/make_bound_helper', ['exports', 'ember-metal/core'
     return new Helper['default'](helperFunc);
   }
   exports['default'] = makeBoundHelper;
+
+});
+enifed('ember-htmlbars/system/make-view-helper', ['exports', 'ember-metal/core', 'ember-htmlbars/system/helper'], function (exports, Ember, Helper) {
+
+  'use strict';
+
+  /**
+  @module ember
+  @submodule ember-htmlbars
+  */
+
+  function makeViewHelper(ViewClass) {
+    function helperFunc(params, hash, options, env) {
+      
+      return env.helpers.view.helperFunction.call(this, [ViewClass], hash, options, env);
+    }
+
+    return new Helper['default'](helperFunc);
+  }
+  exports['default'] = makeViewHelper;
 
 });
 enifed('ember-htmlbars/system/merge-view-bindings', ['exports', 'ember-metal/core', 'ember-metal/mixin', 'ember-metal/streams/simple', 'ember-metal/streams/utils', 'ember-views/streams/class_name_binding'], function (exports, Ember, mixin, SimpleStream, utils, class_name_binding) {
@@ -16844,7 +16844,7 @@ enifed('ember-htmlbars/templates/component', ['exports', 'ember-template-compile
   exports['default'] = template['default']((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.3",
+      revision: "Ember@1.11.4",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -16891,7 +16891,7 @@ enifed('ember-htmlbars/templates/empty', ['exports', 'ember-template-compiler/sy
   exports['default'] = template['default']((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.3",
+      revision: "Ember@1.11.4",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -16931,7 +16931,7 @@ enifed('ember-htmlbars/templates/link-to-escaped', ['exports', 'ember-template-c
   exports['default'] = template['default']((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.3",
+      revision: "Ember@1.11.4",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -16978,7 +16978,7 @@ enifed('ember-htmlbars/templates/link-to-unescaped', ['exports', 'ember-template
   exports['default'] = template['default']((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.3",
+      revision: "Ember@1.11.4",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -17025,7 +17025,7 @@ enifed('ember-htmlbars/templates/select-option', ['exports', 'ember-template-com
   exports['default'] = template['default']((function() {
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.3",
+      revision: "Ember@1.11.4",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -17073,7 +17073,7 @@ enifed('ember-htmlbars/templates/select', ['exports', 'ember-template-compiler/s
     var child0 = (function() {
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.3",
+        revision: "Ember@1.11.4",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -17116,7 +17116,7 @@ enifed('ember-htmlbars/templates/select', ['exports', 'ember-template-compiler/s
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.3",
+          revision: "Ember@1.11.4",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -17156,7 +17156,7 @@ enifed('ember-htmlbars/templates/select', ['exports', 'ember-template-compiler/s
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.3",
+        revision: "Ember@1.11.4",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -17198,7 +17198,7 @@ enifed('ember-htmlbars/templates/select', ['exports', 'ember-template-compiler/s
       var child0 = (function() {
         return {
           isHTMLBars: true,
-          revision: "Ember@1.11.3",
+          revision: "Ember@1.11.4",
           blockParams: 0,
           cachedFragment: null,
           hasRendered: false,
@@ -17238,7 +17238,7 @@ enifed('ember-htmlbars/templates/select', ['exports', 'ember-template-compiler/s
       }());
       return {
         isHTMLBars: true,
-        revision: "Ember@1.11.3",
+        revision: "Ember@1.11.4",
         blockParams: 0,
         cachedFragment: null,
         hasRendered: false,
@@ -17278,7 +17278,7 @@ enifed('ember-htmlbars/templates/select', ['exports', 'ember-template-compiler/s
     }());
     return {
       isHTMLBars: true,
-      revision: "Ember@1.11.3",
+      revision: "Ember@1.11.4",
       blockParams: 0,
       cachedFragment: null,
       hasRendered: false,
@@ -19048,615 +19048,6 @@ enifed('ember-metal/chains', ['exports', 'ember-metal/core', 'ember-metal/proper
   }
 
 });
-enifed('ember-metal/computed', ['exports', 'ember-metal/property_set', 'ember-metal/utils', 'ember-metal/expand_properties', 'ember-metal/error', 'ember-metal/properties', 'ember-metal/property_events', 'ember-metal/dependent_keys'], function (exports, property_set, utils, expandProperties, EmberError, properties, property_events, dependent_keys) {
-
-  'use strict';
-
-  exports.ComputedProperty = ComputedProperty;
-  exports.computed = computed;
-  exports.cacheFor = cacheFor;
-
-  var metaFor = utils.meta;
-  var a_slice = [].slice;
-
-  function UNDEFINED() { }
-
-  // ..........................................................
-  // COMPUTED PROPERTY
-  //
-
-  /**
-    A computed property transforms an object's function into a property.
-
-    By default the function backing the computed property will only be called
-    once and the result will be cached. You can specify various properties
-    that your computed property depends on. This will force the cached
-    result to be recomputed if the dependencies are modified.
-
-    In the following example we declare a computed property (by calling
-    `.property()` on the fullName function) and setup the property
-    dependencies (depending on firstName and lastName). The fullName function
-    will be called once (regardless of how many times it is accessed) as long
-    as its dependencies have not changed. Once firstName or lastName are updated
-    any future calls (or anything bound) to fullName will incorporate the new
-    values.
-
-    ```javascript
-    var Person = Ember.Object.extend({
-      // these will be supplied by `create`
-      firstName: null,
-      lastName: null,
-
-      fullName: function() {
-        var firstName = this.get('firstName');
-        var lastName = this.get('lastName');
-
-       return firstName + ' ' + lastName;
-      }.property('firstName', 'lastName')
-    });
-
-    var tom = Person.create({
-      firstName: 'Tom',
-      lastName: 'Dale'
-    });
-
-    tom.get('fullName') // 'Tom Dale'
-    ```
-
-    You can also define what Ember should do when setting a computed property.
-    If you try to set a computed property, it will be invoked with the key and
-    value you want to set it to. You can also accept the previous value as the
-    third parameter.
-
-    ```javascript
-    var Person = Ember.Object.extend({
-      // these will be supplied by `create`
-      firstName: null,
-      lastName: null,
-
-      fullName: function(key, value, oldValue) {
-        // getter
-        if (arguments.length === 1) {
-          var firstName = this.get('firstName');
-          var lastName = this.get('lastName');
-
-          return firstName + ' ' + lastName;
-
-        // setter
-        } else {
-          var name = value.split(' ');
-
-          this.set('firstName', name[0]);
-          this.set('lastName', name[1]);
-
-          return value;
-        }
-      }.property('firstName', 'lastName')
-    });
-
-    var person = Person.create();
-
-    person.set('fullName', 'Peter Wagenet');
-    person.get('firstName'); // 'Peter'
-    person.get('lastName');  // 'Wagenet'
-    ```
-
-    @class ComputedProperty
-    @namespace Ember
-    @extends Ember.Descriptor
-    @constructor
-  */
-  function ComputedProperty(config, opts) {
-    this.isDescriptor = true;
-    
-      config.__ember_arity = config.length;
-      this._getter = config;
-      if (config.__ember_arity > 1) {
-        this._setter = config;
-      }
-    
-
-    this._dependentKeys = undefined;
-    this._suspended = undefined;
-    this._meta = undefined;
-
-        this._cacheable = (opts && opts.cacheable !== undefined) ? opts.cacheable : true;   // TODO: Set always to `true` once this deprecation is gone.
-    this._dependentKeys = opts && opts.dependentKeys;
-        this._readOnly = opts && (opts.readOnly !== undefined || !!opts.readOnly) || false; // TODO: Set always to `false` once this deprecation is gone.
-  }
-
-  ComputedProperty.prototype = new properties.Descriptor();
-
-  var ComputedPropertyPrototype = ComputedProperty.prototype;
-
-  /**
-    Properties are cacheable by default. Computed property will automatically
-    cache the return value of your function until one of the dependent keys changes.
-
-    Call `volatile()` to set it into non-cached mode. When in this mode
-    the computed property will not automatically cache the return value.
-
-    However, if a property is properly observable, there is no reason to disable
-    caching.
-
-    @method cacheable
-    @param {Boolean} aFlag optional set to `false` to disable caching
-    @return {Ember.ComputedProperty} this
-    @chainable
-    @deprecated All computed properties are cacheble by default. Use `volatile()` instead to opt-out to caching.
-  */
-  ComputedPropertyPrototype.cacheable = function(aFlag) {
-        this._cacheable = aFlag !== false;
-    return this;
-  };
-
-  /**
-    Call on a computed property to set it into non-cached mode. When in this
-    mode the computed property will not automatically cache the return value.
-
-    ```javascript
-    var outsideService = Ember.Object.extend({
-      value: function() {
-        return OutsideService.getValue();
-      }.property().volatile()
-    }).create();
-    ```
-
-    @method volatile
-    @return {Ember.ComputedProperty} this
-    @chainable
-  */
-  ComputedPropertyPrototype["volatile"] = function() {
-    this._cacheable = false;
-    return this;
-  };
-
-  /**
-    Call on a computed property to set it into read-only mode. When in this
-    mode the computed property will throw an error when set.
-
-    ```javascript
-    var Person = Ember.Object.extend({
-      guid: function() {
-        return 'guid-guid-guid';
-      }.property().readOnly()
-    });
-
-    var person = Person.create();
-
-    person.set('guid', 'new-guid'); // will throw an exception
-    ```
-
-    @method readOnly
-    @return {Ember.ComputedProperty} this
-    @chainable
-  */
-  ComputedPropertyPrototype.readOnly = function(readOnly) {
-        this._readOnly = readOnly === undefined || !!readOnly; // Force to true once this deprecation is gone
-    return this;
-  };
-
-  /**
-    Sets the dependent keys on this computed property. Pass any number of
-    arguments containing key paths that this computed property depends on.
-
-    ```javascript
-    var President = Ember.Object.extend({
-      fullName: computed(function() {
-        return this.get('firstName') + ' ' + this.get('lastName');
-
-        // Tell Ember that this computed property depends on firstName
-        // and lastName
-      }).property('firstName', 'lastName')
-    });
-
-    var president = President.create({
-      firstName: 'Barack',
-      lastName: 'Obama'
-    });
-
-    president.get('fullName'); // 'Barack Obama'
-    ```
-
-    @method property
-    @param {String} path* zero or more property paths
-    @return {Ember.ComputedProperty} this
-    @chainable
-  */
-  ComputedPropertyPrototype.property = function() {
-    var args;
-
-    var addArg = function (property) {
-      args.push(property);
-    };
-
-    args = [];
-    for (var i = 0, l = arguments.length; i < l; i++) {
-      expandProperties['default'](arguments[i], addArg);
-    }
-
-    this._dependentKeys = args;
-    return this;
-  };
-
-  /**
-    In some cases, you may want to annotate computed properties with additional
-    metadata about how they function or what values they operate on. For example,
-    computed property functions may close over variables that are then no longer
-    available for introspection.
-
-    You can pass a hash of these values to a computed property like this:
-
-    ```
-    person: function() {
-      var personId = this.get('personId');
-      return App.Person.create({ id: personId });
-    }.property().meta({ type: App.Person })
-    ```
-
-    The hash that you pass to the `meta()` function will be saved on the
-    computed property descriptor under the `_meta` key. Ember runtime
-    exposes a public API for retrieving these values from classes,
-    via the `metaForProperty()` function.
-
-    @method meta
-    @param {Hash} meta
-    @chainable
-  */
-
-  ComputedPropertyPrototype.meta = function(meta) {
-    if (arguments.length === 0) {
-      return this._meta || {};
-    } else {
-      this._meta = meta;
-      return this;
-    }
-  };
-
-  /* impl descriptor API */
-  ComputedPropertyPrototype.didChange = function(obj, keyName) {
-    // _suspended is set via a CP.set to ensure we don't clear
-    // the cached value set by the setter
-    if (this._cacheable && this._suspended !== obj) {
-      var meta = metaFor(obj);
-      if (meta.cache && meta.cache[keyName] !== undefined) {
-        meta.cache[keyName] = undefined;
-        dependent_keys.removeDependentKeys(this, obj, keyName, meta);
-      }
-    }
-  };
-
-  function finishChains(chainNodes) {
-    for (var i=0, l=chainNodes.length; i<l; i++) {
-      chainNodes[i].didChange(null);
-    }
-  }
-
-  /**
-    Access the value of the function backing the computed property.
-    If this property has already been cached, return the cached result.
-    Otherwise, call the function passing the property name as an argument.
-
-    ```javascript
-    var Person = Ember.Object.extend({
-      fullName: function(keyName) {
-        // the keyName parameter is 'fullName' in this case.
-        return this.get('firstName') + ' ' + this.get('lastName');
-      }.property('firstName', 'lastName')
-    });
-
-
-    var tom = Person.create({
-      firstName: 'Tom',
-      lastName: 'Dale'
-    });
-
-    tom.get('fullName') // 'Tom Dale'
-    ```
-
-    @method get
-    @param {String} keyName The key being accessed.
-    @return {Object} The return value of the function backing the CP.
-  */
-  ComputedPropertyPrototype.get = function(obj, keyName) {
-    var ret, cache, meta, chainNodes;
-    if (this._cacheable) {
-      meta = metaFor(obj);
-      cache = meta.cache;
-
-      var result = cache && cache[keyName];
-
-      if (result === UNDEFINED) {
-        return undefined;
-      } else if (result !== undefined) {
-        return result;
-      }
-
-      ret = this._getter.call(obj, keyName);
-      cache = meta.cache;
-      if (!cache) {
-        cache = meta.cache = {};
-      }
-      if (ret === undefined) {
-        cache[keyName] = UNDEFINED;
-      } else {
-        cache[keyName] = ret;
-      }
-
-      chainNodes = meta.chainWatchers && meta.chainWatchers[keyName];
-      if (chainNodes) {
-        finishChains(chainNodes);
-      }
-      dependent_keys.addDependentKeys(this, obj, keyName, meta);
-    } else {
-      ret = this._getter.call(obj, keyName);
-    }
-    return ret;
-  };
-
-  /**
-    Set the value of a computed property. If the function that backs your
-    computed property does not accept arguments then the default action for
-    setting would be to define the property on the current object, and set
-    the value of the property to the value being set.
-
-    Generally speaking if you intend for your computed property to be set
-    your backing function should accept either two or three arguments.
-
-    ```javascript
-    var Person = Ember.Object.extend({
-      // these will be supplied by `create`
-      firstName: null,
-      lastName: null,
-
-      fullName: function(key, value, oldValue) {
-        // getter
-        if (arguments.length === 1) {
-          var firstName = this.get('firstName');
-          var lastName = this.get('lastName');
-
-          return firstName + ' ' + lastName;
-
-        // setter
-        } else {
-          var name = value.split(' ');
-
-          this.set('firstName', name[0]);
-          this.set('lastName', name[1]);
-
-          return value;
-        }
-      }.property('firstName', 'lastName')
-    });
-
-    var person = Person.create();
-
-    person.set('fullName', 'Peter Wagenet');
-    person.get('firstName'); // 'Peter'
-    person.get('lastName');  // 'Wagenet'
-    ```
-
-    @method set
-    @param {String} keyName The key being accessed.
-    @param {Object} newValue The new value being assigned.
-    @param {String} oldValue The old value being replaced.
-    @return {Object} The return value of the function backing the CP.
-  */
-  ComputedPropertyPrototype.set = function computedPropertySetWithSuspend(obj, keyName, value) {
-    var oldSuspended = this._suspended;
-
-    this._suspended = obj;
-
-    try {
-      this._set(obj, keyName, value);
-    } finally {
-      this._suspended = oldSuspended;
-    }
-  };
-
-  ComputedPropertyPrototype._set = function computedPropertySet(obj, keyName, value) {
-    var cacheable      = this._cacheable;
-    var setter         = this._setter;
-    var meta           = metaFor(obj, cacheable);
-    var cache          = meta.cache;
-    var hadCachedValue = false;
-
-    var cachedValue, ret;
-
-    if (this._readOnly) {
-      throw new EmberError['default']('Cannot set read-only property "' + keyName + '" on object: ' + utils.inspect(obj));
-    }
-
-    if (cacheable && cache && cache[keyName] !== undefined) {
-      if (cache[keyName] !== UNDEFINED) {
-        cachedValue = cache[keyName];
-      }
-
-      hadCachedValue = true;
-    }
-
-    if (!setter) {
-      properties.defineProperty(obj, keyName, null, cachedValue);
-      property_set.set(obj, keyName, value);
-      return;
-    } else if (setter.__ember_arity === 2) {
-      // Is there any way of deprecate this in a sensitive way?
-      // Maybe now that getters and setters are the prefered options we can....
-      ret = setter.call(obj, keyName, value);
-    } else {
-      ret = setter.call(obj, keyName, value, cachedValue);
-    }
-
-    if (hadCachedValue && cachedValue === ret) { return; }
-
-    var watched = meta.watching[keyName];
-    if (watched) {
-      property_events.propertyWillChange(obj, keyName);
-    }
-
-    if (hadCachedValue) {
-      cache[keyName] = undefined;
-    }
-
-    if (cacheable) {
-      if (!hadCachedValue) {
-        dependent_keys.addDependentKeys(this, obj, keyName, meta);
-      }
-      if (!cache) {
-        cache = meta.cache = {};
-      }
-      if (ret === undefined) {
-        cache[keyName] = UNDEFINED;
-      } else {
-        cache[keyName] = ret;
-      }
-    }
-
-    if (watched) {
-      property_events.propertyDidChange(obj, keyName);
-    }
-
-    return ret;
-  };
-
-  /* called before property is overridden */
-  ComputedPropertyPrototype.teardown = function(obj, keyName) {
-    var meta = metaFor(obj);
-
-    if (meta.cache) {
-      if (keyName in meta.cache) {
-        dependent_keys.removeDependentKeys(this, obj, keyName, meta);
-      }
-
-      if (this._cacheable) { delete meta.cache[keyName]; }
-    }
-
-    return null; // no value to restore
-  };
-
-
-  /**
-    This helper returns a new property descriptor that wraps the passed
-    computed property function. You can use this helper to define properties
-    with mixins or via `Ember.defineProperty()`.
-
-    The function you pass will be used to both get and set property values.
-    The function should accept two parameters, key and value. If value is not
-    undefined you should set the value first. In either case return the
-    current value of the property.
-
-    A computed property defined in this way might look like this:
-
-    ```js
-    var Person = Ember.Object.extend({
-      firstName: 'Betty',
-      lastName: 'Jones',
-
-      fullName: Ember.computed('firstName', 'lastName', function(key, value) {
-        return this.get('firstName') + ' ' + this.get('lastName');
-      })
-    });
-
-    var client = Person.create();
-
-    client.get('fullName'); // 'Betty Jones'
-
-    client.set('lastName', 'Fuller');
-    client.get('fullName'); // 'Betty Fuller'
-    ```
-
-    _Note: This is the preferred way to define computed properties when writing third-party
-    libraries that depend on or use Ember, since there is no guarantee that the user
-    will have prototype extensions enabled._
-
-    You might use this method if you disabled
-    [Prototype Extensions](http://emberjs.com/guides/configuring-ember/disabling-prototype-extensions/).
-    The alternative syntax might look like this
-    (if prototype extensions are enabled, which is the default behavior):
-
-    ```js
-    fullName: function () {
-      return this.get('firstName') + ' ' + this.get('lastName');
-    }.property('firstName', 'lastName')
-    ```
-
-    @class computed
-    @namespace Ember
-    @constructor
-    @static
-    @param {String} [dependentKeys*] Optional dependent keys that trigger this computed property.
-    @param {Function} func The computed property function.
-    @return {Ember.ComputedProperty} property descriptor instance
-  */
-  function computed(func) {
-    var args;
-
-    if (arguments.length > 1) {
-      args = a_slice.call(arguments);
-      func = args.pop();
-    }
-
-    var cp = new ComputedProperty(func);
-    // jscs:disable
-    
-      // jscs:enable
-      if (typeof func !== "function") {
-        throw new EmberError['default']("Computed Property declared without a property function");
-      }
-    
-
-    if (args) {
-      cp.property.apply(cp, args);
-    }
-
-    return cp;
-  }
-
-  /**
-    Returns the cached value for a property, if one exists.
-    This can be useful for peeking at the value of a computed
-    property that is generated lazily, without accidentally causing
-    it to be created.
-
-    @method cacheFor
-    @for Ember
-    @param {Object} obj the object whose property you want to check
-    @param {String} key the name of the property whose cached value you want
-      to return
-    @return {Object} the cached value
-  */
-  function cacheFor(obj, key) {
-    var meta = obj['__ember_meta__'];
-    var cache = meta && meta.cache;
-    var ret = cache && cache[key];
-
-    if (ret === UNDEFINED) {
-      return undefined;
-    }
-    return ret;
-  }
-
-  cacheFor.set = function(cache, key, value) {
-    if (value === undefined) {
-      cache[key] = UNDEFINED;
-    } else {
-      cache[key] = value;
-    }
-  };
-
-  cacheFor.get = function(cache, key) {
-    var ret = cache[key];
-    if (ret === UNDEFINED) {
-      return undefined;
-    }
-    return ret;
-  };
-
-  cacheFor.remove = function(cache, key) {
-    cache[key] = undefined;
-  };
-
-});
 enifed('ember-metal/computed_macros', ['exports', 'ember-metal/core', 'ember-metal/property_get', 'ember-metal/property_set', 'ember-metal/computed', 'ember-metal/is_empty', 'ember-metal/is_none', 'ember-metal/alias'], function (exports, Ember, property_get, property_set, computed, isEmpty, isNone, alias) {
 
   'use strict';
@@ -20385,6 +19776,615 @@ enifed('ember-metal/computed_macros', ['exports', 'ember-metal/core', 'ember-met
   exports.collect = collect;
 
 });
+enifed('ember-metal/computed', ['exports', 'ember-metal/property_set', 'ember-metal/utils', 'ember-metal/expand_properties', 'ember-metal/error', 'ember-metal/properties', 'ember-metal/property_events', 'ember-metal/dependent_keys'], function (exports, property_set, utils, expandProperties, EmberError, properties, property_events, dependent_keys) {
+
+  'use strict';
+
+  exports.ComputedProperty = ComputedProperty;
+  exports.computed = computed;
+  exports.cacheFor = cacheFor;
+
+  var metaFor = utils.meta;
+  var a_slice = [].slice;
+
+  function UNDEFINED() { }
+
+  // ..........................................................
+  // COMPUTED PROPERTY
+  //
+
+  /**
+    A computed property transforms an object's function into a property.
+
+    By default the function backing the computed property will only be called
+    once and the result will be cached. You can specify various properties
+    that your computed property depends on. This will force the cached
+    result to be recomputed if the dependencies are modified.
+
+    In the following example we declare a computed property (by calling
+    `.property()` on the fullName function) and setup the property
+    dependencies (depending on firstName and lastName). The fullName function
+    will be called once (regardless of how many times it is accessed) as long
+    as its dependencies have not changed. Once firstName or lastName are updated
+    any future calls (or anything bound) to fullName will incorporate the new
+    values.
+
+    ```javascript
+    var Person = Ember.Object.extend({
+      // these will be supplied by `create`
+      firstName: null,
+      lastName: null,
+
+      fullName: function() {
+        var firstName = this.get('firstName');
+        var lastName = this.get('lastName');
+
+       return firstName + ' ' + lastName;
+      }.property('firstName', 'lastName')
+    });
+
+    var tom = Person.create({
+      firstName: 'Tom',
+      lastName: 'Dale'
+    });
+
+    tom.get('fullName') // 'Tom Dale'
+    ```
+
+    You can also define what Ember should do when setting a computed property.
+    If you try to set a computed property, it will be invoked with the key and
+    value you want to set it to. You can also accept the previous value as the
+    third parameter.
+
+    ```javascript
+    var Person = Ember.Object.extend({
+      // these will be supplied by `create`
+      firstName: null,
+      lastName: null,
+
+      fullName: function(key, value, oldValue) {
+        // getter
+        if (arguments.length === 1) {
+          var firstName = this.get('firstName');
+          var lastName = this.get('lastName');
+
+          return firstName + ' ' + lastName;
+
+        // setter
+        } else {
+          var name = value.split(' ');
+
+          this.set('firstName', name[0]);
+          this.set('lastName', name[1]);
+
+          return value;
+        }
+      }.property('firstName', 'lastName')
+    });
+
+    var person = Person.create();
+
+    person.set('fullName', 'Peter Wagenet');
+    person.get('firstName'); // 'Peter'
+    person.get('lastName');  // 'Wagenet'
+    ```
+
+    @class ComputedProperty
+    @namespace Ember
+    @extends Ember.Descriptor
+    @constructor
+  */
+  function ComputedProperty(config, opts) {
+    this.isDescriptor = true;
+    
+      config.__ember_arity = config.length;
+      this._getter = config;
+      if (config.__ember_arity > 1) {
+        this._setter = config;
+      }
+    
+
+    this._dependentKeys = undefined;
+    this._suspended = undefined;
+    this._meta = undefined;
+
+        this._cacheable = (opts && opts.cacheable !== undefined) ? opts.cacheable : true;   // TODO: Set always to `true` once this deprecation is gone.
+    this._dependentKeys = opts && opts.dependentKeys;
+        this._readOnly = opts && (opts.readOnly !== undefined || !!opts.readOnly) || false; // TODO: Set always to `false` once this deprecation is gone.
+  }
+
+  ComputedProperty.prototype = new properties.Descriptor();
+
+  var ComputedPropertyPrototype = ComputedProperty.prototype;
+
+  /**
+    Properties are cacheable by default. Computed property will automatically
+    cache the return value of your function until one of the dependent keys changes.
+
+    Call `volatile()` to set it into non-cached mode. When in this mode
+    the computed property will not automatically cache the return value.
+
+    However, if a property is properly observable, there is no reason to disable
+    caching.
+
+    @method cacheable
+    @param {Boolean} aFlag optional set to `false` to disable caching
+    @return {Ember.ComputedProperty} this
+    @chainable
+    @deprecated All computed properties are cacheble by default. Use `volatile()` instead to opt-out to caching.
+  */
+  ComputedPropertyPrototype.cacheable = function(aFlag) {
+        this._cacheable = aFlag !== false;
+    return this;
+  };
+
+  /**
+    Call on a computed property to set it into non-cached mode. When in this
+    mode the computed property will not automatically cache the return value.
+
+    ```javascript
+    var outsideService = Ember.Object.extend({
+      value: function() {
+        return OutsideService.getValue();
+      }.property().volatile()
+    }).create();
+    ```
+
+    @method volatile
+    @return {Ember.ComputedProperty} this
+    @chainable
+  */
+  ComputedPropertyPrototype["volatile"] = function() {
+    this._cacheable = false;
+    return this;
+  };
+
+  /**
+    Call on a computed property to set it into read-only mode. When in this
+    mode the computed property will throw an error when set.
+
+    ```javascript
+    var Person = Ember.Object.extend({
+      guid: function() {
+        return 'guid-guid-guid';
+      }.property().readOnly()
+    });
+
+    var person = Person.create();
+
+    person.set('guid', 'new-guid'); // will throw an exception
+    ```
+
+    @method readOnly
+    @return {Ember.ComputedProperty} this
+    @chainable
+  */
+  ComputedPropertyPrototype.readOnly = function(readOnly) {
+        this._readOnly = readOnly === undefined || !!readOnly; // Force to true once this deprecation is gone
+    return this;
+  };
+
+  /**
+    Sets the dependent keys on this computed property. Pass any number of
+    arguments containing key paths that this computed property depends on.
+
+    ```javascript
+    var President = Ember.Object.extend({
+      fullName: computed(function() {
+        return this.get('firstName') + ' ' + this.get('lastName');
+
+        // Tell Ember that this computed property depends on firstName
+        // and lastName
+      }).property('firstName', 'lastName')
+    });
+
+    var president = President.create({
+      firstName: 'Barack',
+      lastName: 'Obama'
+    });
+
+    president.get('fullName'); // 'Barack Obama'
+    ```
+
+    @method property
+    @param {String} path* zero or more property paths
+    @return {Ember.ComputedProperty} this
+    @chainable
+  */
+  ComputedPropertyPrototype.property = function() {
+    var args;
+
+    var addArg = function (property) {
+      args.push(property);
+    };
+
+    args = [];
+    for (var i = 0, l = arguments.length; i < l; i++) {
+      expandProperties['default'](arguments[i], addArg);
+    }
+
+    this._dependentKeys = args;
+    return this;
+  };
+
+  /**
+    In some cases, you may want to annotate computed properties with additional
+    metadata about how they function or what values they operate on. For example,
+    computed property functions may close over variables that are then no longer
+    available for introspection.
+
+    You can pass a hash of these values to a computed property like this:
+
+    ```
+    person: function() {
+      var personId = this.get('personId');
+      return App.Person.create({ id: personId });
+    }.property().meta({ type: App.Person })
+    ```
+
+    The hash that you pass to the `meta()` function will be saved on the
+    computed property descriptor under the `_meta` key. Ember runtime
+    exposes a public API for retrieving these values from classes,
+    via the `metaForProperty()` function.
+
+    @method meta
+    @param {Hash} meta
+    @chainable
+  */
+
+  ComputedPropertyPrototype.meta = function(meta) {
+    if (arguments.length === 0) {
+      return this._meta || {};
+    } else {
+      this._meta = meta;
+      return this;
+    }
+  };
+
+  /* impl descriptor API */
+  ComputedPropertyPrototype.didChange = function(obj, keyName) {
+    // _suspended is set via a CP.set to ensure we don't clear
+    // the cached value set by the setter
+    if (this._cacheable && this._suspended !== obj) {
+      var meta = metaFor(obj);
+      if (meta.cache && meta.cache[keyName] !== undefined) {
+        meta.cache[keyName] = undefined;
+        dependent_keys.removeDependentKeys(this, obj, keyName, meta);
+      }
+    }
+  };
+
+  function finishChains(chainNodes) {
+    for (var i=0, l=chainNodes.length; i<l; i++) {
+      chainNodes[i].didChange(null);
+    }
+  }
+
+  /**
+    Access the value of the function backing the computed property.
+    If this property has already been cached, return the cached result.
+    Otherwise, call the function passing the property name as an argument.
+
+    ```javascript
+    var Person = Ember.Object.extend({
+      fullName: function(keyName) {
+        // the keyName parameter is 'fullName' in this case.
+        return this.get('firstName') + ' ' + this.get('lastName');
+      }.property('firstName', 'lastName')
+    });
+
+
+    var tom = Person.create({
+      firstName: 'Tom',
+      lastName: 'Dale'
+    });
+
+    tom.get('fullName') // 'Tom Dale'
+    ```
+
+    @method get
+    @param {String} keyName The key being accessed.
+    @return {Object} The return value of the function backing the CP.
+  */
+  ComputedPropertyPrototype.get = function(obj, keyName) {
+    var ret, cache, meta, chainNodes;
+    if (this._cacheable) {
+      meta = metaFor(obj);
+      cache = meta.cache;
+
+      var result = cache && cache[keyName];
+
+      if (result === UNDEFINED) {
+        return undefined;
+      } else if (result !== undefined) {
+        return result;
+      }
+
+      ret = this._getter.call(obj, keyName);
+      cache = meta.cache;
+      if (!cache) {
+        cache = meta.cache = {};
+      }
+      if (ret === undefined) {
+        cache[keyName] = UNDEFINED;
+      } else {
+        cache[keyName] = ret;
+      }
+
+      chainNodes = meta.chainWatchers && meta.chainWatchers[keyName];
+      if (chainNodes) {
+        finishChains(chainNodes);
+      }
+      dependent_keys.addDependentKeys(this, obj, keyName, meta);
+    } else {
+      ret = this._getter.call(obj, keyName);
+    }
+    return ret;
+  };
+
+  /**
+    Set the value of a computed property. If the function that backs your
+    computed property does not accept arguments then the default action for
+    setting would be to define the property on the current object, and set
+    the value of the property to the value being set.
+
+    Generally speaking if you intend for your computed property to be set
+    your backing function should accept either two or three arguments.
+
+    ```javascript
+    var Person = Ember.Object.extend({
+      // these will be supplied by `create`
+      firstName: null,
+      lastName: null,
+
+      fullName: function(key, value, oldValue) {
+        // getter
+        if (arguments.length === 1) {
+          var firstName = this.get('firstName');
+          var lastName = this.get('lastName');
+
+          return firstName + ' ' + lastName;
+
+        // setter
+        } else {
+          var name = value.split(' ');
+
+          this.set('firstName', name[0]);
+          this.set('lastName', name[1]);
+
+          return value;
+        }
+      }.property('firstName', 'lastName')
+    });
+
+    var person = Person.create();
+
+    person.set('fullName', 'Peter Wagenet');
+    person.get('firstName'); // 'Peter'
+    person.get('lastName');  // 'Wagenet'
+    ```
+
+    @method set
+    @param {String} keyName The key being accessed.
+    @param {Object} newValue The new value being assigned.
+    @param {String} oldValue The old value being replaced.
+    @return {Object} The return value of the function backing the CP.
+  */
+  ComputedPropertyPrototype.set = function computedPropertySetWithSuspend(obj, keyName, value) {
+    var oldSuspended = this._suspended;
+
+    this._suspended = obj;
+
+    try {
+      this._set(obj, keyName, value);
+    } finally {
+      this._suspended = oldSuspended;
+    }
+  };
+
+  ComputedPropertyPrototype._set = function computedPropertySet(obj, keyName, value) {
+    var cacheable      = this._cacheable;
+    var setter         = this._setter;
+    var meta           = metaFor(obj, cacheable);
+    var cache          = meta.cache;
+    var hadCachedValue = false;
+
+    var cachedValue, ret;
+
+    if (this._readOnly) {
+      throw new EmberError['default']('Cannot set read-only property "' + keyName + '" on object: ' + utils.inspect(obj));
+    }
+
+    if (cacheable && cache && cache[keyName] !== undefined) {
+      if (cache[keyName] !== UNDEFINED) {
+        cachedValue = cache[keyName];
+      }
+
+      hadCachedValue = true;
+    }
+
+    if (!setter) {
+      properties.defineProperty(obj, keyName, null, cachedValue);
+      property_set.set(obj, keyName, value);
+      return;
+    } else if (setter.__ember_arity === 2) {
+      // Is there any way of deprecate this in a sensitive way?
+      // Maybe now that getters and setters are the prefered options we can....
+      ret = setter.call(obj, keyName, value);
+    } else {
+      ret = setter.call(obj, keyName, value, cachedValue);
+    }
+
+    if (hadCachedValue && cachedValue === ret) { return; }
+
+    var watched = meta.watching[keyName];
+    if (watched) {
+      property_events.propertyWillChange(obj, keyName);
+    }
+
+    if (hadCachedValue) {
+      cache[keyName] = undefined;
+    }
+
+    if (cacheable) {
+      if (!hadCachedValue) {
+        dependent_keys.addDependentKeys(this, obj, keyName, meta);
+      }
+      if (!cache) {
+        cache = meta.cache = {};
+      }
+      if (ret === undefined) {
+        cache[keyName] = UNDEFINED;
+      } else {
+        cache[keyName] = ret;
+      }
+    }
+
+    if (watched) {
+      property_events.propertyDidChange(obj, keyName);
+    }
+
+    return ret;
+  };
+
+  /* called before property is overridden */
+  ComputedPropertyPrototype.teardown = function(obj, keyName) {
+    var meta = metaFor(obj);
+
+    if (meta.cache) {
+      if (keyName in meta.cache) {
+        dependent_keys.removeDependentKeys(this, obj, keyName, meta);
+      }
+
+      if (this._cacheable) { delete meta.cache[keyName]; }
+    }
+
+    return null; // no value to restore
+  };
+
+
+  /**
+    This helper returns a new property descriptor that wraps the passed
+    computed property function. You can use this helper to define properties
+    with mixins or via `Ember.defineProperty()`.
+
+    The function you pass will be used to both get and set property values.
+    The function should accept two parameters, key and value. If value is not
+    undefined you should set the value first. In either case return the
+    current value of the property.
+
+    A computed property defined in this way might look like this:
+
+    ```js
+    var Person = Ember.Object.extend({
+      firstName: 'Betty',
+      lastName: 'Jones',
+
+      fullName: Ember.computed('firstName', 'lastName', function(key, value) {
+        return this.get('firstName') + ' ' + this.get('lastName');
+      })
+    });
+
+    var client = Person.create();
+
+    client.get('fullName'); // 'Betty Jones'
+
+    client.set('lastName', 'Fuller');
+    client.get('fullName'); // 'Betty Fuller'
+    ```
+
+    _Note: This is the preferred way to define computed properties when writing third-party
+    libraries that depend on or use Ember, since there is no guarantee that the user
+    will have prototype extensions enabled._
+
+    You might use this method if you disabled
+    [Prototype Extensions](http://emberjs.com/guides/configuring-ember/disabling-prototype-extensions/).
+    The alternative syntax might look like this
+    (if prototype extensions are enabled, which is the default behavior):
+
+    ```js
+    fullName: function () {
+      return this.get('firstName') + ' ' + this.get('lastName');
+    }.property('firstName', 'lastName')
+    ```
+
+    @class computed
+    @namespace Ember
+    @constructor
+    @static
+    @param {String} [dependentKeys*] Optional dependent keys that trigger this computed property.
+    @param {Function} func The computed property function.
+    @return {Ember.ComputedProperty} property descriptor instance
+  */
+  function computed(func) {
+    var args;
+
+    if (arguments.length > 1) {
+      args = a_slice.call(arguments);
+      func = args.pop();
+    }
+
+    var cp = new ComputedProperty(func);
+    // jscs:disable
+    
+      // jscs:enable
+      if (typeof func !== "function") {
+        throw new EmberError['default']("Computed Property declared without a property function");
+      }
+    
+
+    if (args) {
+      cp.property.apply(cp, args);
+    }
+
+    return cp;
+  }
+
+  /**
+    Returns the cached value for a property, if one exists.
+    This can be useful for peeking at the value of a computed
+    property that is generated lazily, without accidentally causing
+    it to be created.
+
+    @method cacheFor
+    @for Ember
+    @param {Object} obj the object whose property you want to check
+    @param {String} key the name of the property whose cached value you want
+      to return
+    @return {Object} the cached value
+  */
+  function cacheFor(obj, key) {
+    var meta = obj['__ember_meta__'];
+    var cache = meta && meta.cache;
+    var ret = cache && cache[key];
+
+    if (ret === UNDEFINED) {
+      return undefined;
+    }
+    return ret;
+  }
+
+  cacheFor.set = function(cache, key, value) {
+    if (value === undefined) {
+      cache[key] = UNDEFINED;
+    } else {
+      cache[key] = value;
+    }
+  };
+
+  cacheFor.get = function(cache, key) {
+    var ret = cache[key];
+    if (ret === UNDEFINED) {
+      return undefined;
+    }
+    return ret;
+  };
+
+  cacheFor.remove = function(cache, key) {
+    cache[key] = undefined;
+  };
+
+});
 enifed('ember-metal/core', ['exports'], function (exports) {
 
   'use strict';
@@ -20415,7 +20415,7 @@ enifed('ember-metal/core', ['exports'], function (exports) {
 
     @class Ember
     @static
-    @version 1.11.3
+    @version 1.11.4
   */
 
   if ('undefined' === typeof Ember) {
@@ -20443,10 +20443,10 @@ enifed('ember-metal/core', ['exports'], function (exports) {
   /**
     @property VERSION
     @type String
-    @default '1.11.3'
+    @default '1.11.4'
     @static
   */
-  Ember.VERSION = '1.11.3';
+  Ember.VERSION = '1.11.4';
 
   /**
     Standard environmental variables. You can define these in a global `EmberENV`
@@ -23586,6 +23586,57 @@ enifed('ember-metal/mixin', ['exports', 'ember-metal/core', 'ember-metal/merge',
   exports.IS_BINDING = IS_BINDING;
 
 });
+enifed('ember-metal/observer_set', ['exports', 'ember-metal/utils', 'ember-metal/events'], function (exports, utils, events) {
+
+  'use strict';
+
+  exports['default'] = ObserverSet;
+  function ObserverSet() {
+    this.clear();
+  }
+
+
+  ObserverSet.prototype.add = function(sender, keyName, eventName) {
+    var observerSet = this.observerSet;
+    var observers = this.observers;
+    var senderGuid = utils.guidFor(sender);
+    var keySet = observerSet[senderGuid];
+    var index;
+
+    if (!keySet) {
+      observerSet[senderGuid] = keySet = {};
+    }
+    index = keySet[keyName];
+    if (index === undefined) {
+      index = observers.push({
+        sender: sender,
+        keyName: keyName,
+        eventName: eventName,
+        listeners: []
+      }) - 1;
+      keySet[keyName] = index;
+    }
+    return observers[index].listeners;
+  };
+
+  ObserverSet.prototype.flush = function() {
+    var observers = this.observers;
+    var i, len, observer, sender;
+    this.clear();
+    for (i=0, len=observers.length; i < len; ++i) {
+      observer = observers[i];
+      sender = observer.sender;
+      if (sender.isDestroying || sender.isDestroyed) { continue; }
+      events.sendEvent(sender, observer.eventName, [sender, observer.keyName], observer.listeners);
+    }
+  };
+
+  ObserverSet.prototype.clear = function() {
+    this.observerSet = {};
+    this.observers = [];
+  };
+
+});
 enifed('ember-metal/observer', ['exports', 'ember-metal/watching', 'ember-metal/array', 'ember-metal/events'], function (exports, watching, array, ember_metal__events) {
 
   'use strict';
@@ -23701,57 +23752,6 @@ enifed('ember-metal/observer', ['exports', 'ember-metal/watching', 'ember-metal/
 
     return this;
   }
-
-});
-enifed('ember-metal/observer_set', ['exports', 'ember-metal/utils', 'ember-metal/events'], function (exports, utils, events) {
-
-  'use strict';
-
-  exports['default'] = ObserverSet;
-  function ObserverSet() {
-    this.clear();
-  }
-
-
-  ObserverSet.prototype.add = function(sender, keyName, eventName) {
-    var observerSet = this.observerSet;
-    var observers = this.observers;
-    var senderGuid = utils.guidFor(sender);
-    var keySet = observerSet[senderGuid];
-    var index;
-
-    if (!keySet) {
-      observerSet[senderGuid] = keySet = {};
-    }
-    index = keySet[keyName];
-    if (index === undefined) {
-      index = observers.push({
-        sender: sender,
-        keyName: keyName,
-        eventName: eventName,
-        listeners: []
-      }) - 1;
-      keySet[keyName] = index;
-    }
-    return observers[index].listeners;
-  };
-
-  ObserverSet.prototype.flush = function() {
-    var observers = this.observers;
-    var i, len, observer, sender;
-    this.clear();
-    for (i=0, len=observers.length; i < len; ++i) {
-      observer = observers[i];
-      sender = observer.sender;
-      if (sender.isDestroying || sender.isDestroyed) { continue; }
-      events.sendEvent(sender, observer.eventName, [sender, observer.keyName], observer.listeners);
-    }
-  };
-
-  ObserverSet.prototype.clear = function() {
-    this.observerSet = {};
-    this.observers = [];
-  };
 
 });
 enifed('ember-metal/path_cache', ['exports', 'ember-metal/cache'], function (exports, Cache) {
@@ -25589,6 +25589,83 @@ enifed('ember-metal/streams/simple', ['exports', 'ember-metal/merge', 'ember-met
   exports['default'] = SimpleStream;
 
 });
+enifed('ember-metal/streams/stream_binding', ['exports', 'ember-metal/platform/create', 'ember-metal/merge', 'ember-metal/run_loop', 'ember-metal/streams/stream'], function (exports, create, merge, run, Stream) {
+
+  'use strict';
+
+  function StreamBinding(stream) {
+    
+    this.init();
+    this.stream = stream;
+    this.senderCallback = undefined;
+    this.senderContext = undefined;
+    this.senderValue = undefined;
+
+    stream.subscribe(this._onNotify, this);
+  }
+
+  StreamBinding.prototype = create['default'](Stream['default'].prototype);
+
+  merge['default'](StreamBinding.prototype, {
+    valueFn: function() {
+      return this.stream.value();
+    },
+
+    _onNotify: function() {
+      this._scheduleSync(undefined, undefined, this);
+    },
+
+    setValue: function(value, callback, context) {
+      this._scheduleSync(value, callback, context);
+    },
+
+    _scheduleSync: function(value, callback, context) {
+      if (this.senderCallback === undefined && this.senderContext === undefined) {
+        this.senderCallback = callback;
+        this.senderContext = context;
+        this.senderValue = value;
+        run['default'].schedule('sync', this, this._sync);
+      } else if (this.senderContext !== this) {
+        this.senderCallback = callback;
+        this.senderContext = context;
+        this.senderValue = value;
+      }
+    },
+
+    _sync: function() {
+      if (this.state === 'destroyed') {
+        return;
+      }
+
+      if (this.senderContext !== this) {
+        this.stream.setValue(this.senderValue);
+      }
+
+      var senderCallback = this.senderCallback;
+      var senderContext = this.senderContext;
+      this.senderCallback = undefined;
+      this.senderContext = undefined;
+      this.senderValue = undefined;
+
+      // Force StreamBindings to always notify
+      this.state = 'clean';
+
+      this.notifyExcept(senderCallback, senderContext);
+    },
+
+    _super$destroy: Stream['default'].prototype.destroy,
+
+    destroy: function() {
+      if (this._super$destroy()) {
+        this.stream.unsubscribe(this._onNotify, this);
+        return true;
+      }
+    }
+  });
+
+  exports['default'] = StreamBinding;
+
+});
 enifed('ember-metal/streams/stream', ['exports', 'ember-metal/platform/create', 'ember-metal/path_cache'], function (exports, create, path_cache) {
 
   'use strict';
@@ -25730,83 +25807,6 @@ enifed('ember-metal/streams/stream', ['exports', 'ember-metal/platform/create', 
   };
 
   exports['default'] = Stream;
-
-});
-enifed('ember-metal/streams/stream_binding', ['exports', 'ember-metal/platform/create', 'ember-metal/merge', 'ember-metal/run_loop', 'ember-metal/streams/stream'], function (exports, create, merge, run, Stream) {
-
-  'use strict';
-
-  function StreamBinding(stream) {
-    
-    this.init();
-    this.stream = stream;
-    this.senderCallback = undefined;
-    this.senderContext = undefined;
-    this.senderValue = undefined;
-
-    stream.subscribe(this._onNotify, this);
-  }
-
-  StreamBinding.prototype = create['default'](Stream['default'].prototype);
-
-  merge['default'](StreamBinding.prototype, {
-    valueFn: function() {
-      return this.stream.value();
-    },
-
-    _onNotify: function() {
-      this._scheduleSync(undefined, undefined, this);
-    },
-
-    setValue: function(value, callback, context) {
-      this._scheduleSync(value, callback, context);
-    },
-
-    _scheduleSync: function(value, callback, context) {
-      if (this.senderCallback === undefined && this.senderContext === undefined) {
-        this.senderCallback = callback;
-        this.senderContext = context;
-        this.senderValue = value;
-        run['default'].schedule('sync', this, this._sync);
-      } else if (this.senderContext !== this) {
-        this.senderCallback = callback;
-        this.senderContext = context;
-        this.senderValue = value;
-      }
-    },
-
-    _sync: function() {
-      if (this.state === 'destroyed') {
-        return;
-      }
-
-      if (this.senderContext !== this) {
-        this.stream.setValue(this.senderValue);
-      }
-
-      var senderCallback = this.senderCallback;
-      var senderContext = this.senderContext;
-      this.senderCallback = undefined;
-      this.senderContext = undefined;
-      this.senderValue = undefined;
-
-      // Force StreamBindings to always notify
-      this.state = 'clean';
-
-      this.notifyExcept(senderCallback, senderContext);
-    },
-
-    _super$destroy: Stream['default'].prototype.destroy,
-
-    destroy: function() {
-      if (this._super$destroy()) {
-        this.stream.unsubscribe(this._onNotify, this);
-        return true;
-      }
-    }
-  });
-
-  exports['default'] = StreamBinding;
 
 });
 enifed('ember-metal/streams/utils', ['exports', './stream'], function (exports, Stream) {
@@ -32126,6 +32126,47 @@ enifed('ember-routing/system/route', ['exports', 'ember-metal/core', 'ember-meta
   exports['default'] = Route;
 
 });
+enifed('ember-routing/system/router_state', ['exports', 'ember-metal/core', 'ember-runtime/system/object', 'ember-metal/merge'], function (exports, Ember, EmberObject, merge) {
+
+  'use strict';
+
+  var RouterState = EmberObject['default'].extend({
+    emberRouter: null,
+    routerJs: null,
+    routerJsState: null,
+
+    isActiveIntent: function(routeName, models, queryParams, queryParamsMustMatch) {
+      var state = this.routerJsState;
+      if (!this.routerJs.isActiveIntent(routeName, models, null, state)) { return false; }
+
+      var emptyQueryParams = Ember['default'].isEmpty(Ember['default'].keys(queryParams));
+
+      if (queryParamsMustMatch && !emptyQueryParams) {
+        var visibleQueryParams = {};
+        merge['default'](visibleQueryParams, queryParams);
+
+        this.emberRouter._prepareQueryParams(routeName, models, visibleQueryParams);
+        return shallowEqual(visibleQueryParams, state.queryParams);
+      }
+
+      return true;
+    }
+  });
+
+  function shallowEqual(a, b) {
+    var k;
+    for (k in a) {
+      if (a.hasOwnProperty(k) && a[k] !== b[k]) { return false; }
+    }
+    for (k in b) {
+      if (b.hasOwnProperty(k) && a[k] !== b[k]) { return false; }
+    }
+    return true;
+  }
+
+  exports['default'] = RouterState;
+
+});
 enifed('ember-routing/system/router', ['exports', 'ember-metal/core', 'ember-metal/error', 'ember-metal/property_get', 'ember-metal/property_set', 'ember-metal/properties', 'ember-metal/computed', 'ember-metal/merge', 'ember-metal/run_loop', 'ember-runtime/system/string', 'ember-runtime/system/object', 'ember-runtime/mixins/evented', 'ember-routing/system/dsl', 'ember-routing/location/api', 'ember-routing/utils', 'ember-metal/platform/create', './router_state', 'router', 'router/transition'], function (exports, Ember, EmberError, property_get, property_set, properties, computed, merge, run, string, EmberObject, Evented, EmberRouterDSL, EmberLocation, utils, create, RouterState, Router) {
 
   'use strict';
@@ -33175,47 +33216,6 @@ enifed('ember-routing/system/router', ['exports', 'ember-metal/core', 'ember-met
   exports['default'] = EmberRouter;
 
 });
-enifed('ember-routing/system/router_state', ['exports', 'ember-metal/core', 'ember-runtime/system/object', 'ember-metal/merge'], function (exports, Ember, EmberObject, merge) {
-
-  'use strict';
-
-  var RouterState = EmberObject['default'].extend({
-    emberRouter: null,
-    routerJs: null,
-    routerJsState: null,
-
-    isActiveIntent: function(routeName, models, queryParams, queryParamsMustMatch) {
-      var state = this.routerJsState;
-      if (!this.routerJs.isActiveIntent(routeName, models, null, state)) { return false; }
-
-      var emptyQueryParams = Ember['default'].isEmpty(Ember['default'].keys(queryParams));
-
-      if (queryParamsMustMatch && !emptyQueryParams) {
-        var visibleQueryParams = {};
-        merge['default'](visibleQueryParams, queryParams);
-
-        this.emberRouter._prepareQueryParams(routeName, models, visibleQueryParams);
-        return shallowEqual(visibleQueryParams, state.queryParams);
-      }
-
-      return true;
-    }
-  });
-
-  function shallowEqual(a, b) {
-    var k;
-    for (k in a) {
-      if (a.hasOwnProperty(k) && a[k] !== b[k]) { return false; }
-    }
-    for (k in b) {
-      if (b.hasOwnProperty(k) && a[k] !== b[k]) { return false; }
-    }
-    return true;
-  }
-
-  exports['default'] = RouterState;
-
-});
 enifed('ember-routing/utils', ['exports', 'ember-metal/utils'], function (exports, utils) {
 
   'use strict';
@@ -33662,843 +33662,6 @@ enifed('ember-runtime/computed/array_computed', ['exports', 'ember-metal/core', 
     }
 
     var cp = new ArrayComputedProperty(options);
-
-    if (args) {
-      cp.property.apply(cp, args);
-    }
-
-    return cp;
-  }
-
-});
-enifed('ember-runtime/computed/reduce_computed', ['exports', 'ember-metal/core', 'ember-metal/property_get', 'ember-metal/utils', 'ember-metal/error', 'ember-metal/property_events', 'ember-metal/expand_properties', 'ember-metal/observer', 'ember-metal/computed', 'ember-metal/platform/create', 'ember-metal/enumerable_utils', 'ember-runtime/system/tracked_array', 'ember-runtime/mixins/array', 'ember-metal/run_loop'], function (exports, Ember, property_get, utils, EmberError, property_events, expandProperties, ember_metal__observer, computed, o_create, enumerable_utils, TrackedArray, EmberArray, run) {
-
-  'use strict';
-
-  exports.ReduceComputedProperty = ReduceComputedProperty;
-  exports.reduceComputed = reduceComputed;
-
-  var cacheSet = computed.cacheFor.set;
-  var cacheGet = computed.cacheFor.get;
-  var cacheRemove = computed.cacheFor.remove;
-  var a_slice = [].slice;
-  // Here we explicitly don't allow `@each.foo`; it would require some special
-  // testing, but there's no particular reason why it should be disallowed.
-  var eachPropertyPattern = /^(.*)\.@each\.(.*)/;
-  var doubleEachPropertyPattern = /(.*\.@each){2,}/;
-  var arrayBracketPattern = /\.\[\]$/;
-
-  function get(obj, key) {
-    if (key === '@this') {
-      return obj;
-    }
-
-    return property_get.get(obj, key);
-  }
-
-  /*
-    Tracks changes to dependent arrays, as well as to properties of items in
-    dependent arrays.
-
-    @class DependentArraysObserver
-  */
-  function DependentArraysObserver(callbacks, cp, instanceMeta, context, propertyName, sugarMeta) {
-    // user specified callbacks for `addedItem` and `removedItem`
-    this.callbacks = callbacks;
-
-    // the computed property: remember these are shared across instances
-    this.cp = cp;
-
-    // the ReduceComputedPropertyInstanceMeta this DependentArraysObserver is
-    // associated with
-    this.instanceMeta = instanceMeta;
-
-    // A map of array guids to dependentKeys, for the given context.  We track
-    // this because we want to set up the computed property potentially before the
-    // dependent array even exists, but when the array observer fires, we lack
-    // enough context to know what to update: we can recover that context by
-    // getting the dependentKey.
-    this.dependentKeysByGuid = {};
-
-    // a map of dependent array guids -> TrackedArray instances.  We use
-    // this to lazily recompute indexes for item property observers.
-    this.trackedArraysByGuid = {};
-
-    // We suspend observers to ignore replacements from `reset` when totally
-    // recomputing.  Unfortunately we cannot properly suspend the observers
-    // because we only have the key; instead we make the observers no-ops
-    this.suspended = false;
-
-    // This is used to coalesce item changes from property observers within a
-    // single item.
-    this.changedItems = {};
-    // This is used to coalesce item changes for multiple items that depend on
-    // some shared state.
-    this.changedItemCount = 0;
-  }
-
-  function ItemPropertyObserverContext(dependentArray, index, trackedArray) {
-    
-    this.dependentArray = dependentArray;
-    this.index = index;
-    this.item = dependentArray.objectAt(index);
-    this.trackedArray = trackedArray;
-    this.beforeObserver = null;
-    this.observer = null;
-    this.destroyed = false;
-  }
-
-  DependentArraysObserver.prototype = {
-    setValue: function (newValue) {
-      this.instanceMeta.setValue(newValue, true);
-    },
-
-    getValue: function () {
-      return this.instanceMeta.getValue();
-    },
-
-    setupObservers: function (dependentArray, dependentKey) {
-      this.dependentKeysByGuid[utils.guidFor(dependentArray)] = dependentKey;
-
-      dependentArray.addArrayObserver(this, {
-        willChange: 'dependentArrayWillChange',
-        didChange: 'dependentArrayDidChange'
-      });
-
-      if (this.cp._itemPropertyKeys[dependentKey]) {
-        this.setupPropertyObservers(dependentKey, this.cp._itemPropertyKeys[dependentKey]);
-      }
-    },
-
-    teardownObservers: function (dependentArray, dependentKey) {
-      var itemPropertyKeys = this.cp._itemPropertyKeys[dependentKey] || [];
-
-      delete this.dependentKeysByGuid[utils.guidFor(dependentArray)];
-
-      this.teardownPropertyObservers(dependentKey, itemPropertyKeys);
-
-      dependentArray.removeArrayObserver(this, {
-        willChange: 'dependentArrayWillChange',
-        didChange: 'dependentArrayDidChange'
-      });
-    },
-
-    suspendArrayObservers: function (callback, binding) {
-      var oldSuspended = this.suspended;
-      this.suspended = true;
-      callback.call(binding);
-      this.suspended = oldSuspended;
-    },
-
-    setupPropertyObservers: function (dependentKey, itemPropertyKeys) {
-      var dependentArray = get(this.instanceMeta.context, dependentKey);
-      var length = get(dependentArray, 'length');
-      var observerContexts = new Array(length);
-
-      this.resetTransformations(dependentKey, observerContexts);
-
-      enumerable_utils.forEach(dependentArray, function (item, index) {
-        var observerContext = this.createPropertyObserverContext(dependentArray, index, this.trackedArraysByGuid[dependentKey]);
-        observerContexts[index] = observerContext;
-
-        enumerable_utils.forEach(itemPropertyKeys, function (propertyKey) {
-          ember_metal__observer.addBeforeObserver(item, propertyKey, this, observerContext.beforeObserver);
-          ember_metal__observer.addObserver(item, propertyKey, this, observerContext.observer);
-        }, this);
-      }, this);
-    },
-
-    teardownPropertyObservers: function (dependentKey, itemPropertyKeys) {
-      var dependentArrayObserver = this;
-      var trackedArray = this.trackedArraysByGuid[dependentKey];
-      var beforeObserver, observer, item;
-
-      if (!trackedArray) { return; }
-
-      trackedArray.apply(function (observerContexts, offset, operation) {
-        if (operation === TrackedArray['default'].DELETE) { return; }
-
-        enumerable_utils.forEach(observerContexts, function (observerContext) {
-          observerContext.destroyed = true;
-          beforeObserver = observerContext.beforeObserver;
-          observer = observerContext.observer;
-          item = observerContext.item;
-
-          enumerable_utils.forEach(itemPropertyKeys, function (propertyKey) {
-            ember_metal__observer.removeBeforeObserver(item, propertyKey, dependentArrayObserver, beforeObserver);
-            ember_metal__observer.removeObserver(item, propertyKey, dependentArrayObserver, observer);
-          });
-        });
-      });
-    },
-
-    createPropertyObserverContext: function (dependentArray, index, trackedArray) {
-      var observerContext = new ItemPropertyObserverContext(dependentArray, index, trackedArray);
-
-      this.createPropertyObserver(observerContext);
-
-      return observerContext;
-    },
-
-    createPropertyObserver: function (observerContext) {
-      var dependentArrayObserver = this;
-
-      observerContext.beforeObserver = function (obj, keyName) {
-        return dependentArrayObserver.itemPropertyWillChange(obj, keyName, observerContext.dependentArray, observerContext);
-      };
-
-      observerContext.observer = function (obj, keyName) {
-        return dependentArrayObserver.itemPropertyDidChange(obj, keyName, observerContext.dependentArray, observerContext);
-      };
-    },
-
-    resetTransformations: function (dependentKey, observerContexts) {
-      this.trackedArraysByGuid[dependentKey] = new TrackedArray['default'](observerContexts);
-    },
-
-    trackAdd: function (dependentKey, index, newItems) {
-      var trackedArray = this.trackedArraysByGuid[dependentKey];
-
-      if (trackedArray) {
-        trackedArray.addItems(index, newItems);
-      }
-    },
-
-    trackRemove: function (dependentKey, index, removedCount) {
-      var trackedArray = this.trackedArraysByGuid[dependentKey];
-
-      if (trackedArray) {
-        return trackedArray.removeItems(index, removedCount);
-      }
-
-      return [];
-    },
-
-    updateIndexes: function (trackedArray, array) {
-      var length = get(array, 'length');
-      // OPTIMIZE: we could stop updating once we hit the object whose observer
-      // fired; ie partially apply the transformations
-      trackedArray.apply(function (observerContexts, offset, operation, operationIndex) {
-        // we don't even have observer contexts for removed items, even if we did,
-        // they no longer have any index in the array
-        if (operation === TrackedArray['default'].DELETE) { return; }
-        if (operationIndex === 0 && operation === TrackedArray['default'].RETAIN && observerContexts.length === length && offset === 0) {
-          // If we update many items we don't want to walk the array each time: we
-          // only need to update the indexes at most once per run loop.
-          return;
-        }
-
-        enumerable_utils.forEach(observerContexts, function (context, index) {
-          context.index = index + offset;
-        });
-      });
-    },
-
-    dependentArrayWillChange: function (dependentArray, index, removedCount, addedCount) {
-      if (this.suspended) { return; }
-
-      var removedItem = this.callbacks.removedItem;
-      var changeMeta;
-      var guid = utils.guidFor(dependentArray);
-      var dependentKey = this.dependentKeysByGuid[guid];
-      var itemPropertyKeys = this.cp._itemPropertyKeys[dependentKey] || [];
-      var length = get(dependentArray, 'length');
-      var normalizedIndex = normalizeIndex(index, length, 0);
-      var normalizedRemoveCount = normalizeRemoveCount(normalizedIndex, length, removedCount);
-      var item, itemIndex, sliceIndex, observerContexts;
-
-      observerContexts = this.trackRemove(dependentKey, normalizedIndex, normalizedRemoveCount);
-
-      function removeObservers(propertyKey) {
-        observerContexts[sliceIndex].destroyed = true;
-        ember_metal__observer.removeBeforeObserver(item, propertyKey, this, observerContexts[sliceIndex].beforeObserver);
-        ember_metal__observer.removeObserver(item, propertyKey, this, observerContexts[sliceIndex].observer);
-      }
-
-      for (sliceIndex = normalizedRemoveCount - 1; sliceIndex >= 0; --sliceIndex) {
-        itemIndex = normalizedIndex + sliceIndex;
-        if (itemIndex >= length) { break; }
-
-        item = dependentArray.objectAt(itemIndex);
-
-        enumerable_utils.forEach(itemPropertyKeys, removeObservers, this);
-
-        changeMeta = new ChangeMeta(dependentArray, item, itemIndex, this.instanceMeta.propertyName, this.cp, normalizedRemoveCount);
-        this.setValue(removedItem.call(
-          this.instanceMeta.context, this.getValue(), item, changeMeta, this.instanceMeta.sugarMeta));
-      }
-      this.callbacks.flushedChanges.call(this.instanceMeta.context, this.getValue(), this.instanceMeta.sugarMeta);
-    },
-
-    dependentArrayDidChange: function (dependentArray, index, removedCount, addedCount) {
-      if (this.suspended) { return; }
-
-      var addedItem = this.callbacks.addedItem;
-      var guid = utils.guidFor(dependentArray);
-      var dependentKey = this.dependentKeysByGuid[guid];
-      var observerContexts = new Array(addedCount);
-      var itemPropertyKeys = this.cp._itemPropertyKeys[dependentKey];
-      var length = get(dependentArray, 'length');
-      var normalizedIndex = normalizeIndex(index, length, addedCount);
-      var endIndex = normalizedIndex + addedCount;
-      var changeMeta, observerContext;
-
-      enumerable_utils.forEach(dependentArray.slice(normalizedIndex, endIndex), function (item, sliceIndex) {
-        if (itemPropertyKeys) {
-          observerContext = this.createPropertyObserverContext(dependentArray, normalizedIndex + sliceIndex,
-            this.trackedArraysByGuid[dependentKey]);
-          observerContexts[sliceIndex] = observerContext;
-
-          enumerable_utils.forEach(itemPropertyKeys, function (propertyKey) {
-            ember_metal__observer.addBeforeObserver(item, propertyKey, this, observerContext.beforeObserver);
-            ember_metal__observer.addObserver(item, propertyKey, this, observerContext.observer);
-          }, this);
-        }
-
-        changeMeta = new ChangeMeta(dependentArray, item, normalizedIndex + sliceIndex, this.instanceMeta.propertyName, this.cp, addedCount);
-        this.setValue(addedItem.call(
-          this.instanceMeta.context, this.getValue(), item, changeMeta, this.instanceMeta.sugarMeta));
-      }, this);
-      this.callbacks.flushedChanges.call(this.instanceMeta.context, this.getValue(), this.instanceMeta.sugarMeta);
-      this.trackAdd(dependentKey, normalizedIndex, observerContexts);
-    },
-
-    itemPropertyWillChange: function (obj, keyName, array, observerContext) {
-      var guid = utils.guidFor(obj);
-
-      if (!this.changedItems[guid]) {
-        this.changedItems[guid] = {
-          array: array,
-          observerContext: observerContext,
-          obj: obj,
-          previousValues: {}
-        };
-      }
-
-      ++this.changedItemCount;
-      this.changedItems[guid].previousValues[keyName] = get(obj, keyName);
-    },
-
-    itemPropertyDidChange: function (obj, keyName, array, observerContext) {
-      if (--this.changedItemCount === 0) {
-        this.flushChanges();
-      }
-    },
-
-    flushChanges: function () {
-      var changedItems = this.changedItems;
-      var key, c, changeMeta;
-
-      for (key in changedItems) {
-        c = changedItems[key];
-        if (c.observerContext.destroyed) { continue; }
-
-        this.updateIndexes(c.observerContext.trackedArray, c.observerContext.dependentArray);
-
-        changeMeta = new ChangeMeta(c.array, c.obj, c.observerContext.index, this.instanceMeta.propertyName, this.cp, changedItems.length, c.previousValues);
-        this.setValue(
-          this.callbacks.removedItem.call(this.instanceMeta.context, this.getValue(), c.obj, changeMeta, this.instanceMeta.sugarMeta));
-        this.setValue(
-          this.callbacks.addedItem.call(this.instanceMeta.context, this.getValue(), c.obj, changeMeta, this.instanceMeta.sugarMeta));
-      }
-
-      this.changedItems = {};
-      this.callbacks.flushedChanges.call(this.instanceMeta.context, this.getValue(), this.instanceMeta.sugarMeta);
-    }
-  };
-
-  function normalizeIndex(index, length, newItemsOffset) {
-    if (index < 0) {
-      return Math.max(0, length + index);
-    } else if (index < length) {
-      return index;
-    } else { // index > length
-      return Math.min(length - newItemsOffset, index);
-    }
-  }
-
-  function normalizeRemoveCount(index, length, removedCount) {
-    return Math.min(removedCount, length - index);
-  }
-
-  function ChangeMeta(dependentArray, item, index, propertyName, property, changedCount, previousValues) {
-    this.arrayChanged = dependentArray;
-    this.index = index;
-    this.item = item;
-    this.propertyName = propertyName;
-    this.property = property;
-    this.changedCount = changedCount;
-
-    if (previousValues) {
-      // previous values only available for item property changes
-      this.previousValues = previousValues;
-    }
-  }
-
-  function addItems(dependentArray, callbacks, cp, propertyName, meta) {
-    enumerable_utils.forEach(dependentArray, function (item, index) {
-      meta.setValue(callbacks.addedItem.call(
-        this, meta.getValue(), item, new ChangeMeta(dependentArray, item, index, propertyName, cp, dependentArray.length), meta.sugarMeta));
-    }, this);
-    callbacks.flushedChanges.call(this, meta.getValue(), meta.sugarMeta);
-  }
-
-  function reset(cp, propertyName) {
-    var hadMeta = cp._hasInstanceMeta(this, propertyName);
-    var meta = cp._instanceMeta(this, propertyName);
-
-    if (hadMeta) { meta.setValue(cp.resetValue(meta.getValue())); }
-
-    if (cp.options.initialize) {
-      cp.options.initialize.call(this, meta.getValue(), {
-        property: cp,
-        propertyName: propertyName
-      }, meta.sugarMeta);
-    }
-  }
-
-  function partiallyRecomputeFor(obj, dependentKey) {
-    if (arrayBracketPattern.test(dependentKey)) {
-      return false;
-    }
-
-    var value = get(obj, dependentKey);
-    return EmberArray['default'].detect(value);
-  }
-
-  function ReduceComputedPropertyInstanceMeta(context, propertyName, initialValue) {
-    this.context = context;
-    this.propertyName = propertyName;
-    var contextMeta = utils.meta(context);
-    var contextCache = contextMeta.cache;
-    if (!contextCache) { contextCache = contextMeta.cache = {}; }
-    this.cache = contextCache;
-    this.dependentArrays = {};
-    this.sugarMeta = {};
-    this.initialValue = initialValue;
-  }
-
-  ReduceComputedPropertyInstanceMeta.prototype = {
-    getValue: function () {
-      var value = cacheGet(this.cache, this.propertyName);
-
-      if (value !== undefined) {
-        return value;
-      } else {
-        return this.initialValue;
-      }
-    },
-
-    setValue: function(newValue, triggerObservers) {
-      // This lets sugars force a recomputation, handy for very simple
-      // implementations of eg max.
-      if (newValue === cacheGet(this.cache, this.propertyName)) {
-        return;
-      }
-
-      if (triggerObservers) {
-        property_events.propertyWillChange(this.context, this.propertyName);
-      }
-
-      if (newValue === undefined) {
-        cacheRemove(this.cache, this.propertyName);
-      } else {
-        cacheSet(this.cache, this.propertyName, newValue);
-      }
-
-      if (triggerObservers) {
-        property_events.propertyDidChange(this.context, this.propertyName);
-      }
-    }
-  };
-
-  /**
-    A computed property whose dependent keys are arrays and which is updated with
-    "one at a time" semantics.
-
-    @class ReduceComputedProperty
-    @namespace Ember
-    @extends Ember.ComputedProperty
-    @constructor
-  */
-
-  function ReduceComputedProperty(options) {
-    var cp = this;
-
-    this.options = options;
-    this._dependentKeys = null;
-    this._cacheable = true;
-    // A map of dependentKey -> [itemProperty, ...] that tracks what properties of
-    // items in the array we must track to update this property.
-    this._itemPropertyKeys = {};
-    this._previousItemPropertyKeys = {};
-
-    this.readOnly();
-
-    this.recomputeOnce = function(propertyName) {
-      // What we really want to do is coalesce by <cp, propertyName>.
-      // We need a form of `scheduleOnce` that accepts an arbitrary token to
-      // coalesce by, in addition to the target and method.
-      run['default'].once(this, recompute, propertyName);
-    };
-
-    var recompute = function(propertyName) {
-      var meta = cp._instanceMeta(this, propertyName);
-      var callbacks = cp._callbacks();
-
-      reset.call(this, cp, propertyName);
-
-      meta.dependentArraysObserver.suspendArrayObservers(function () {
-        enumerable_utils.forEach(cp._dependentKeys, function (dependentKey) {
-          
-          if (!partiallyRecomputeFor(this, dependentKey)) { return; }
-
-          var dependentArray = get(this, dependentKey);
-          var previousDependentArray = meta.dependentArrays[dependentKey];
-
-          if (dependentArray === previousDependentArray) {
-            // The array may be the same, but our item property keys may have
-            // changed, so we set them up again.  We can't easily tell if they've
-            // changed: the array may be the same object, but with different
-            // contents.
-            if (cp._previousItemPropertyKeys[dependentKey]) {
-              delete cp._previousItemPropertyKeys[dependentKey];
-              meta.dependentArraysObserver.setupPropertyObservers(dependentKey, cp._itemPropertyKeys[dependentKey]);
-            }
-          } else {
-            meta.dependentArrays[dependentKey] = dependentArray;
-
-            if (previousDependentArray) {
-              meta.dependentArraysObserver.teardownObservers(previousDependentArray, dependentKey);
-            }
-
-            if (dependentArray) {
-              meta.dependentArraysObserver.setupObservers(dependentArray, dependentKey);
-            }
-          }
-        }, this);
-      }, this);
-
-      enumerable_utils.forEach(cp._dependentKeys, function(dependentKey) {
-        if (!partiallyRecomputeFor(this, dependentKey)) { return; }
-
-        var dependentArray = get(this, dependentKey);
-
-        if (dependentArray) {
-          addItems.call(this, dependentArray, callbacks, cp, propertyName, meta);
-        }
-      }, this);
-    };
-
-
-    this._getter = function (propertyName) {
-      
-      recompute.call(this, propertyName);
-
-      return cp._instanceMeta(this, propertyName).getValue();
-    };
-  }
-
-  ReduceComputedProperty.prototype = o_create['default'](computed.ComputedProperty.prototype);
-
-  function defaultCallback(computedValue) {
-    return computedValue;
-  }
-
-  ReduceComputedProperty.prototype._callbacks = function () {
-    if (!this.callbacks) {
-      var options = this.options;
-
-      this.callbacks = {
-        removedItem: options.removedItem || defaultCallback,
-        addedItem: options.addedItem || defaultCallback,
-        flushedChanges: options.flushedChanges || defaultCallback
-      };
-    }
-
-    return this.callbacks;
-  };
-
-  ReduceComputedProperty.prototype._hasInstanceMeta = function (context, propertyName) {
-    var contextMeta = context.__ember_meta__;
-    var cacheMeta = contextMeta && contextMeta.cacheMeta;
-    return !!(cacheMeta && cacheMeta[propertyName]);
-  };
-
-  ReduceComputedProperty.prototype._instanceMeta = function (context, propertyName) {
-    var contextMeta = context.__ember_meta__;
-    var cacheMeta = contextMeta.cacheMeta;
-    var meta = cacheMeta && cacheMeta[propertyName];
-
-    if (!cacheMeta) {
-      cacheMeta = contextMeta.cacheMeta = {};
-    }
-    if (!meta) {
-      meta = cacheMeta[propertyName] = new ReduceComputedPropertyInstanceMeta(context, propertyName, this.initialValue());
-      meta.dependentArraysObserver = new DependentArraysObserver(this._callbacks(), this, meta, context, propertyName, meta.sugarMeta);
-    }
-
-    return meta;
-  };
-
-  ReduceComputedProperty.prototype.initialValue = function () {
-    if (typeof this.options.initialValue === 'function') {
-      return this.options.initialValue();
-    } else {
-      return this.options.initialValue;
-    }
-  };
-
-  ReduceComputedProperty.prototype.resetValue = function (value) {
-    return this.initialValue();
-  };
-
-  ReduceComputedProperty.prototype.itemPropertyKey = function (dependentArrayKey, itemPropertyKey) {
-    this._itemPropertyKeys[dependentArrayKey] = this._itemPropertyKeys[dependentArrayKey] || [];
-    this._itemPropertyKeys[dependentArrayKey].push(itemPropertyKey);
-  };
-
-  ReduceComputedProperty.prototype.clearItemPropertyKeys = function (dependentArrayKey) {
-    if (this._itemPropertyKeys[dependentArrayKey]) {
-      this._previousItemPropertyKeys[dependentArrayKey] = this._itemPropertyKeys[dependentArrayKey];
-      this._itemPropertyKeys[dependentArrayKey] = [];
-    }
-  };
-
-  ReduceComputedProperty.prototype.property = function () {
-    var cp = this;
-    var args = a_slice.call(arguments);
-    var propertyArgs = {};
-    var match, dependentArrayKey;
-
-    enumerable_utils.forEach(args, function (dependentKey) {
-      if (doubleEachPropertyPattern.test(dependentKey)) {
-        throw new EmberError['default']('Nested @each properties not supported: ' + dependentKey);
-      } else if (match = eachPropertyPattern.exec(dependentKey)) {
-        dependentArrayKey = match[1];
-
-        var itemPropertyKeyPattern = match[2];
-        var addItemPropertyKey = function (itemPropertyKey) {
-          cp.itemPropertyKey(dependentArrayKey, itemPropertyKey);
-        };
-
-        expandProperties['default'](itemPropertyKeyPattern, addItemPropertyKey);
-        propertyArgs[utils.guidFor(dependentArrayKey)] = dependentArrayKey;
-      } else {
-        propertyArgs[utils.guidFor(dependentKey)] = dependentKey;
-      }
-    });
-
-    var propertyArgsToArray = [];
-    for (var guid in propertyArgs) {
-      propertyArgsToArray.push(propertyArgs[guid]);
-    }
-
-    return computed.ComputedProperty.prototype.property.apply(this, propertyArgsToArray);
-  };
-
-  /**
-    Creates a computed property which operates on dependent arrays and
-    is updated with "one at a time" semantics. When items are added or
-    removed from the dependent array(s) a reduce computed only operates
-    on the change instead of re-evaluating the entire array.
-
-    If there are more than one arguments the first arguments are
-    considered to be dependent property keys. The last argument is
-    required to be an options object. The options object can have the
-    following four properties:
-
-    `initialValue` - A value or function that will be used as the initial
-    value for the computed. If this property is a function the result of calling
-    the function will be used as the initial value. This property is required.
-
-    `initialize` - An optional initialize function. Typically this will be used
-    to set up state on the instanceMeta object.
-
-    `removedItem` - A function that is called each time an element is removed
-    from the array.
-
-    `addedItem` - A function that is called each time an element is added to
-    the array.
-
-
-    The `initialize` function has the following signature:
-
-    ```javascript
-    function(initialValue, changeMeta, instanceMeta)
-    ```
-
-    `initialValue` - The value of the `initialValue` property from the
-    options object.
-
-    `changeMeta` - An object which contains meta information about the
-    computed. It contains the following properties:
-
-       - `property` the computed property
-       - `propertyName` the name of the property on the object
-
-    `instanceMeta` - An object that can be used to store meta
-    information needed for calculating your computed. For example a
-    unique computed might use this to store the number of times a given
-    element is found in the dependent array.
-
-
-    The `removedItem` and `addedItem` functions both have the following signature:
-
-    ```javascript
-    function(accumulatedValue, item, changeMeta, instanceMeta)
-    ```
-
-    `accumulatedValue` - The value returned from the last time
-    `removedItem` or `addedItem` was called or `initialValue`.
-
-    `item` - the element added or removed from the array
-
-    `changeMeta` - An object which contains meta information about the
-    change. It contains the following properties:
-
-      - `property` the computed property
-      - `propertyName` the name of the property on the object
-      - `index` the index of the added or removed item
-      - `item` the added or removed item: this is exactly the same as
-        the second arg
-      - `arrayChanged` the array that triggered the change. Can be
-        useful when depending on multiple arrays.
-
-    For property changes triggered on an item property change (when
-    depKey is something like `someArray.@each.someProperty`),
-    `changeMeta` will also contain the following property:
-
-      - `previousValues` an object whose keys are the properties that changed on
-      the item, and whose values are the item's previous values.
-
-    `previousValues` is important Ember coalesces item property changes via
-    Ember.run.once. This means that by the time removedItem gets called, item has
-    the new values, but you may need the previous value (eg for sorting &
-    filtering).
-
-    `instanceMeta` - An object that can be used to store meta
-    information needed for calculating your computed. For example a
-    unique computed might use this to store the number of times a given
-    element is found in the dependent array.
-
-    The `removedItem` and `addedItem` functions should return the accumulated
-    value. It is acceptable to not return anything (ie return undefined)
-    to invalidate the computation. This is generally not a good idea for
-    arrayComputed but it's used in eg max and min.
-
-    Note that observers will be fired if either of these functions return a value
-    that differs from the accumulated value.  When returning an object that
-    mutates in response to array changes, for example an array that maps
-    everything from some other array (see `Ember.computed.map`), it is usually
-    important that the *same* array be returned to avoid accidentally triggering observers.
-
-    Example
-
-    ```javascript
-    Ember.computed.max = function(dependentKey) {
-      return Ember.reduceComputed(dependentKey, {
-        initialValue: -Infinity,
-
-        addedItem: function(accumulatedValue, item, changeMeta, instanceMeta) {
-          return Math.max(accumulatedValue, item);
-        },
-
-        removedItem: function(accumulatedValue, item, changeMeta, instanceMeta) {
-          if (item < accumulatedValue) {
-            return accumulatedValue;
-          }
-        }
-      });
-    };
-    ```
-
-    Dependent keys may refer to `@this` to observe changes to the object itself,
-    which must be array-like, rather than a property of the object.  This is
-    mostly useful for array proxies, to ensure objects are retrieved via
-    `objectAtContent`.  This is how you could sort items by properties defined on an item controller.
-
-    Example
-
-    ```javascript
-    App.PeopleController = Ember.ArrayController.extend({
-      itemController: 'person',
-
-      sortedPeople: Ember.computed.sort('@this.@each.reversedName', function(personA, personB) {
-        // `reversedName` isn't defined on Person, but we have access to it via
-        // the item controller App.PersonController.  If we'd used
-        // `content.@each.reversedName` above, we would be getting the objects
-        // directly and not have access to `reversedName`.
-        //
-        var reversedNameA = get(personA, 'reversedName');
-        var reversedNameB = get(personB, 'reversedName');
-
-        return Ember.compare(reversedNameA, reversedNameB);
-      })
-    });
-
-    App.PersonController = Ember.ObjectController.extend({
-      reversedName: function() {
-        return reverse(get(this, 'name'));
-      }.property('name')
-    });
-    ```
-
-    Dependent keys whose values are not arrays are treated as regular
-    dependencies: when they change, the computed property is completely
-    recalculated.  It is sometimes useful to have dependent arrays with similar
-    semantics.  Dependent keys which end in `.[]` do not use "one at a time"
-    semantics.  When an item is added or removed from such a dependency, the
-    computed property is completely recomputed.
-
-    When the computed property is completely recomputed, the `accumulatedValue`
-    is discarded, it starts with `initialValue` again, and each item is passed
-    to `addedItem` in turn.
-
-    Example
-
-    ```javascript
-    Ember.Object.extend({
-      // When `string` is changed, `computed` is completely recomputed.
-      string: 'a string',
-
-      // When an item is added to `array`, `addedItem` is called.
-      array: [],
-
-      // When an item is added to `anotherArray`, `computed` is completely
-      // recomputed.
-      anotherArray: [],
-
-      computed: Ember.reduceComputed('string', 'array', 'anotherArray.[]', {
-        addedItem: addedItemCallback,
-        removedItem: removedItemCallback
-      })
-    });
-    ```
-
-    @method reduceComputed
-    @for Ember
-    @param {String} [dependentKeys*]
-    @param {Object} options
-    @return {Ember.ComputedProperty}
-  */
-  function reduceComputed(options) {
-    var args;
-
-    if (arguments.length > 1) {
-      args = a_slice.call(arguments, 0, -1);
-      options = a_slice.call(arguments, -1)[0];
-    }
-
-    if (typeof options !== 'object') {
-      throw new EmberError['default']('Reduce Computed Property declared without an options hash');
-    }
-
-    if (!('initialValue' in options)) {
-      throw new EmberError['default']('Reduce Computed Property declared without an initial value');
-    }
-
-    var cp = new ReduceComputedProperty(options);
 
     if (args) {
       cp.property.apply(cp, args);
@@ -35346,6 +34509,843 @@ enifed('ember-runtime/computed/reduce_computed_macros', ['exports', 'ember-metal
   exports.mapProperty = mapProperty;
   exports.filterProperty = filterProperty;
   exports.union = union;
+
+});
+enifed('ember-runtime/computed/reduce_computed', ['exports', 'ember-metal/core', 'ember-metal/property_get', 'ember-metal/utils', 'ember-metal/error', 'ember-metal/property_events', 'ember-metal/expand_properties', 'ember-metal/observer', 'ember-metal/computed', 'ember-metal/platform/create', 'ember-metal/enumerable_utils', 'ember-runtime/system/tracked_array', 'ember-runtime/mixins/array', 'ember-metal/run_loop'], function (exports, Ember, property_get, utils, EmberError, property_events, expandProperties, ember_metal__observer, computed, o_create, enumerable_utils, TrackedArray, EmberArray, run) {
+
+  'use strict';
+
+  exports.ReduceComputedProperty = ReduceComputedProperty;
+  exports.reduceComputed = reduceComputed;
+
+  var cacheSet = computed.cacheFor.set;
+  var cacheGet = computed.cacheFor.get;
+  var cacheRemove = computed.cacheFor.remove;
+  var a_slice = [].slice;
+  // Here we explicitly don't allow `@each.foo`; it would require some special
+  // testing, but there's no particular reason why it should be disallowed.
+  var eachPropertyPattern = /^(.*)\.@each\.(.*)/;
+  var doubleEachPropertyPattern = /(.*\.@each){2,}/;
+  var arrayBracketPattern = /\.\[\]$/;
+
+  function get(obj, key) {
+    if (key === '@this') {
+      return obj;
+    }
+
+    return property_get.get(obj, key);
+  }
+
+  /*
+    Tracks changes to dependent arrays, as well as to properties of items in
+    dependent arrays.
+
+    @class DependentArraysObserver
+  */
+  function DependentArraysObserver(callbacks, cp, instanceMeta, context, propertyName, sugarMeta) {
+    // user specified callbacks for `addedItem` and `removedItem`
+    this.callbacks = callbacks;
+
+    // the computed property: remember these are shared across instances
+    this.cp = cp;
+
+    // the ReduceComputedPropertyInstanceMeta this DependentArraysObserver is
+    // associated with
+    this.instanceMeta = instanceMeta;
+
+    // A map of array guids to dependentKeys, for the given context.  We track
+    // this because we want to set up the computed property potentially before the
+    // dependent array even exists, but when the array observer fires, we lack
+    // enough context to know what to update: we can recover that context by
+    // getting the dependentKey.
+    this.dependentKeysByGuid = {};
+
+    // a map of dependent array guids -> TrackedArray instances.  We use
+    // this to lazily recompute indexes for item property observers.
+    this.trackedArraysByGuid = {};
+
+    // We suspend observers to ignore replacements from `reset` when totally
+    // recomputing.  Unfortunately we cannot properly suspend the observers
+    // because we only have the key; instead we make the observers no-ops
+    this.suspended = false;
+
+    // This is used to coalesce item changes from property observers within a
+    // single item.
+    this.changedItems = {};
+    // This is used to coalesce item changes for multiple items that depend on
+    // some shared state.
+    this.changedItemCount = 0;
+  }
+
+  function ItemPropertyObserverContext(dependentArray, index, trackedArray) {
+    
+    this.dependentArray = dependentArray;
+    this.index = index;
+    this.item = dependentArray.objectAt(index);
+    this.trackedArray = trackedArray;
+    this.beforeObserver = null;
+    this.observer = null;
+    this.destroyed = false;
+  }
+
+  DependentArraysObserver.prototype = {
+    setValue: function (newValue) {
+      this.instanceMeta.setValue(newValue, true);
+    },
+
+    getValue: function () {
+      return this.instanceMeta.getValue();
+    },
+
+    setupObservers: function (dependentArray, dependentKey) {
+      this.dependentKeysByGuid[utils.guidFor(dependentArray)] = dependentKey;
+
+      dependentArray.addArrayObserver(this, {
+        willChange: 'dependentArrayWillChange',
+        didChange: 'dependentArrayDidChange'
+      });
+
+      if (this.cp._itemPropertyKeys[dependentKey]) {
+        this.setupPropertyObservers(dependentKey, this.cp._itemPropertyKeys[dependentKey]);
+      }
+    },
+
+    teardownObservers: function (dependentArray, dependentKey) {
+      var itemPropertyKeys = this.cp._itemPropertyKeys[dependentKey] || [];
+
+      delete this.dependentKeysByGuid[utils.guidFor(dependentArray)];
+
+      this.teardownPropertyObservers(dependentKey, itemPropertyKeys);
+
+      dependentArray.removeArrayObserver(this, {
+        willChange: 'dependentArrayWillChange',
+        didChange: 'dependentArrayDidChange'
+      });
+    },
+
+    suspendArrayObservers: function (callback, binding) {
+      var oldSuspended = this.suspended;
+      this.suspended = true;
+      callback.call(binding);
+      this.suspended = oldSuspended;
+    },
+
+    setupPropertyObservers: function (dependentKey, itemPropertyKeys) {
+      var dependentArray = get(this.instanceMeta.context, dependentKey);
+      var length = get(dependentArray, 'length');
+      var observerContexts = new Array(length);
+
+      this.resetTransformations(dependentKey, observerContexts);
+
+      enumerable_utils.forEach(dependentArray, function (item, index) {
+        var observerContext = this.createPropertyObserverContext(dependentArray, index, this.trackedArraysByGuid[dependentKey]);
+        observerContexts[index] = observerContext;
+
+        enumerable_utils.forEach(itemPropertyKeys, function (propertyKey) {
+          ember_metal__observer.addBeforeObserver(item, propertyKey, this, observerContext.beforeObserver);
+          ember_metal__observer.addObserver(item, propertyKey, this, observerContext.observer);
+        }, this);
+      }, this);
+    },
+
+    teardownPropertyObservers: function (dependentKey, itemPropertyKeys) {
+      var dependentArrayObserver = this;
+      var trackedArray = this.trackedArraysByGuid[dependentKey];
+      var beforeObserver, observer, item;
+
+      if (!trackedArray) { return; }
+
+      trackedArray.apply(function (observerContexts, offset, operation) {
+        if (operation === TrackedArray['default'].DELETE) { return; }
+
+        enumerable_utils.forEach(observerContexts, function (observerContext) {
+          observerContext.destroyed = true;
+          beforeObserver = observerContext.beforeObserver;
+          observer = observerContext.observer;
+          item = observerContext.item;
+
+          enumerable_utils.forEach(itemPropertyKeys, function (propertyKey) {
+            ember_metal__observer.removeBeforeObserver(item, propertyKey, dependentArrayObserver, beforeObserver);
+            ember_metal__observer.removeObserver(item, propertyKey, dependentArrayObserver, observer);
+          });
+        });
+      });
+    },
+
+    createPropertyObserverContext: function (dependentArray, index, trackedArray) {
+      var observerContext = new ItemPropertyObserverContext(dependentArray, index, trackedArray);
+
+      this.createPropertyObserver(observerContext);
+
+      return observerContext;
+    },
+
+    createPropertyObserver: function (observerContext) {
+      var dependentArrayObserver = this;
+
+      observerContext.beforeObserver = function (obj, keyName) {
+        return dependentArrayObserver.itemPropertyWillChange(obj, keyName, observerContext.dependentArray, observerContext);
+      };
+
+      observerContext.observer = function (obj, keyName) {
+        return dependentArrayObserver.itemPropertyDidChange(obj, keyName, observerContext.dependentArray, observerContext);
+      };
+    },
+
+    resetTransformations: function (dependentKey, observerContexts) {
+      this.trackedArraysByGuid[dependentKey] = new TrackedArray['default'](observerContexts);
+    },
+
+    trackAdd: function (dependentKey, index, newItems) {
+      var trackedArray = this.trackedArraysByGuid[dependentKey];
+
+      if (trackedArray) {
+        trackedArray.addItems(index, newItems);
+      }
+    },
+
+    trackRemove: function (dependentKey, index, removedCount) {
+      var trackedArray = this.trackedArraysByGuid[dependentKey];
+
+      if (trackedArray) {
+        return trackedArray.removeItems(index, removedCount);
+      }
+
+      return [];
+    },
+
+    updateIndexes: function (trackedArray, array) {
+      var length = get(array, 'length');
+      // OPTIMIZE: we could stop updating once we hit the object whose observer
+      // fired; ie partially apply the transformations
+      trackedArray.apply(function (observerContexts, offset, operation, operationIndex) {
+        // we don't even have observer contexts for removed items, even if we did,
+        // they no longer have any index in the array
+        if (operation === TrackedArray['default'].DELETE) { return; }
+        if (operationIndex === 0 && operation === TrackedArray['default'].RETAIN && observerContexts.length === length && offset === 0) {
+          // If we update many items we don't want to walk the array each time: we
+          // only need to update the indexes at most once per run loop.
+          return;
+        }
+
+        enumerable_utils.forEach(observerContexts, function (context, index) {
+          context.index = index + offset;
+        });
+      });
+    },
+
+    dependentArrayWillChange: function (dependentArray, index, removedCount, addedCount) {
+      if (this.suspended) { return; }
+
+      var removedItem = this.callbacks.removedItem;
+      var changeMeta;
+      var guid = utils.guidFor(dependentArray);
+      var dependentKey = this.dependentKeysByGuid[guid];
+      var itemPropertyKeys = this.cp._itemPropertyKeys[dependentKey] || [];
+      var length = get(dependentArray, 'length');
+      var normalizedIndex = normalizeIndex(index, length, 0);
+      var normalizedRemoveCount = normalizeRemoveCount(normalizedIndex, length, removedCount);
+      var item, itemIndex, sliceIndex, observerContexts;
+
+      observerContexts = this.trackRemove(dependentKey, normalizedIndex, normalizedRemoveCount);
+
+      function removeObservers(propertyKey) {
+        observerContexts[sliceIndex].destroyed = true;
+        ember_metal__observer.removeBeforeObserver(item, propertyKey, this, observerContexts[sliceIndex].beforeObserver);
+        ember_metal__observer.removeObserver(item, propertyKey, this, observerContexts[sliceIndex].observer);
+      }
+
+      for (sliceIndex = normalizedRemoveCount - 1; sliceIndex >= 0; --sliceIndex) {
+        itemIndex = normalizedIndex + sliceIndex;
+        if (itemIndex >= length) { break; }
+
+        item = dependentArray.objectAt(itemIndex);
+
+        enumerable_utils.forEach(itemPropertyKeys, removeObservers, this);
+
+        changeMeta = new ChangeMeta(dependentArray, item, itemIndex, this.instanceMeta.propertyName, this.cp, normalizedRemoveCount);
+        this.setValue(removedItem.call(
+          this.instanceMeta.context, this.getValue(), item, changeMeta, this.instanceMeta.sugarMeta));
+      }
+      this.callbacks.flushedChanges.call(this.instanceMeta.context, this.getValue(), this.instanceMeta.sugarMeta);
+    },
+
+    dependentArrayDidChange: function (dependentArray, index, removedCount, addedCount) {
+      if (this.suspended) { return; }
+
+      var addedItem = this.callbacks.addedItem;
+      var guid = utils.guidFor(dependentArray);
+      var dependentKey = this.dependentKeysByGuid[guid];
+      var observerContexts = new Array(addedCount);
+      var itemPropertyKeys = this.cp._itemPropertyKeys[dependentKey];
+      var length = get(dependentArray, 'length');
+      var normalizedIndex = normalizeIndex(index, length, addedCount);
+      var endIndex = normalizedIndex + addedCount;
+      var changeMeta, observerContext;
+
+      enumerable_utils.forEach(dependentArray.slice(normalizedIndex, endIndex), function (item, sliceIndex) {
+        if (itemPropertyKeys) {
+          observerContext = this.createPropertyObserverContext(dependentArray, normalizedIndex + sliceIndex,
+            this.trackedArraysByGuid[dependentKey]);
+          observerContexts[sliceIndex] = observerContext;
+
+          enumerable_utils.forEach(itemPropertyKeys, function (propertyKey) {
+            ember_metal__observer.addBeforeObserver(item, propertyKey, this, observerContext.beforeObserver);
+            ember_metal__observer.addObserver(item, propertyKey, this, observerContext.observer);
+          }, this);
+        }
+
+        changeMeta = new ChangeMeta(dependentArray, item, normalizedIndex + sliceIndex, this.instanceMeta.propertyName, this.cp, addedCount);
+        this.setValue(addedItem.call(
+          this.instanceMeta.context, this.getValue(), item, changeMeta, this.instanceMeta.sugarMeta));
+      }, this);
+      this.callbacks.flushedChanges.call(this.instanceMeta.context, this.getValue(), this.instanceMeta.sugarMeta);
+      this.trackAdd(dependentKey, normalizedIndex, observerContexts);
+    },
+
+    itemPropertyWillChange: function (obj, keyName, array, observerContext) {
+      var guid = utils.guidFor(obj);
+
+      if (!this.changedItems[guid]) {
+        this.changedItems[guid] = {
+          array: array,
+          observerContext: observerContext,
+          obj: obj,
+          previousValues: {}
+        };
+      }
+
+      ++this.changedItemCount;
+      this.changedItems[guid].previousValues[keyName] = get(obj, keyName);
+    },
+
+    itemPropertyDidChange: function (obj, keyName, array, observerContext) {
+      if (--this.changedItemCount === 0) {
+        this.flushChanges();
+      }
+    },
+
+    flushChanges: function () {
+      var changedItems = this.changedItems;
+      var key, c, changeMeta;
+
+      for (key in changedItems) {
+        c = changedItems[key];
+        if (c.observerContext.destroyed) { continue; }
+
+        this.updateIndexes(c.observerContext.trackedArray, c.observerContext.dependentArray);
+
+        changeMeta = new ChangeMeta(c.array, c.obj, c.observerContext.index, this.instanceMeta.propertyName, this.cp, changedItems.length, c.previousValues);
+        this.setValue(
+          this.callbacks.removedItem.call(this.instanceMeta.context, this.getValue(), c.obj, changeMeta, this.instanceMeta.sugarMeta));
+        this.setValue(
+          this.callbacks.addedItem.call(this.instanceMeta.context, this.getValue(), c.obj, changeMeta, this.instanceMeta.sugarMeta));
+      }
+
+      this.changedItems = {};
+      this.callbacks.flushedChanges.call(this.instanceMeta.context, this.getValue(), this.instanceMeta.sugarMeta);
+    }
+  };
+
+  function normalizeIndex(index, length, newItemsOffset) {
+    if (index < 0) {
+      return Math.max(0, length + index);
+    } else if (index < length) {
+      return index;
+    } else { // index > length
+      return Math.min(length - newItemsOffset, index);
+    }
+  }
+
+  function normalizeRemoveCount(index, length, removedCount) {
+    return Math.min(removedCount, length - index);
+  }
+
+  function ChangeMeta(dependentArray, item, index, propertyName, property, changedCount, previousValues) {
+    this.arrayChanged = dependentArray;
+    this.index = index;
+    this.item = item;
+    this.propertyName = propertyName;
+    this.property = property;
+    this.changedCount = changedCount;
+
+    if (previousValues) {
+      // previous values only available for item property changes
+      this.previousValues = previousValues;
+    }
+  }
+
+  function addItems(dependentArray, callbacks, cp, propertyName, meta) {
+    enumerable_utils.forEach(dependentArray, function (item, index) {
+      meta.setValue(callbacks.addedItem.call(
+        this, meta.getValue(), item, new ChangeMeta(dependentArray, item, index, propertyName, cp, dependentArray.length), meta.sugarMeta));
+    }, this);
+    callbacks.flushedChanges.call(this, meta.getValue(), meta.sugarMeta);
+  }
+
+  function reset(cp, propertyName) {
+    var hadMeta = cp._hasInstanceMeta(this, propertyName);
+    var meta = cp._instanceMeta(this, propertyName);
+
+    if (hadMeta) { meta.setValue(cp.resetValue(meta.getValue())); }
+
+    if (cp.options.initialize) {
+      cp.options.initialize.call(this, meta.getValue(), {
+        property: cp,
+        propertyName: propertyName
+      }, meta.sugarMeta);
+    }
+  }
+
+  function partiallyRecomputeFor(obj, dependentKey) {
+    if (arrayBracketPattern.test(dependentKey)) {
+      return false;
+    }
+
+    var value = get(obj, dependentKey);
+    return EmberArray['default'].detect(value);
+  }
+
+  function ReduceComputedPropertyInstanceMeta(context, propertyName, initialValue) {
+    this.context = context;
+    this.propertyName = propertyName;
+    var contextMeta = utils.meta(context);
+    var contextCache = contextMeta.cache;
+    if (!contextCache) { contextCache = contextMeta.cache = {}; }
+    this.cache = contextCache;
+    this.dependentArrays = {};
+    this.sugarMeta = {};
+    this.initialValue = initialValue;
+  }
+
+  ReduceComputedPropertyInstanceMeta.prototype = {
+    getValue: function () {
+      var value = cacheGet(this.cache, this.propertyName);
+
+      if (value !== undefined) {
+        return value;
+      } else {
+        return this.initialValue;
+      }
+    },
+
+    setValue: function(newValue, triggerObservers) {
+      // This lets sugars force a recomputation, handy for very simple
+      // implementations of eg max.
+      if (newValue === cacheGet(this.cache, this.propertyName)) {
+        return;
+      }
+
+      if (triggerObservers) {
+        property_events.propertyWillChange(this.context, this.propertyName);
+      }
+
+      if (newValue === undefined) {
+        cacheRemove(this.cache, this.propertyName);
+      } else {
+        cacheSet(this.cache, this.propertyName, newValue);
+      }
+
+      if (triggerObservers) {
+        property_events.propertyDidChange(this.context, this.propertyName);
+      }
+    }
+  };
+
+  /**
+    A computed property whose dependent keys are arrays and which is updated with
+    "one at a time" semantics.
+
+    @class ReduceComputedProperty
+    @namespace Ember
+    @extends Ember.ComputedProperty
+    @constructor
+  */
+
+  function ReduceComputedProperty(options) {
+    var cp = this;
+
+    this.options = options;
+    this._dependentKeys = null;
+    this._cacheable = true;
+    // A map of dependentKey -> [itemProperty, ...] that tracks what properties of
+    // items in the array we must track to update this property.
+    this._itemPropertyKeys = {};
+    this._previousItemPropertyKeys = {};
+
+    this.readOnly();
+
+    this.recomputeOnce = function(propertyName) {
+      // What we really want to do is coalesce by <cp, propertyName>.
+      // We need a form of `scheduleOnce` that accepts an arbitrary token to
+      // coalesce by, in addition to the target and method.
+      run['default'].once(this, recompute, propertyName);
+    };
+
+    var recompute = function(propertyName) {
+      var meta = cp._instanceMeta(this, propertyName);
+      var callbacks = cp._callbacks();
+
+      reset.call(this, cp, propertyName);
+
+      meta.dependentArraysObserver.suspendArrayObservers(function () {
+        enumerable_utils.forEach(cp._dependentKeys, function (dependentKey) {
+          
+          if (!partiallyRecomputeFor(this, dependentKey)) { return; }
+
+          var dependentArray = get(this, dependentKey);
+          var previousDependentArray = meta.dependentArrays[dependentKey];
+
+          if (dependentArray === previousDependentArray) {
+            // The array may be the same, but our item property keys may have
+            // changed, so we set them up again.  We can't easily tell if they've
+            // changed: the array may be the same object, but with different
+            // contents.
+            if (cp._previousItemPropertyKeys[dependentKey]) {
+              delete cp._previousItemPropertyKeys[dependentKey];
+              meta.dependentArraysObserver.setupPropertyObservers(dependentKey, cp._itemPropertyKeys[dependentKey]);
+            }
+          } else {
+            meta.dependentArrays[dependentKey] = dependentArray;
+
+            if (previousDependentArray) {
+              meta.dependentArraysObserver.teardownObservers(previousDependentArray, dependentKey);
+            }
+
+            if (dependentArray) {
+              meta.dependentArraysObserver.setupObservers(dependentArray, dependentKey);
+            }
+          }
+        }, this);
+      }, this);
+
+      enumerable_utils.forEach(cp._dependentKeys, function(dependentKey) {
+        if (!partiallyRecomputeFor(this, dependentKey)) { return; }
+
+        var dependentArray = get(this, dependentKey);
+
+        if (dependentArray) {
+          addItems.call(this, dependentArray, callbacks, cp, propertyName, meta);
+        }
+      }, this);
+    };
+
+
+    this._getter = function (propertyName) {
+      
+      recompute.call(this, propertyName);
+
+      return cp._instanceMeta(this, propertyName).getValue();
+    };
+  }
+
+  ReduceComputedProperty.prototype = o_create['default'](computed.ComputedProperty.prototype);
+
+  function defaultCallback(computedValue) {
+    return computedValue;
+  }
+
+  ReduceComputedProperty.prototype._callbacks = function () {
+    if (!this.callbacks) {
+      var options = this.options;
+
+      this.callbacks = {
+        removedItem: options.removedItem || defaultCallback,
+        addedItem: options.addedItem || defaultCallback,
+        flushedChanges: options.flushedChanges || defaultCallback
+      };
+    }
+
+    return this.callbacks;
+  };
+
+  ReduceComputedProperty.prototype._hasInstanceMeta = function (context, propertyName) {
+    var contextMeta = context.__ember_meta__;
+    var cacheMeta = contextMeta && contextMeta.cacheMeta;
+    return !!(cacheMeta && cacheMeta[propertyName]);
+  };
+
+  ReduceComputedProperty.prototype._instanceMeta = function (context, propertyName) {
+    var contextMeta = context.__ember_meta__;
+    var cacheMeta = contextMeta.cacheMeta;
+    var meta = cacheMeta && cacheMeta[propertyName];
+
+    if (!cacheMeta) {
+      cacheMeta = contextMeta.cacheMeta = {};
+    }
+    if (!meta) {
+      meta = cacheMeta[propertyName] = new ReduceComputedPropertyInstanceMeta(context, propertyName, this.initialValue());
+      meta.dependentArraysObserver = new DependentArraysObserver(this._callbacks(), this, meta, context, propertyName, meta.sugarMeta);
+    }
+
+    return meta;
+  };
+
+  ReduceComputedProperty.prototype.initialValue = function () {
+    if (typeof this.options.initialValue === 'function') {
+      return this.options.initialValue();
+    } else {
+      return this.options.initialValue;
+    }
+  };
+
+  ReduceComputedProperty.prototype.resetValue = function (value) {
+    return this.initialValue();
+  };
+
+  ReduceComputedProperty.prototype.itemPropertyKey = function (dependentArrayKey, itemPropertyKey) {
+    this._itemPropertyKeys[dependentArrayKey] = this._itemPropertyKeys[dependentArrayKey] || [];
+    this._itemPropertyKeys[dependentArrayKey].push(itemPropertyKey);
+  };
+
+  ReduceComputedProperty.prototype.clearItemPropertyKeys = function (dependentArrayKey) {
+    if (this._itemPropertyKeys[dependentArrayKey]) {
+      this._previousItemPropertyKeys[dependentArrayKey] = this._itemPropertyKeys[dependentArrayKey];
+      this._itemPropertyKeys[dependentArrayKey] = [];
+    }
+  };
+
+  ReduceComputedProperty.prototype.property = function () {
+    var cp = this;
+    var args = a_slice.call(arguments);
+    var propertyArgs = {};
+    var match, dependentArrayKey;
+
+    enumerable_utils.forEach(args, function (dependentKey) {
+      if (doubleEachPropertyPattern.test(dependentKey)) {
+        throw new EmberError['default']('Nested @each properties not supported: ' + dependentKey);
+      } else if (match = eachPropertyPattern.exec(dependentKey)) {
+        dependentArrayKey = match[1];
+
+        var itemPropertyKeyPattern = match[2];
+        var addItemPropertyKey = function (itemPropertyKey) {
+          cp.itemPropertyKey(dependentArrayKey, itemPropertyKey);
+        };
+
+        expandProperties['default'](itemPropertyKeyPattern, addItemPropertyKey);
+        propertyArgs[utils.guidFor(dependentArrayKey)] = dependentArrayKey;
+      } else {
+        propertyArgs[utils.guidFor(dependentKey)] = dependentKey;
+      }
+    });
+
+    var propertyArgsToArray = [];
+    for (var guid in propertyArgs) {
+      propertyArgsToArray.push(propertyArgs[guid]);
+    }
+
+    return computed.ComputedProperty.prototype.property.apply(this, propertyArgsToArray);
+  };
+
+  /**
+    Creates a computed property which operates on dependent arrays and
+    is updated with "one at a time" semantics. When items are added or
+    removed from the dependent array(s) a reduce computed only operates
+    on the change instead of re-evaluating the entire array.
+
+    If there are more than one arguments the first arguments are
+    considered to be dependent property keys. The last argument is
+    required to be an options object. The options object can have the
+    following four properties:
+
+    `initialValue` - A value or function that will be used as the initial
+    value for the computed. If this property is a function the result of calling
+    the function will be used as the initial value. This property is required.
+
+    `initialize` - An optional initialize function. Typically this will be used
+    to set up state on the instanceMeta object.
+
+    `removedItem` - A function that is called each time an element is removed
+    from the array.
+
+    `addedItem` - A function that is called each time an element is added to
+    the array.
+
+
+    The `initialize` function has the following signature:
+
+    ```javascript
+    function(initialValue, changeMeta, instanceMeta)
+    ```
+
+    `initialValue` - The value of the `initialValue` property from the
+    options object.
+
+    `changeMeta` - An object which contains meta information about the
+    computed. It contains the following properties:
+
+       - `property` the computed property
+       - `propertyName` the name of the property on the object
+
+    `instanceMeta` - An object that can be used to store meta
+    information needed for calculating your computed. For example a
+    unique computed might use this to store the number of times a given
+    element is found in the dependent array.
+
+
+    The `removedItem` and `addedItem` functions both have the following signature:
+
+    ```javascript
+    function(accumulatedValue, item, changeMeta, instanceMeta)
+    ```
+
+    `accumulatedValue` - The value returned from the last time
+    `removedItem` or `addedItem` was called or `initialValue`.
+
+    `item` - the element added or removed from the array
+
+    `changeMeta` - An object which contains meta information about the
+    change. It contains the following properties:
+
+      - `property` the computed property
+      - `propertyName` the name of the property on the object
+      - `index` the index of the added or removed item
+      - `item` the added or removed item: this is exactly the same as
+        the second arg
+      - `arrayChanged` the array that triggered the change. Can be
+        useful when depending on multiple arrays.
+
+    For property changes triggered on an item property change (when
+    depKey is something like `someArray.@each.someProperty`),
+    `changeMeta` will also contain the following property:
+
+      - `previousValues` an object whose keys are the properties that changed on
+      the item, and whose values are the item's previous values.
+
+    `previousValues` is important Ember coalesces item property changes via
+    Ember.run.once. This means that by the time removedItem gets called, item has
+    the new values, but you may need the previous value (eg for sorting &
+    filtering).
+
+    `instanceMeta` - An object that can be used to store meta
+    information needed for calculating your computed. For example a
+    unique computed might use this to store the number of times a given
+    element is found in the dependent array.
+
+    The `removedItem` and `addedItem` functions should return the accumulated
+    value. It is acceptable to not return anything (ie return undefined)
+    to invalidate the computation. This is generally not a good idea for
+    arrayComputed but it's used in eg max and min.
+
+    Note that observers will be fired if either of these functions return a value
+    that differs from the accumulated value.  When returning an object that
+    mutates in response to array changes, for example an array that maps
+    everything from some other array (see `Ember.computed.map`), it is usually
+    important that the *same* array be returned to avoid accidentally triggering observers.
+
+    Example
+
+    ```javascript
+    Ember.computed.max = function(dependentKey) {
+      return Ember.reduceComputed(dependentKey, {
+        initialValue: -Infinity,
+
+        addedItem: function(accumulatedValue, item, changeMeta, instanceMeta) {
+          return Math.max(accumulatedValue, item);
+        },
+
+        removedItem: function(accumulatedValue, item, changeMeta, instanceMeta) {
+          if (item < accumulatedValue) {
+            return accumulatedValue;
+          }
+        }
+      });
+    };
+    ```
+
+    Dependent keys may refer to `@this` to observe changes to the object itself,
+    which must be array-like, rather than a property of the object.  This is
+    mostly useful for array proxies, to ensure objects are retrieved via
+    `objectAtContent`.  This is how you could sort items by properties defined on an item controller.
+
+    Example
+
+    ```javascript
+    App.PeopleController = Ember.ArrayController.extend({
+      itemController: 'person',
+
+      sortedPeople: Ember.computed.sort('@this.@each.reversedName', function(personA, personB) {
+        // `reversedName` isn't defined on Person, but we have access to it via
+        // the item controller App.PersonController.  If we'd used
+        // `content.@each.reversedName` above, we would be getting the objects
+        // directly and not have access to `reversedName`.
+        //
+        var reversedNameA = get(personA, 'reversedName');
+        var reversedNameB = get(personB, 'reversedName');
+
+        return Ember.compare(reversedNameA, reversedNameB);
+      })
+    });
+
+    App.PersonController = Ember.ObjectController.extend({
+      reversedName: function() {
+        return reverse(get(this, 'name'));
+      }.property('name')
+    });
+    ```
+
+    Dependent keys whose values are not arrays are treated as regular
+    dependencies: when they change, the computed property is completely
+    recalculated.  It is sometimes useful to have dependent arrays with similar
+    semantics.  Dependent keys which end in `.[]` do not use "one at a time"
+    semantics.  When an item is added or removed from such a dependency, the
+    computed property is completely recomputed.
+
+    When the computed property is completely recomputed, the `accumulatedValue`
+    is discarded, it starts with `initialValue` again, and each item is passed
+    to `addedItem` in turn.
+
+    Example
+
+    ```javascript
+    Ember.Object.extend({
+      // When `string` is changed, `computed` is completely recomputed.
+      string: 'a string',
+
+      // When an item is added to `array`, `addedItem` is called.
+      array: [],
+
+      // When an item is added to `anotherArray`, `computed` is completely
+      // recomputed.
+      anotherArray: [],
+
+      computed: Ember.reduceComputed('string', 'array', 'anotherArray.[]', {
+        addedItem: addedItemCallback,
+        removedItem: removedItemCallback
+      })
+    });
+    ```
+
+    @method reduceComputed
+    @for Ember
+    @param {String} [dependentKeys*]
+    @param {Object} options
+    @return {Ember.ComputedProperty}
+  */
+  function reduceComputed(options) {
+    var args;
+
+    if (arguments.length > 1) {
+      args = a_slice.call(arguments, 0, -1);
+      options = a_slice.call(arguments, -1)[0];
+    }
+
+    if (typeof options !== 'object') {
+      throw new EmberError['default']('Reduce Computed Property declared without an options hash');
+    }
+
+    if (!('initialValue' in options)) {
+      throw new EmberError['default']('Reduce Computed Property declared without an initial value');
+    }
+
+    var cp = new ReduceComputedProperty(options);
+
+    if (args) {
+      cp.property.apply(cp, args);
+    }
+
+    return cp;
+  }
 
 });
 enifed('ember-runtime/controllers/array_controller', ['exports', 'ember-metal/core', 'ember-metal/property_get', 'ember-metal/enumerable_utils', 'ember-runtime/system/array_proxy', 'ember-runtime/mixins/sortable', 'ember-runtime/mixins/controller', 'ember-metal/computed', 'ember-metal/error', 'ember-runtime/mixins/array'], function (exports, Ember, property_get, enumerable_utils, ArrayProxy, SortableMixin, ControllerMixin, computed, EmberError, EmberArray) {
@@ -37030,6 +37030,39 @@ enifed('ember-runtime/mixins/comparable', ['exports', 'ember-metal/mixin'], func
   });
 
 });
+enifed('ember-runtime/mixins/controller_content_model_alias_deprecation', ['exports', 'ember-metal/core', 'ember-metal/mixin'], function (exports, Ember, mixin) {
+
+  'use strict';
+
+  exports['default'] = mixin.Mixin.create({
+    /**
+      @private
+
+      Moves `content` to `model`  at extend time if a `model` is not also specified.
+
+      Note that this currently modifies the mixin themselves, which is technically
+      dubious but is practically of little consequence. This may change in the
+      future.
+
+      @method willMergeMixin
+      @since 1.4.0
+    */
+    willMergeMixin: function(props) {
+      // Calling super is only OK here since we KNOW that
+      // there is another Mixin loaded first.
+      this._super.apply(this, arguments);
+
+      var modelSpecified = !!props.model;
+
+      if (props.content && !modelSpecified) {
+        props.model = props.content;
+        delete props['content'];
+
+              }
+    }
+  });
+
+});
 enifed('ember-runtime/mixins/controller', ['exports', 'ember-metal/mixin', 'ember-metal/alias', 'ember-runtime/mixins/action_handler', 'ember-runtime/mixins/controller_content_model_alias_deprecation'], function (exports, mixin, alias, ActionHandler, ControllerContentModelAliasDeprecation) {
 
   'use strict';
@@ -37078,39 +37111,6 @@ enifed('ember-runtime/mixins/controller', ['exports', 'ember-metal/mixin', 'embe
      */
     content: alias['default']('model')
 
-  });
-
-});
-enifed('ember-runtime/mixins/controller_content_model_alias_deprecation', ['exports', 'ember-metal/core', 'ember-metal/mixin'], function (exports, Ember, mixin) {
-
-  'use strict';
-
-  exports['default'] = mixin.Mixin.create({
-    /**
-      @private
-
-      Moves `content` to `model`  at extend time if a `model` is not also specified.
-
-      Note that this currently modifies the mixin themselves, which is technically
-      dubious but is practically of little consequence. This may change in the
-      future.
-
-      @method willMergeMixin
-      @since 1.4.0
-    */
-    willMergeMixin: function(props) {
-      // Calling super is only OK here since we KNOW that
-      // there is another Mixin loaded first.
-      this._super.apply(this, arguments);
-
-      var modelSpecified = !!props.model;
-
-      if (props.content && !modelSpecified) {
-        props.model = props.content;
-        delete props['content'];
-
-              }
-    }
   });
 
 });
@@ -41914,6 +41914,13 @@ enifed('ember-runtime/system/native_array', ['exports', 'ember-metal/core', 'emb
   exports.NativeArray = NativeArray;
 
 });
+enifed('ember-runtime/system/object_proxy', ['exports', 'ember-runtime/system/object', 'ember-runtime/mixins/-proxy'], function (exports, EmberObject, _ProxyMixin) {
+
+  'use strict';
+
+  exports['default'] = EmberObject['default'].extend(_ProxyMixin['default']);
+
+});
 enifed('ember-runtime/system/object', ['exports', 'ember-runtime/system/core_object', 'ember-runtime/mixins/observable'], function (exports, CoreObject, Observable) {
 
   'use strict';
@@ -41929,13 +41936,6 @@ enifed('ember-runtime/system/object', ['exports', 'ember-runtime/system/core_obj
   };
 
   exports['default'] = EmberObject;
-
-});
-enifed('ember-runtime/system/object_proxy', ['exports', 'ember-runtime/system/object', 'ember-runtime/mixins/-proxy'], function (exports, EmberObject, _ProxyMixin) {
-
-  'use strict';
-
-  exports['default'] = EmberObject['default'].extend(_ProxyMixin['default']);
 
 });
 enifed('ember-runtime/system/service', ['exports', 'ember-runtime/system/object', 'ember-runtime/inject'], function (exports, Object, inject) {
@@ -43392,6 +43392,28 @@ enifed('ember-template-compiler/plugins/transform-with-as-to-hash', ['exports'],
   exports['default'] = TransformWithAsToHash;
 
 });
+enifed('ember-template-compiler/system/compile_options', ['exports', 'ember-metal/core', 'ember-template-compiler/plugins'], function (exports, Ember, plugins) {
+
+  'use strict';
+
+  /**
+  @module ember
+  @submodule ember-template-compiler
+  */
+
+  exports['default'] = function() {
+    var disableComponentGeneration = true;
+    
+    return {
+      revision: 'Ember@1.11.4',
+
+      disableComponentGeneration: disableComponentGeneration,
+
+      plugins: plugins['default']
+    };
+  }
+
+});
 enifed('ember-template-compiler/system/compile', ['exports', 'ember-template-compiler/system/compile_options', 'ember-template-compiler/system/template'], function (exports, compileOptions, template) {
 
   'use strict';
@@ -43414,28 +43436,6 @@ enifed('ember-template-compiler/system/compile', ['exports', 'ember-template-com
     var templateSpec = compile(templateString, compileOptions['default']());
 
     return template['default'](templateSpec);
-  }
-
-});
-enifed('ember-template-compiler/system/compile_options', ['exports', 'ember-metal/core', 'ember-template-compiler/plugins'], function (exports, Ember, plugins) {
-
-  'use strict';
-
-  /**
-  @module ember
-  @submodule ember-template-compiler
-  */
-
-  exports['default'] = function() {
-    var disableComponentGeneration = true;
-    
-    return {
-      revision: 'Ember@1.11.3',
-
-      disableComponentGeneration: disableComponentGeneration,
-
-      plugins: plugins['default']
-    };
   }
 
 });
@@ -50949,8 +50949,8 @@ enifed("morph-range",
             return this.setNode(content);
           }
           /* Handlebars.SafeString */
-          if (typeof content.string === 'string') {
-            return this.setHTML(content.string);
+          if (typeof content.toHTML === 'function') {
+            return this.setHTML(content.toHTML());
           }
           if (this.parseTextAsHTML) {
             return this.setHTML(content.toString());
@@ -56802,21 +56802,34 @@ define("ember/resolver",
 
     if (fullName.parsedName === true) { return fullName; }
 
-    var prefixParts = fullName.split('@');
-    var prefix;
+    var prefix, type, name;
+    var fullNameParts = fullName.split('@');
 
-    if (prefixParts.length === 2) {
-      if (prefixParts[0].split(':')[0] === 'view') {
-        prefixParts[0] = prefixParts[0].split(':')[1];
-        prefixParts[1] = 'view:' + prefixParts[1];
+    // Htmlbars uses helper:@content-helper which collides
+    // with ember-cli namespace detection.
+    // This will be removed in a future release of Htmlbars.
+    if (fullName !== 'helper:@content-helper' &&
+        fullNameParts.length === 2) {
+      var prefixParts = fullNameParts[0].split(':');
+
+      if (prefixParts.length === 2) {
+        prefix = prefixParts[1];
+        type = prefixParts[0];
+        name = fullNameParts[1];
+      } else {
+        var nameParts = fullNameParts[1].split(':');
+
+        prefix = fullNameParts[0];
+        type = nameParts[0];
+        name = nameParts[1];
       }
-
-      prefix = prefixParts[0];
+    } else {
+      fullNameParts = fullName.split(':');
+      type = fullNameParts[0];
+      name = fullNameParts[1];
     }
 
-    var nameParts = prefixParts[prefixParts.length - 1].split(":");
-    var type = nameParts[0], fullNameWithoutType = nameParts[1];
-    var name = fullNameWithoutType;
+    var fullNameWithoutType = name;
     var namespace = get(this, 'namespace');
     var root = namespace;
 
@@ -57095,19 +57108,29 @@ define("ember/resolver",
 
     translateToContainerFullname: function(type, moduleName) {
       var prefix = this.prefix({ type: type });
+
+      // Note: using string manipulation here rather than regexes for better performance.
+      // pod modules
+      // '^' + prefix + '/(.+)/' + type + '$'
+      var podPrefix = prefix + '/';
+      var podSuffix = '/' + type;
+      var start = moduleName.indexOf(podPrefix);
+      var end = moduleName.indexOf(podSuffix);
+
+      if (start === 0 && end === (moduleName.length - podSuffix.length) &&
+          moduleName.length > (podPrefix.length + podSuffix.length)) {
+        return type + ':' + moduleName.slice(start + podPrefix.length, end);
+      }
+
+      // non-pod modules
+      // '^' + prefix + '/' + pluralizedType + '/(.+)$'
       var pluralizedType = this.pluralize(type);
-      var nonPodRegExp = new RegExp('^' + prefix + '/' + pluralizedType + '/(.+)$');
-      var podRegExp = new RegExp('^' + prefix + '/(.+)/' + type + '$');
-      var matches;
+      var nonPodPrefix = prefix + '/' + pluralizedType + '/';
 
-
-      if ((matches = moduleName.match(podRegExp))) {
-        return type + ':' + matches[1];
+      if (moduleName.indexOf(nonPodPrefix) === 0 && moduleName.length > nonPodPrefix.length) {
+        return type + ':' + moduleName.slice(nonPodPrefix.length);
       }
 
-      if ((matches = moduleName.match(nonPodRegExp))) {
-        return type + ':' + matches[1];
-      }
     },
 
     _extractDefaultExport: function(normalizedModuleName) {
@@ -57266,11 +57289,12 @@ define("ember/container-debug-adapter",
   Ember.Application.initializer({
     name: 'container-debug-adapter',
 
-    initialize: function(container, app) {
+    initialize: function() {
+      var app = arguments[1] || arguments[0];
       var ContainerDebugAdapter = require('ember/container-debug-adapter');
       var Resolver = require('ember/resolver');
 
-      container.register('container-debug-adapter:main', ContainerDebugAdapter);
+      app.register('container-debug-adapter:main', ContainerDebugAdapter);
       app.inject('container-debug-adapter:main', 'namespace', 'application:main');
     }
   });
@@ -57698,7 +57722,7 @@ var TreeMirror = (function () {
         }
 
         if (!node) {
-            throw new Error("No node with id " + nodeData.id);
+            throw new Error("No node with that id.");
         }
 
         this.idMap[nodeData.id] = node;
@@ -57738,6 +57762,7 @@ var URL_ATTRIBUTES = {
     embed_src: true,
     object_data: true,
     video_poster: true,
+    form_action: true,
     iframe_src: true
 };
 function isUrlAttribute(tagName, attribute) {
@@ -57917,7 +57942,7 @@ var TreeMirrorClient = (function () {
         var map = new MutationSummary.NodeMap();
 
         Object.keys(attributeChanged).forEach(function (attrName) {
-            attributeChanged[attrName].forEach(function (element) {
+            (attributeChanged[attrName] || []).forEach(function (element) {
                 var record = map.get(element);
                 if (!record) {
                     record = _this.serializeNode(element);
@@ -57961,13 +57986,63 @@ var TreeMirrorClient = (function () {
     return TreeMirrorClient;
 })();
 
+;(function(){function diff_match_patch(){this.Diff_Timeout=1;this.Diff_EditCost=4;this.Match_Threshold=0.5;this.Match_Distance=1E3;this.Patch_DeleteThreshold=0.5;this.Patch_Margin=4;this.Match_MaxBits=32}
+diff_match_patch.prototype.diff_main=function(a,b,c,d){"undefined"==typeof d&&(d=0>=this.Diff_Timeout?Number.MAX_VALUE:(new Date).getTime()+1E3*this.Diff_Timeout);if(null==a||null==b)throw Error("Null input. (diff_main)");if(a==b)return a?[[0,a]]:[];"undefined"==typeof c&&(c=!0);var e=c,f=this.diff_commonPrefix(a,b);c=a.substring(0,f);a=a.substring(f);b=b.substring(f);var f=this.diff_commonSuffix(a,b),g=a.substring(a.length-f);a=a.substring(0,a.length-f);b=b.substring(0,b.length-f);a=this.diff_compute_(a,
+b,e,d);c&&a.unshift([0,c]);g&&a.push([0,g]);this.diff_cleanupMerge(a);return a};
+diff_match_patch.prototype.diff_compute_=function(a,b,c,d){if(!a)return[[1,b]];if(!b)return[[-1,a]];var e=a.length>b.length?a:b,f=a.length>b.length?b:a,g=e.indexOf(f);return-1!=g?(c=[[1,e.substring(0,g)],[0,f],[1,e.substring(g+f.length)]],a.length>b.length&&(c[0][0]=c[2][0]=-1),c):1==f.length?[[-1,a],[1,b]]:(e=this.diff_halfMatch_(a,b))?(f=e[0],a=e[1],g=e[2],b=e[3],e=e[4],f=this.diff_main(f,g,c,d),c=this.diff_main(a,b,c,d),f.concat([[0,e]],c)):c&&100<a.length&&100<b.length?this.diff_lineMode_(a,b,
+d):this.diff_bisect_(a,b,d)};
+diff_match_patch.prototype.diff_lineMode_=function(a,b,c){var d=this.diff_linesToChars_(a,b);a=d.chars1;b=d.chars2;d=d.lineArray;a=this.diff_main(a,b,!1,c);this.diff_charsToLines_(a,d);this.diff_cleanupSemantic(a);a.push([0,""]);for(var e=d=b=0,f="",g="";b<a.length;){switch(a[b][0]){case 1:e++;g+=a[b][1];break;case -1:d++;f+=a[b][1];break;case 0:if(1<=d&&1<=e){a.splice(b-d-e,d+e);b=b-d-e;d=this.diff_main(f,g,!1,c);for(e=d.length-1;0<=e;e--)a.splice(b,0,d[e]);b+=d.length}d=e=0;g=f=""}b++}a.pop();return a};
+diff_match_patch.prototype.diff_bisect_=function(a,b,c){for(var d=a.length,e=b.length,f=Math.ceil((d+e)/2),g=f,h=2*f,j=Array(h),i=Array(h),k=0;k<h;k++)j[k]=-1,i[k]=-1;j[g+1]=0;i[g+1]=0;for(var k=d-e,q=0!=k%2,r=0,t=0,p=0,w=0,v=0;v<f&&!((new Date).getTime()>c);v++){for(var n=-v+r;n<=v-t;n+=2){var l=g+n,m;m=n==-v||n!=v&&j[l-1]<j[l+1]?j[l+1]:j[l-1]+1;for(var s=m-n;m<d&&s<e&&a.charAt(m)==b.charAt(s);)m++,s++;j[l]=m;if(m>d)t+=2;else if(s>e)r+=2;else if(q&&(l=g+k-n,0<=l&&l<h&&-1!=i[l])){var u=d-i[l];if(m>=
+u)return this.diff_bisectSplit_(a,b,m,s,c)}}for(n=-v+p;n<=v-w;n+=2){l=g+n;u=n==-v||n!=v&&i[l-1]<i[l+1]?i[l+1]:i[l-1]+1;for(m=u-n;u<d&&m<e&&a.charAt(d-u-1)==b.charAt(e-m-1);)u++,m++;i[l]=u;if(u>d)w+=2;else if(m>e)p+=2;else if(!q&&(l=g+k-n,0<=l&&(l<h&&-1!=j[l])&&(m=j[l],s=g+m-l,u=d-u,m>=u)))return this.diff_bisectSplit_(a,b,m,s,c)}}return[[-1,a],[1,b]]};
+diff_match_patch.prototype.diff_bisectSplit_=function(a,b,c,d,e){var f=a.substring(0,c),g=b.substring(0,d);a=a.substring(c);b=b.substring(d);f=this.diff_main(f,g,!1,e);e=this.diff_main(a,b,!1,e);return f.concat(e)};
+diff_match_patch.prototype.diff_linesToChars_=function(a,b){function c(a){for(var b="",c=0,f=-1,g=d.length;f<a.length-1;){f=a.indexOf("\n",c);-1==f&&(f=a.length-1);var r=a.substring(c,f+1),c=f+1;(e.hasOwnProperty?e.hasOwnProperty(r):void 0!==e[r])?b+=String.fromCharCode(e[r]):(b+=String.fromCharCode(g),e[r]=g,d[g++]=r)}return b}var d=[],e={};d[0]="";var f=c(a),g=c(b);return{chars1:f,chars2:g,lineArray:d}};
+diff_match_patch.prototype.diff_charsToLines_=function(a,b){for(var c=0;c<a.length;c++){for(var d=a[c][1],e=[],f=0;f<d.length;f++)e[f]=b[d.charCodeAt(f)];a[c][1]=e.join("")}};diff_match_patch.prototype.diff_commonPrefix=function(a,b){if(!a||!b||a.charAt(0)!=b.charAt(0))return 0;for(var c=0,d=Math.min(a.length,b.length),e=d,f=0;c<e;)a.substring(f,e)==b.substring(f,e)?f=c=e:d=e,e=Math.floor((d-c)/2+c);return e};
+diff_match_patch.prototype.diff_commonSuffix=function(a,b){if(!a||!b||a.charAt(a.length-1)!=b.charAt(b.length-1))return 0;for(var c=0,d=Math.min(a.length,b.length),e=d,f=0;c<e;)a.substring(a.length-e,a.length-f)==b.substring(b.length-e,b.length-f)?f=c=e:d=e,e=Math.floor((d-c)/2+c);return e};
+diff_match_patch.prototype.diff_commonOverlap_=function(a,b){var c=a.length,d=b.length;if(0==c||0==d)return 0;c>d?a=a.substring(c-d):c<d&&(b=b.substring(0,c));c=Math.min(c,d);if(a==b)return c;for(var d=0,e=1;;){var f=a.substring(c-e),f=b.indexOf(f);if(-1==f)return d;e+=f;if(0==f||a.substring(c-e)==b.substring(0,e))d=e,e++}};
+diff_match_patch.prototype.diff_halfMatch_=function(a,b){function c(a,b,c){for(var d=a.substring(c,c+Math.floor(a.length/4)),e=-1,g="",h,j,n,l;-1!=(e=b.indexOf(d,e+1));){var m=f.diff_commonPrefix(a.substring(c),b.substring(e)),s=f.diff_commonSuffix(a.substring(0,c),b.substring(0,e));g.length<s+m&&(g=b.substring(e-s,e)+b.substring(e,e+m),h=a.substring(0,c-s),j=a.substring(c+m),n=b.substring(0,e-s),l=b.substring(e+m))}return 2*g.length>=a.length?[h,j,n,l,g]:null}if(0>=this.Diff_Timeout)return null;
+var d=a.length>b.length?a:b,e=a.length>b.length?b:a;if(4>d.length||2*e.length<d.length)return null;var f=this,g=c(d,e,Math.ceil(d.length/4)),d=c(d,e,Math.ceil(d.length/2)),h;if(!g&&!d)return null;h=d?g?g[4].length>d[4].length?g:d:d:g;var j;a.length>b.length?(g=h[0],d=h[1],e=h[2],j=h[3]):(e=h[0],j=h[1],g=h[2],d=h[3]);h=h[4];return[g,d,e,j,h]};
+diff_match_patch.prototype.diff_cleanupSemantic=function(a){for(var b=!1,c=[],d=0,e=null,f=0,g=0,h=0,j=0,i=0;f<a.length;)0==a[f][0]?(c[d++]=f,g=j,h=i,i=j=0,e=a[f][1]):(1==a[f][0]?j+=a[f][1].length:i+=a[f][1].length,e&&(e.length<=Math.max(g,h)&&e.length<=Math.max(j,i))&&(a.splice(c[d-1],0,[-1,e]),a[c[d-1]+1][0]=1,d--,d--,f=0<d?c[d-1]:-1,i=j=h=g=0,e=null,b=!0)),f++;b&&this.diff_cleanupMerge(a);this.diff_cleanupSemanticLossless(a);for(f=1;f<a.length;){if(-1==a[f-1][0]&&1==a[f][0]){b=a[f-1][1];c=a[f][1];
+d=this.diff_commonOverlap_(b,c);e=this.diff_commonOverlap_(c,b);if(d>=e){if(d>=b.length/2||d>=c.length/2)a.splice(f,0,[0,c.substring(0,d)]),a[f-1][1]=b.substring(0,b.length-d),a[f+1][1]=c.substring(d),f++}else if(e>=b.length/2||e>=c.length/2)a.splice(f,0,[0,b.substring(0,e)]),a[f-1][0]=1,a[f-1][1]=c.substring(0,c.length-e),a[f+1][0]=-1,a[f+1][1]=b.substring(e),f++;f++}f++}};
+diff_match_patch.prototype.diff_cleanupSemanticLossless=function(a){function b(a,b){if(!a||!b)return 6;var c=a.charAt(a.length-1),d=b.charAt(0),e=c.match(diff_match_patch.nonAlphaNumericRegex_),f=d.match(diff_match_patch.nonAlphaNumericRegex_),g=e&&c.match(diff_match_patch.whitespaceRegex_),h=f&&d.match(diff_match_patch.whitespaceRegex_),c=g&&c.match(diff_match_patch.linebreakRegex_),d=h&&d.match(diff_match_patch.linebreakRegex_),i=c&&a.match(diff_match_patch.blanklineEndRegex_),j=d&&b.match(diff_match_patch.blanklineStartRegex_);
+return i||j?5:c||d?4:e&&!g&&h?3:g||h?2:e||f?1:0}for(var c=1;c<a.length-1;){if(0==a[c-1][0]&&0==a[c+1][0]){var d=a[c-1][1],e=a[c][1],f=a[c+1][1],g=this.diff_commonSuffix(d,e);if(g)var h=e.substring(e.length-g),d=d.substring(0,d.length-g),e=h+e.substring(0,e.length-g),f=h+f;for(var g=d,h=e,j=f,i=b(d,e)+b(e,f);e.charAt(0)===f.charAt(0);){var d=d+e.charAt(0),e=e.substring(1)+f.charAt(0),f=f.substring(1),k=b(d,e)+b(e,f);k>=i&&(i=k,g=d,h=e,j=f)}a[c-1][1]!=g&&(g?a[c-1][1]=g:(a.splice(c-1,1),c--),a[c][1]=
+h,j?a[c+1][1]=j:(a.splice(c+1,1),c--))}c++}};diff_match_patch.nonAlphaNumericRegex_=/[^a-zA-Z0-9]/;diff_match_patch.whitespaceRegex_=/\s/;diff_match_patch.linebreakRegex_=/[\r\n]/;diff_match_patch.blanklineEndRegex_=/\n\r?\n$/;diff_match_patch.blanklineStartRegex_=/^\r?\n\r?\n/;
+diff_match_patch.prototype.diff_cleanupEfficiency=function(a){for(var b=!1,c=[],d=0,e=null,f=0,g=!1,h=!1,j=!1,i=!1;f<a.length;){if(0==a[f][0])a[f][1].length<this.Diff_EditCost&&(j||i)?(c[d++]=f,g=j,h=i,e=a[f][1]):(d=0,e=null),j=i=!1;else if(-1==a[f][0]?i=!0:j=!0,e&&(g&&h&&j&&i||e.length<this.Diff_EditCost/2&&3==g+h+j+i))a.splice(c[d-1],0,[-1,e]),a[c[d-1]+1][0]=1,d--,e=null,g&&h?(j=i=!0,d=0):(d--,f=0<d?c[d-1]:-1,j=i=!1),b=!0;f++}b&&this.diff_cleanupMerge(a)};
+diff_match_patch.prototype.diff_cleanupMerge=function(a){a.push([0,""]);for(var b=0,c=0,d=0,e="",f="",g;b<a.length;)switch(a[b][0]){case 1:d++;f+=a[b][1];b++;break;case -1:c++;e+=a[b][1];b++;break;case 0:1<c+d?(0!==c&&0!==d&&(g=this.diff_commonPrefix(f,e),0!==g&&(0<b-c-d&&0==a[b-c-d-1][0]?a[b-c-d-1][1]+=f.substring(0,g):(a.splice(0,0,[0,f.substring(0,g)]),b++),f=f.substring(g),e=e.substring(g)),g=this.diff_commonSuffix(f,e),0!==g&&(a[b][1]=f.substring(f.length-g)+a[b][1],f=f.substring(0,f.length-
+g),e=e.substring(0,e.length-g))),0===c?a.splice(b-d,c+d,[1,f]):0===d?a.splice(b-c,c+d,[-1,e]):a.splice(b-c-d,c+d,[-1,e],[1,f]),b=b-c-d+(c?1:0)+(d?1:0)+1):0!==b&&0==a[b-1][0]?(a[b-1][1]+=a[b][1],a.splice(b,1)):b++,c=d=0,f=e=""}""===a[a.length-1][1]&&a.pop();c=!1;for(b=1;b<a.length-1;)0==a[b-1][0]&&0==a[b+1][0]&&(a[b][1].substring(a[b][1].length-a[b-1][1].length)==a[b-1][1]?(a[b][1]=a[b-1][1]+a[b][1].substring(0,a[b][1].length-a[b-1][1].length),a[b+1][1]=a[b-1][1]+a[b+1][1],a.splice(b-1,1),c=!0):a[b][1].substring(0,
+a[b+1][1].length)==a[b+1][1]&&(a[b-1][1]+=a[b+1][1],a[b][1]=a[b][1].substring(a[b+1][1].length)+a[b+1][1],a.splice(b+1,1),c=!0)),b++;c&&this.diff_cleanupMerge(a)};diff_match_patch.prototype.diff_xIndex=function(a,b){var c=0,d=0,e=0,f=0,g;for(g=0;g<a.length;g++){1!==a[g][0]&&(c+=a[g][1].length);-1!==a[g][0]&&(d+=a[g][1].length);if(c>b)break;e=c;f=d}return a.length!=g&&-1===a[g][0]?f:f+(b-e)};
+diff_match_patch.prototype.diff_prettyHtml=function(a){for(var b=[],c=/&/g,d=/</g,e=/>/g,f=/\n/g,g=0;g<a.length;g++){var h=a[g][0],j=a[g][1],j=j.replace(c,"&amp;").replace(d,"&lt;").replace(e,"&gt;").replace(f,"&para;<br>");switch(h){case 1:b[g]='<ins style="background:#e6ffe6;">'+j+"</ins>";break;case -1:b[g]='<del style="background:#ffe6e6;">'+j+"</del>";break;case 0:b[g]="<span>"+j+"</span>"}}return b.join("")};
+diff_match_patch.prototype.diff_text1=function(a){for(var b=[],c=0;c<a.length;c++)1!==a[c][0]&&(b[c]=a[c][1]);return b.join("")};diff_match_patch.prototype.diff_text2=function(a){for(var b=[],c=0;c<a.length;c++)-1!==a[c][0]&&(b[c]=a[c][1]);return b.join("")};diff_match_patch.prototype.diff_levenshtein=function(a){for(var b=0,c=0,d=0,e=0;e<a.length;e++){var f=a[e][0],g=a[e][1];switch(f){case 1:c+=g.length;break;case -1:d+=g.length;break;case 0:b+=Math.max(c,d),d=c=0}}return b+=Math.max(c,d)};
+diff_match_patch.prototype.diff_toDelta=function(a){for(var b=[],c=0;c<a.length;c++)switch(a[c][0]){case 1:b[c]="+"+encodeURI(a[c][1]);break;case -1:b[c]="-"+a[c][1].length;break;case 0:b[c]="="+a[c][1].length}return b.join("\t").replace(/%20/g," ")};
+diff_match_patch.prototype.diff_fromDelta=function(a,b){for(var c=[],d=0,e=0,f=b.split(/\t/g),g=0;g<f.length;g++){var h=f[g].substring(1);switch(f[g].charAt(0)){case "+":try{c[d++]=[1,decodeURI(h)]}catch(j){throw Error("Illegal escape in diff_fromDelta: "+h);}break;case "-":case "=":var i=parseInt(h,10);if(isNaN(i)||0>i)throw Error("Invalid number in diff_fromDelta: "+h);h=a.substring(e,e+=i);"="==f[g].charAt(0)?c[d++]=[0,h]:c[d++]=[-1,h];break;default:if(f[g])throw Error("Invalid diff operation in diff_fromDelta: "+
+f[g]);}}if(e!=a.length)throw Error("Delta length ("+e+") does not equal source text length ("+a.length+").");return c};diff_match_patch.prototype.match_main=function(a,b,c){if(null==a||null==b||null==c)throw Error("Null input. (match_main)");c=Math.max(0,Math.min(c,a.length));return a==b?0:a.length?a.substring(c,c+b.length)==b?c:this.match_bitap_(a,b,c):-1};
+diff_match_patch.prototype.match_bitap_=function(a,b,c){function d(a,d){var e=a/b.length,g=Math.abs(c-d);return!f.Match_Distance?g?1:e:e+g/f.Match_Distance}if(b.length>this.Match_MaxBits)throw Error("Pattern too long for this browser.");var e=this.match_alphabet_(b),f=this,g=this.Match_Threshold,h=a.indexOf(b,c);-1!=h&&(g=Math.min(d(0,h),g),h=a.lastIndexOf(b,c+b.length),-1!=h&&(g=Math.min(d(0,h),g)));for(var j=1<<b.length-1,h=-1,i,k,q=b.length+a.length,r,t=0;t<b.length;t++){i=0;for(k=q;i<k;)d(t,c+
+k)<=g?i=k:q=k,k=Math.floor((q-i)/2+i);q=k;i=Math.max(1,c-k+1);var p=Math.min(c+k,a.length)+b.length;k=Array(p+2);for(k[p+1]=(1<<t)-1;p>=i;p--){var w=e[a.charAt(p-1)];k[p]=0===t?(k[p+1]<<1|1)&w:(k[p+1]<<1|1)&w|((r[p+1]|r[p])<<1|1)|r[p+1];if(k[p]&j&&(w=d(t,p-1),w<=g))if(g=w,h=p-1,h>c)i=Math.max(1,2*c-h);else break}if(d(t+1,c)>g)break;r=k}return h};
+diff_match_patch.prototype.match_alphabet_=function(a){for(var b={},c=0;c<a.length;c++)b[a.charAt(c)]=0;for(c=0;c<a.length;c++)b[a.charAt(c)]|=1<<a.length-c-1;return b};
+diff_match_patch.prototype.patch_addContext_=function(a,b){if(0!=b.length){for(var c=b.substring(a.start2,a.start2+a.length1),d=0;b.indexOf(c)!=b.lastIndexOf(c)&&c.length<this.Match_MaxBits-this.Patch_Margin-this.Patch_Margin;)d+=this.Patch_Margin,c=b.substring(a.start2-d,a.start2+a.length1+d);d+=this.Patch_Margin;(c=b.substring(a.start2-d,a.start2))&&a.diffs.unshift([0,c]);(d=b.substring(a.start2+a.length1,a.start2+a.length1+d))&&a.diffs.push([0,d]);a.start1-=c.length;a.start2-=c.length;a.length1+=
+c.length+d.length;a.length2+=c.length+d.length}};
+diff_match_patch.prototype.patch_make=function(a,b,c){var d;if("string"==typeof a&&"string"==typeof b&&"undefined"==typeof c)d=a,b=this.diff_main(d,b,!0),2<b.length&&(this.diff_cleanupSemantic(b),this.diff_cleanupEfficiency(b));else if(a&&"object"==typeof a&&"undefined"==typeof b&&"undefined"==typeof c)b=a,d=this.diff_text1(b);else if("string"==typeof a&&b&&"object"==typeof b&&"undefined"==typeof c)d=a;else if("string"==typeof a&&"string"==typeof b&&c&&"object"==typeof c)d=a,b=c;else throw Error("Unknown call format to patch_make.");
+if(0===b.length)return[];c=[];a=new diff_match_patch.patch_obj;for(var e=0,f=0,g=0,h=d,j=0;j<b.length;j++){var i=b[j][0],k=b[j][1];!e&&0!==i&&(a.start1=f,a.start2=g);switch(i){case 1:a.diffs[e++]=b[j];a.length2+=k.length;d=d.substring(0,g)+k+d.substring(g);break;case -1:a.length1+=k.length;a.diffs[e++]=b[j];d=d.substring(0,g)+d.substring(g+k.length);break;case 0:k.length<=2*this.Patch_Margin&&e&&b.length!=j+1?(a.diffs[e++]=b[j],a.length1+=k.length,a.length2+=k.length):k.length>=2*this.Patch_Margin&&
+e&&(this.patch_addContext_(a,h),c.push(a),a=new diff_match_patch.patch_obj,e=0,h=d,f=g)}1!==i&&(f+=k.length);-1!==i&&(g+=k.length)}e&&(this.patch_addContext_(a,h),c.push(a));return c};diff_match_patch.prototype.patch_deepCopy=function(a){for(var b=[],c=0;c<a.length;c++){var d=a[c],e=new diff_match_patch.patch_obj;e.diffs=[];for(var f=0;f<d.diffs.length;f++)e.diffs[f]=d.diffs[f].slice();e.start1=d.start1;e.start2=d.start2;e.length1=d.length1;e.length2=d.length2;b[c]=e}return b};
+diff_match_patch.prototype.patch_apply=function(a,b){if(0==a.length)return[b,[]];a=this.patch_deepCopy(a);var c=this.patch_addPadding(a);b=c+b+c;this.patch_splitMax(a);for(var d=0,e=[],f=0;f<a.length;f++){var g=a[f].start2+d,h=this.diff_text1(a[f].diffs),j,i=-1;if(h.length>this.Match_MaxBits){if(j=this.match_main(b,h.substring(0,this.Match_MaxBits),g),-1!=j&&(i=this.match_main(b,h.substring(h.length-this.Match_MaxBits),g+h.length-this.Match_MaxBits),-1==i||j>=i))j=-1}else j=this.match_main(b,h,g);
+if(-1==j)e[f]=!1,d-=a[f].length2-a[f].length1;else if(e[f]=!0,d=j-g,g=-1==i?b.substring(j,j+h.length):b.substring(j,i+this.Match_MaxBits),h==g)b=b.substring(0,j)+this.diff_text2(a[f].diffs)+b.substring(j+h.length);else if(g=this.diff_main(h,g,!1),h.length>this.Match_MaxBits&&this.diff_levenshtein(g)/h.length>this.Patch_DeleteThreshold)e[f]=!1;else{this.diff_cleanupSemanticLossless(g);for(var h=0,k,i=0;i<a[f].diffs.length;i++){var q=a[f].diffs[i];0!==q[0]&&(k=this.diff_xIndex(g,h));1===q[0]?b=b.substring(0,
+j+k)+q[1]+b.substring(j+k):-1===q[0]&&(b=b.substring(0,j+k)+b.substring(j+this.diff_xIndex(g,h+q[1].length)));-1!==q[0]&&(h+=q[1].length)}}}b=b.substring(c.length,b.length-c.length);return[b,e]};
+diff_match_patch.prototype.patch_addPadding=function(a){for(var b=this.Patch_Margin,c="",d=1;d<=b;d++)c+=String.fromCharCode(d);for(d=0;d<a.length;d++)a[d].start1+=b,a[d].start2+=b;var d=a[0],e=d.diffs;if(0==e.length||0!=e[0][0])e.unshift([0,c]),d.start1-=b,d.start2-=b,d.length1+=b,d.length2+=b;else if(b>e[0][1].length){var f=b-e[0][1].length;e[0][1]=c.substring(e[0][1].length)+e[0][1];d.start1-=f;d.start2-=f;d.length1+=f;d.length2+=f}d=a[a.length-1];e=d.diffs;0==e.length||0!=e[e.length-1][0]?(e.push([0,
+c]),d.length1+=b,d.length2+=b):b>e[e.length-1][1].length&&(f=b-e[e.length-1][1].length,e[e.length-1][1]+=c.substring(0,f),d.length1+=f,d.length2+=f);return c};
+diff_match_patch.prototype.patch_splitMax=function(a){for(var b=this.Match_MaxBits,c=0;c<a.length;c++)if(!(a[c].length1<=b)){var d=a[c];a.splice(c--,1);for(var e=d.start1,f=d.start2,g="";0!==d.diffs.length;){var h=new diff_match_patch.patch_obj,j=!0;h.start1=e-g.length;h.start2=f-g.length;""!==g&&(h.length1=h.length2=g.length,h.diffs.push([0,g]));for(;0!==d.diffs.length&&h.length1<b-this.Patch_Margin;){var g=d.diffs[0][0],i=d.diffs[0][1];1===g?(h.length2+=i.length,f+=i.length,h.diffs.push(d.diffs.shift()),
+j=!1):-1===g&&1==h.diffs.length&&0==h.diffs[0][0]&&i.length>2*b?(h.length1+=i.length,e+=i.length,j=!1,h.diffs.push([g,i]),d.diffs.shift()):(i=i.substring(0,b-h.length1-this.Patch_Margin),h.length1+=i.length,e+=i.length,0===g?(h.length2+=i.length,f+=i.length):j=!1,h.diffs.push([g,i]),i==d.diffs[0][1]?d.diffs.shift():d.diffs[0][1]=d.diffs[0][1].substring(i.length))}g=this.diff_text2(h.diffs);g=g.substring(g.length-this.Patch_Margin);i=this.diff_text1(d.diffs).substring(0,this.Patch_Margin);""!==i&&
+(h.length1+=i.length,h.length2+=i.length,0!==h.diffs.length&&0===h.diffs[h.diffs.length-1][0]?h.diffs[h.diffs.length-1][1]+=i:h.diffs.push([0,i]));j||a.splice(++c,0,h)}}};diff_match_patch.prototype.patch_toText=function(a){for(var b=[],c=0;c<a.length;c++)b[c]=a[c];return b.join("")};
+diff_match_patch.prototype.patch_fromText=function(a){var b=[];if(!a)return b;a=a.split("\n");for(var c=0,d=/^@@ -(\d+),?(\d*) \+(\d+),?(\d*) @@$/;c<a.length;){var e=a[c].match(d);if(!e)throw Error("Invalid patch string: "+a[c]);var f=new diff_match_patch.patch_obj;b.push(f);f.start1=parseInt(e[1],10);""===e[2]?(f.start1--,f.length1=1):"0"==e[2]?f.length1=0:(f.start1--,f.length1=parseInt(e[2],10));f.start2=parseInt(e[3],10);""===e[4]?(f.start2--,f.length2=1):"0"==e[4]?f.length2=0:(f.start2--,f.length2=
+parseInt(e[4],10));for(c++;c<a.length;){e=a[c].charAt(0);try{var g=decodeURI(a[c].substring(1))}catch(h){throw Error("Illegal escape in patch_fromText: "+g);}if("-"==e)f.diffs.push([-1,g]);else if("+"==e)f.diffs.push([1,g]);else if(" "==e)f.diffs.push([0,g]);else if("@"==e)break;else if(""!==e)throw Error('Invalid patch mode "'+e+'" in: '+g);c++}}return b};diff_match_patch.patch_obj=function(){this.diffs=[];this.start2=this.start1=null;this.length2=this.length1=0};
+diff_match_patch.patch_obj.prototype.toString=function(){var a,b;a=0===this.length1?this.start1+",0":1==this.length1?this.start1+1:this.start1+1+","+this.length1;b=0===this.length2?this.start2+",0":1==this.length2?this.start2+1:this.start2+1+","+this.length2;a=["@@ -"+a+" +"+b+" @@\n"];var c;for(b=0;b<this.diffs.length;b++){switch(this.diffs[b][0]){case 1:c="+";break;case -1:c="-";break;case 0:c=" "}a[b+1]=c+encodeURI(this.diffs[b][1])+"\n"}return a.join("").replace(/%20/g," ")};
+this.diff_match_patch=diff_match_patch;this.DIFF_DELETE=-1;this.DIFF_INSERT=1;this.DIFF_EQUAL=0;})()
+
 ;/*!
  * ZeroClipboard
  * The ZeroClipboard library provides an easy way to copy text to the clipboard using an invisible Adobe Flash movie and a JavaScript interface.
- * Copyright (c) 2014 Jon Rohan, James M. Greene
+ * Copyright (c) 2009-2014 Jon Rohan, James M. Greene
  * Licensed MIT
  * http://zeroclipboard.org/
- * v2.1.6
+ * v2.2.0
  */
 (function(window, undefined) {
   "use strict";
@@ -57975,7 +58050,7 @@ var TreeMirrorClient = (function () {
  * Store references to critically important global functions that may be
  * overridden on certain web pages.
  */
-  var _window = window, _document = _window.document, _navigator = _window.navigator, _setTimeout = _window.setTimeout, _encodeURIComponent = _window.encodeURIComponent, _ActiveXObject = _window.ActiveXObject, _Error = _window.Error, _parseInt = _window.Number.parseInt || _window.parseInt, _parseFloat = _window.Number.parseFloat || _window.parseFloat, _isNaN = _window.Number.isNaN || _window.isNaN, _round = _window.Math.round, _now = _window.Date.now, _keys = _window.Object.keys, _defineProperty = _window.Object.defineProperty, _hasOwn = _window.Object.prototype.hasOwnProperty, _slice = _window.Array.prototype.slice, _unwrap = function() {
+  var _window = window, _document = _window.document, _navigator = _window.navigator, _setTimeout = _window.setTimeout, _clearTimeout = _window.clearTimeout, _setInterval = _window.setInterval, _clearInterval = _window.clearInterval, _getComputedStyle = _window.getComputedStyle, _encodeURIComponent = _window.encodeURIComponent, _ActiveXObject = _window.ActiveXObject, _Error = _window.Error, _parseInt = _window.Number.parseInt || _window.parseInt, _parseFloat = _window.Number.parseFloat || _window.parseFloat, _isNaN = _window.Number.isNaN || _window.isNaN, _now = _window.Date.now, _keys = _window.Object.keys, _defineProperty = _window.Object.defineProperty, _hasOwn = _window.Object.prototype.hasOwnProperty, _slice = _window.Array.prototype.slice, _unwrap = function() {
     var unwrapper = function(el) {
       return el;
     };
@@ -58030,7 +58105,7 @@ var TreeMirrorClient = (function () {
  */
   var _deepCopy = function(source) {
     var copy, i, len, prop;
-    if (typeof source !== "object" || source == null) {
+    if (typeof source !== "object" || source == null || typeof source.nodeType === "number") {
       copy = source;
     } else if (typeof source.length === "number") {
       copy = [];
@@ -58235,6 +58310,13 @@ var TreeMirrorClient = (function () {
     return jsDir + "ZeroClipboard.swf";
   };
   /**
+ * Keep track of if the page is framed (in an `iframe`). This can never change.
+ * @private
+ */
+  var _pageIsFramed = function() {
+    return window.opener == null && (!!window.top && window != window.top || !!window.parent && window != window.parent);
+  }();
+  /**
  * Keep track of the state of the Flash object.
  * @private
  */
@@ -58244,7 +58326,9 @@ var TreeMirrorClient = (function () {
     pluginType: "unknown",
     disabled: null,
     outdated: null,
+    sandboxed: null,
     unavailable: null,
+    degraded: null,
     deactivated: null,
     overdue: null,
     ready: null
@@ -58255,6 +58339,10 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _minimumFlashVersion = "11.0.0";
+  /**
+ * The ZeroClipboard library version number, as reported by Flash, at the time the SWF was compiled.
+ */
+  var _zcSwfVersion;
   /**
  * Keep track of all event listener registrations.
  * @private
@@ -58281,19 +58369,62 @@ var TreeMirrorClient = (function () {
  */
   var _clipDataFormatMap = null;
   /**
+ * Keep track of the Flash availability check timeout.
+ * @private
+ */
+  var _flashCheckTimeout = 0;
+  /**
+ * Keep track of SWF network errors interval polling.
+ * @private
+ */
+  var _swfFallbackCheckInterval = 0;
+  /**
  * The `message` store for events
  * @private
  */
   var _eventMessages = {
     ready: "Flash communication is established",
     error: {
-      "flash-disabled": "Flash is disabled or not installed",
+      "flash-disabled": "Flash is disabled or not installed. May also be attempting to run Flash in a sandboxed iframe, which is impossible.",
       "flash-outdated": "Flash is too outdated to support ZeroClipboard",
+      "flash-sandboxed": "Attempting to run Flash in a sandboxed iframe, which is impossible",
       "flash-unavailable": "Flash is unable to communicate bidirectionally with JavaScript",
-      "flash-deactivated": "Flash is too outdated for your browser and/or is configured as click-to-activate",
-      "flash-overdue": "Flash communication was established but NOT within the acceptable time limit"
+      "flash-degraded": "Flash is unable to preserve data fidelity when communicating with JavaScript",
+      "flash-deactivated": "Flash is too outdated for your browser and/or is configured as click-to-activate.\nThis may also mean that the ZeroClipboard SWF object could not be loaded, so please check your `swfPath` configuration and/or network connectivity.\nMay also be attempting to run Flash in a sandboxed iframe, which is impossible.",
+      "flash-overdue": "Flash communication was established but NOT within the acceptable time limit",
+      "version-mismatch": "ZeroClipboard JS version number does not match ZeroClipboard SWF version number",
+      "clipboard-error": "At least one error was thrown while ZeroClipboard was attempting to inject your data into the clipboard",
+      "config-mismatch": "ZeroClipboard configuration does not match Flash's reality",
+      "swf-not-found": "The ZeroClipboard SWF object could not be loaded, so please check your `swfPath` configuration and/or network connectivity"
     }
   };
+  /**
+ * The `name`s of `error` events that can only occur is Flash has at least
+ * been able to load the SWF successfully.
+ * @private
+ */
+  var _errorsThatOnlyOccurAfterFlashLoads = [ "flash-unavailable", "flash-degraded", "flash-overdue", "version-mismatch", "config-mismatch", "clipboard-error" ];
+  /**
+ * The `name`s of `error` events that should likely result in the `_flashState`
+ * variable's property values being updated.
+ * @private
+ */
+  var _flashStateErrorNames = [ "flash-disabled", "flash-outdated", "flash-sandboxed", "flash-unavailable", "flash-degraded", "flash-deactivated", "flash-overdue" ];
+  /**
+ * A RegExp to match the `name` property of `error` events related to Flash.
+ * @private
+ */
+  var _flashStateErrorNameMatchingRegex = new RegExp("^flash-(" + _flashStateErrorNames.map(function(errorName) {
+    return errorName.replace(/^flash-/, "");
+  }).join("|") + ")$");
+  /**
+ * A RegExp to match the `name` property of `error` events related to Flash,
+ * which is enabled.
+ * @private
+ */
+  var _flashStateEnabledErrorNameMatchingRegex = new RegExp("^flash-(" + _flashStateErrorNames.slice(1).map(function(errorName) {
+    return errorName.replace(/^flash-/, "");
+  }).join("|") + ")$");
   /**
  * ZeroClipboard configuration defaults for the Core module.
  * @private
@@ -58352,6 +58483,7 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _state = function() {
+    _detectSandbox();
     return {
       browser: _pick(_navigator, [ "userAgent", "platform", "appName" ]),
       flash: _omit(_flashState, [ "bridge" ]),
@@ -58366,7 +58498,7 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _isFlashUnusable = function() {
-    return !!(_flashState.disabled || _flashState.outdated || _flashState.unavailable || _flashState.deactivated);
+    return !!(_flashState.disabled || _flashState.outdated || _flashState.sandboxed || _flashState.unavailable || _flashState.degraded || _flashState.deactivated);
   };
   /**
  * The underlying implementation of `ZeroClipboard.on`.
@@ -58398,15 +58530,22 @@ var TreeMirrorClient = (function () {
         });
       }
       if (added.error) {
-        var errorTypes = [ "disabled", "outdated", "unavailable", "deactivated", "overdue" ];
-        for (i = 0, len = errorTypes.length; i < len; i++) {
-          if (_flashState[errorTypes[i]] === true) {
+        for (i = 0, len = _flashStateErrorNames.length; i < len; i++) {
+          if (_flashState[_flashStateErrorNames[i].replace(/^flash-/, "")] === true) {
             ZeroClipboard.emit({
               type: "error",
-              name: "flash-" + errorTypes[i]
+              name: _flashStateErrorNames[i]
             });
             break;
           }
+        }
+        if (_zcSwfVersion !== undefined && ZeroClipboard.version !== _zcSwfVersion) {
+          ZeroClipboard.emit({
+            type: "error",
+            name: "version-mismatch",
+            jsVersion: ZeroClipboard.version,
+            swfVersion: _zcSwfVersion
+          });
         }
       }
     }
@@ -58494,13 +58633,21 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _create = function() {
+    var previousState = _flashState.sandboxed;
+    _detectSandbox();
     if (typeof _flashState.ready !== "boolean") {
       _flashState.ready = false;
     }
-    if (!ZeroClipboard.isFlashUnusable() && _flashState.bridge === null) {
+    if (_flashState.sandboxed !== previousState && _flashState.sandboxed === true) {
+      _flashState.ready = false;
+      ZeroClipboard.emit({
+        type: "error",
+        name: "flash-sandboxed"
+      });
+    } else if (!ZeroClipboard.isFlashUnusable() && _flashState.bridge === null) {
       var maxWait = _globalConfig.flashLoadTimeout;
       if (typeof maxWait === "number" && maxWait >= 0) {
-        _setTimeout(function() {
+        _flashCheckTimeout = _setTimeout(function() {
           if (typeof _flashState.deactivated !== "boolean") {
             _flashState.deactivated = true;
           }
@@ -58609,7 +58756,7 @@ var TreeMirrorClient = (function () {
       htmlBridge.style.left = "0px";
       htmlBridge.style.top = "-9999px";
       htmlBridge.style.width = "1px";
-      htmlBridge.style.top = "1px";
+      htmlBridge.style.height = "1px";
     }
     if (_currentElement) {
       _removeClass(_currentElement, _globalConfig.hoverClass);
@@ -58646,11 +58793,12 @@ var TreeMirrorClient = (function () {
     if (!eventType) {
       return;
     }
-    if (!event.target && /^(copy|aftercopy|_click)$/.test(eventType.toLowerCase())) {
+    eventType = eventType.toLowerCase();
+    if (!event.target && (/^(copy|aftercopy|_click)$/.test(eventType) || eventType === "error" && event.name === "clipboard-error")) {
       event.target = _copyTarget;
     }
     _extend(event, {
-      type: eventType.toLowerCase(),
+      type: eventType,
       target: event.target || _currentElement || null,
       relatedTarget: event.relatedTarget || null,
       currentTarget: _flashState && _flashState.bridge || null,
@@ -58670,13 +58818,13 @@ var TreeMirrorClient = (function () {
       });
     }
     if (event.type === "error") {
-      if (/^flash-(disabled|outdated|unavailable|deactivated|overdue)$/.test(event.name)) {
+      if (_flashStateErrorNameMatchingRegex.test(event.name)) {
         _extend(event, {
           target: null,
           minimumVersion: _minimumFlashVersion
         });
       }
-      if (/^flash-(outdated|unavailable|deactivated|overdue)$/.test(event.name)) {
+      if (_flashStateEnabledErrorNameMatchingRegex.test(event.name)) {
         _extend(event, {
           version: _flashState.version
         });
@@ -58694,8 +58842,7 @@ var TreeMirrorClient = (function () {
     if (event.target && !event.relatedTarget) {
       event.relatedTarget = _getRelatedTarget(event.target);
     }
-    event = _addMouseData(event);
-    return event;
+    return _addMouseData(event);
   };
   /**
  * Get a relatedTarget from the target's `data-clipboard-target` attribute
@@ -58714,7 +58861,7 @@ var TreeMirrorClient = (function () {
       var srcElement = event.target;
       var fromElement = event.type === "_mouseover" && event.relatedTarget ? event.relatedTarget : undefined;
       var toElement = event.type === "_mouseout" && event.relatedTarget ? event.relatedTarget : undefined;
-      var pos = _getDOMObjectPosition(srcElement);
+      var pos = _getElementPosition(srcElement);
       var screenLeft = _window.screenLeft || _window.screenX || 0;
       var screenTop = _window.screenTop || _window.screenY || 0;
       var scrollLeft = _document.body.scrollLeft + _document.documentElement.scrollLeft;
@@ -58811,6 +58958,18 @@ var TreeMirrorClient = (function () {
     return this;
   };
   /**
+ * Check an `error` event's `name` property to see if Flash has
+ * already loaded, which rules out possible `iframe` sandboxing.
+ * @private
+ */
+  var _getSandboxStatusFromErrorEvent = function(event) {
+    var isSandboxed = null;
+    if (_pageIsFramed === false || event && event.type === "error" && event.name && _errorsThatOnlyOccurAfterFlashLoads.indexOf(event.name) !== -1) {
+      isSandboxed = false;
+    }
+    return isSandboxed;
+  };
+  /**
  * Preprocess any special behaviors, reactions, or state changes after receiving this event.
  * Executes only once per event emitted, NOT once per client.
  * @private
@@ -58819,31 +58978,51 @@ var TreeMirrorClient = (function () {
     var element = event.target || _currentElement || null;
     var sourceIsSwf = event._source === "swf";
     delete event._source;
-    var flashErrorNames = [ "flash-disabled", "flash-outdated", "flash-unavailable", "flash-deactivated", "flash-overdue" ];
     switch (event.type) {
      case "error":
-      if (flashErrorNames.indexOf(event.name) !== -1) {
+      var isSandboxed = event.name === "flash-sandboxed" || _getSandboxStatusFromErrorEvent(event);
+      if (typeof isSandboxed === "boolean") {
+        _flashState.sandboxed = isSandboxed;
+      }
+      if (_flashStateErrorNames.indexOf(event.name) !== -1) {
         _extend(_flashState, {
           disabled: event.name === "flash-disabled",
           outdated: event.name === "flash-outdated",
           unavailable: event.name === "flash-unavailable",
+          degraded: event.name === "flash-degraded",
           deactivated: event.name === "flash-deactivated",
           overdue: event.name === "flash-overdue",
           ready: false
         });
+      } else if (event.name === "version-mismatch") {
+        _zcSwfVersion = event.swfVersion;
+        _extend(_flashState, {
+          disabled: false,
+          outdated: false,
+          unavailable: false,
+          degraded: false,
+          deactivated: false,
+          overdue: false,
+          ready: false
+        });
       }
+      _clearTimeoutsAndPolling();
       break;
 
      case "ready":
+      _zcSwfVersion = event.swfVersion;
       var wasDeactivated = _flashState.deactivated === true;
       _extend(_flashState, {
         disabled: false,
         outdated: false,
+        sandboxed: false,
         unavailable: false,
+        degraded: false,
         deactivated: false,
         overdue: wasDeactivated,
         ready: !wasDeactivated
       });
+      _clearTimeoutsAndPolling();
       break;
 
      case "beforecopy":
@@ -58865,6 +59044,7 @@ var TreeMirrorClient = (function () {
       break;
 
      case "aftercopy":
+      _queueEmitClipboardErrors(event);
       ZeroClipboard.clearData();
       if (element && element !== _safeActiveElement() && element.focus) {
         element.focus();
@@ -58943,6 +59123,23 @@ var TreeMirrorClient = (function () {
     }
   };
   /**
+ * Check an "aftercopy" event for clipboard errors and emit a corresponding "error" event.
+ * @private
+ */
+  var _queueEmitClipboardErrors = function(aftercopyEvent) {
+    if (aftercopyEvent.errors && aftercopyEvent.errors.length > 0) {
+      var errorEvent = _deepCopy(aftercopyEvent);
+      _extend(errorEvent, {
+        type: "error",
+        name: "clipboard-error"
+      });
+      delete errorEvent.success;
+      _setTimeout(function() {
+        ZeroClipboard.emit(errorEvent);
+      }, 0);
+    }
+  };
+  /**
  * Dispatch a synthetic MouseEvent.
  *
  * @returns `undefined`
@@ -58970,6 +59167,40 @@ var TreeMirrorClient = (function () {
         e._source = "js";
         target.dispatchEvent(e);
       }
+    }
+  };
+  /**
+ * Continuously poll the DOM until either:
+ *  (a) the fallback content becomes visible, or
+ *  (b) we receive an event from SWF (handled elsewhere)
+ *
+ * IMPORTANT:
+ * This is NOT a necessary check but it can result in significantly faster
+ * detection of bad `swfPath` configuration and/or network/server issues [in
+ * supported browsers] than waiting for the entire `flashLoadTimeout` duration
+ * to elapse before detecting that the SWF cannot be loaded. The detection
+ * duration can be anywhere from 10-30 times faster [in supported browsers] by
+ * using this approach.
+ *
+ * @returns `undefined`
+ * @private
+ */
+  var _watchForSwfFallbackContent = function() {
+    var maxWait = _globalConfig.flashLoadTimeout;
+    if (typeof maxWait === "number" && maxWait >= 0) {
+      var pollWait = Math.min(1e3, maxWait / 10);
+      var fallbackContentId = _globalConfig.swfObjectId + "_fallbackContent";
+      _swfFallbackCheckInterval = _setInterval(function() {
+        var el = _document.getElementById(fallbackContentId);
+        if (_isElementVisible(el)) {
+          _clearTimeoutsAndPolling();
+          _flashState.deactivated = null;
+          ZeroClipboard.emit({
+            type: "error",
+            name: "swf-not-found"
+          });
+        }
+      }, pollWait);
     }
   };
   /**
@@ -59010,19 +59241,22 @@ var TreeMirrorClient = (function () {
     if (!flashBridge) {
       var allowScriptAccess = _determineScriptAccess(_window.location.host, _globalConfig);
       var allowNetworking = allowScriptAccess === "never" ? "none" : "all";
-      var flashvars = _vars(_globalConfig);
+      var flashvars = _vars(_extend({
+        jsVersion: ZeroClipboard.version
+      }, _globalConfig));
       var swfUrl = _globalConfig.swfPath + _cacheBust(_globalConfig.swfPath, _globalConfig);
       container = _createHtmlBridge();
       var divToBeReplaced = _document.createElement("div");
       container.appendChild(divToBeReplaced);
       _document.body.appendChild(container);
       var tmpDiv = _document.createElement("div");
-      var oldIE = _flashState.pluginType === "activex";
-      tmpDiv.innerHTML = '<object id="' + _globalConfig.swfObjectId + '" name="' + _globalConfig.swfObjectId + '" ' + 'width="100%" height="100%" ' + (oldIE ? 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"' : 'type="application/x-shockwave-flash" data="' + swfUrl + '"') + ">" + (oldIE ? '<param name="movie" value="' + swfUrl + '"/>' : "") + '<param name="allowScriptAccess" value="' + allowScriptAccess + '"/>' + '<param name="allowNetworking" value="' + allowNetworking + '"/>' + '<param name="menu" value="false"/>' + '<param name="wmode" value="transparent"/>' + '<param name="flashvars" value="' + flashvars + '"/>' + "</object>";
+      var usingActiveX = _flashState.pluginType === "activex";
+      tmpDiv.innerHTML = '<object id="' + _globalConfig.swfObjectId + '" name="' + _globalConfig.swfObjectId + '" ' + 'width="100%" height="100%" ' + (usingActiveX ? 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"' : 'type="application/x-shockwave-flash" data="' + swfUrl + '"') + ">" + (usingActiveX ? '<param name="movie" value="' + swfUrl + '"/>' : "") + '<param name="allowScriptAccess" value="' + allowScriptAccess + '"/>' + '<param name="allowNetworking" value="' + allowNetworking + '"/>' + '<param name="menu" value="false"/>' + '<param name="wmode" value="transparent"/>' + '<param name="flashvars" value="' + flashvars + '"/>' + '<div id="' + _globalConfig.swfObjectId + '_fallbackContent">&nbsp;</div>' + "</object>";
       flashBridge = tmpDiv.firstChild;
       tmpDiv = null;
       _unwrap(flashBridge).ZeroClipboard = ZeroClipboard;
       container.replaceChild(flashBridge, divToBeReplaced);
+      _watchForSwfFallbackContent();
     }
     if (!flashBridge) {
       flashBridge = _document[_globalConfig.swfObjectId];
@@ -59073,9 +59307,11 @@ var TreeMirrorClient = (function () {
           }
         }
       }
+      _clearTimeoutsAndPolling();
       _flashState.ready = null;
       _flashState.bridge = null;
       _flashState.deactivated = null;
+      _zcSwfVersion = undefined;
     }
   };
   /**
@@ -59141,15 +59377,20 @@ var TreeMirrorClient = (function () {
     var newResults = {};
     for (var prop in clipResults) {
       if (_hasOwn.call(clipResults, prop)) {
-        if (prop !== "success" && prop !== "data") {
+        if (prop === "errors") {
+          newResults[prop] = clipResults[prop] ? clipResults[prop].slice() : [];
+          for (var i = 0, len = newResults[prop].length; i < len; i++) {
+            newResults[prop][i].format = formatMap[newResults[prop][i].format];
+          }
+        } else if (prop !== "success" && prop !== "data") {
           newResults[prop] = clipResults[prop];
-          continue;
-        }
-        newResults[prop] = {};
-        var tmpHash = clipResults[prop];
-        for (var dataFormat in tmpHash) {
-          if (dataFormat && _hasOwn.call(tmpHash, dataFormat) && _hasOwn.call(formatMap, dataFormat)) {
-            newResults[prop][formatMap[dataFormat]] = tmpHash[dataFormat];
+        } else {
+          newResults[prop] = {};
+          var tmpHash = clipResults[prop];
+          for (var dataFormat in tmpHash) {
+            if (dataFormat && _hasOwn.call(tmpHash, dataFormat) && _hasOwn.call(formatMap, dataFormat)) {
+              newResults[prop][formatMap[dataFormat]] = tmpHash[dataFormat];
+            }
           }
         }
       }
@@ -59212,6 +59453,9 @@ var TreeMirrorClient = (function () {
     }
     if (typeof options.swfObjectId === "string" && options.swfObjectId) {
       str += (str ? "&" : "") + "swfObjectId=" + _encodeURIComponent(options.swfObjectId);
+    }
+    if (typeof options.jsVersion === "string" && options.jsVersion) {
+      str += (str ? "&" : "") + "jsVersion=" + _encodeURIComponent(options.jsVersion);
     }
     return str;
   };
@@ -59309,29 +59553,23 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _addClass = function(element, value) {
-    if (!element || element.nodeType !== 1) {
-      return element;
+    var c, cl, className, classNames = [];
+    if (typeof value === "string" && value) {
+      classNames = value.split(/\s+/);
     }
-    if (element.classList) {
-      if (!element.classList.contains(value)) {
-        element.classList.add(value);
-      }
-      return element;
-    }
-    if (value && typeof value === "string") {
-      var classNames = (value || "").split(/\s+/);
-      if (element.nodeType === 1) {
-        if (!element.className) {
-          element.className = value;
-        } else {
-          var className = " " + element.className + " ", setClass = element.className;
-          for (var c = 0, cl = classNames.length; c < cl; c++) {
-            if (className.indexOf(" " + classNames[c] + " ") < 0) {
-              setClass += " " + classNames[c];
-            }
-          }
-          element.className = setClass.replace(/^\s+|\s+$/g, "");
+    if (element && element.nodeType === 1 && classNames.length > 0) {
+      if (element.classList) {
+        for (c = 0, cl = classNames.length; c < cl; c++) {
+          element.classList.add(classNames[c]);
         }
+      } else if (element.hasOwnProperty("className")) {
+        className = " " + element.className + " ";
+        for (c = 0, cl = classNames.length; c < cl; c++) {
+          if (className.indexOf(" " + classNames[c] + " ") === -1) {
+            className += classNames[c] + " ";
+          }
+        }
+        element.className = className.replace(/^\s+|\s+$/g, "");
       }
     }
     return element;
@@ -59343,20 +59581,18 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _removeClass = function(element, value) {
-    if (!element || element.nodeType !== 1) {
-      return element;
-    }
-    if (element.classList) {
-      if (element.classList.contains(value)) {
-        element.classList.remove(value);
-      }
-      return element;
-    }
+    var c, cl, className, classNames = [];
     if (typeof value === "string" && value) {
-      var classNames = value.split(/\s+/);
-      if (element.nodeType === 1 && element.className) {
-        var className = (" " + element.className + " ").replace(/[\n\t]/g, " ");
-        for (var c = 0, cl = classNames.length; c < cl; c++) {
+      classNames = value.split(/\s+/);
+    }
+    if (element && element.nodeType === 1 && classNames.length > 0) {
+      if (element.classList && element.classList.length > 0) {
+        for (c = 0, cl = classNames.length; c < cl; c++) {
+          element.classList.remove(classNames[c]);
+        }
+      } else if (element.className) {
+        className = (" " + element.className + " ").replace(/[\r\n\t]/g, " ");
+        for (c = 0, cl = classNames.length; c < cl; c++) {
           className = className.replace(" " + classNames[c] + " ", " ");
         }
         element.className = className.replace(/^\s+|\s+$/g, "");
@@ -59373,7 +59609,7 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _getStyle = function(el, prop) {
-    var value = _window.getComputedStyle(el, null).getPropertyValue(prop);
+    var value = _getComputedStyle(el, null).getPropertyValue(prop);
     if (prop === "cursor") {
       if (!value || value === "auto") {
         if (el.nodeName === "A") {
@@ -59384,54 +59620,70 @@ var TreeMirrorClient = (function () {
     return value;
   };
   /**
- * Get the zoom factor of the browser. Always returns `1.0`, except at
- * non-default zoom levels in IE<8 and some older versions of WebKit.
- *
- * @returns Floating unit percentage of the zoom factor (e.g. 150% = `1.5`).
- * @private
- */
-  var _getZoomFactor = function() {
-    var rect, physicalWidth, logicalWidth, zoomFactor = 1;
-    if (typeof _document.body.getBoundingClientRect === "function") {
-      rect = _document.body.getBoundingClientRect();
-      physicalWidth = rect.right - rect.left;
-      logicalWidth = _document.body.offsetWidth;
-      zoomFactor = _round(physicalWidth / logicalWidth * 100) / 100;
-    }
-    return zoomFactor;
-  };
-  /**
- * Get the DOM positioning info of an element.
+ * Get the absolutely positioned coordinates of a DOM element.
  *
  * @returns Object containing the element's position, width, and height.
  * @private
  */
-  var _getDOMObjectPosition = function(obj) {
-    var info = {
+  var _getElementPosition = function(el) {
+    var pos = {
       left: 0,
       top: 0,
       width: 0,
       height: 0
     };
-    if (obj.getBoundingClientRect) {
-      var rect = obj.getBoundingClientRect();
-      var pageXOffset, pageYOffset, zoomFactor;
-      if ("pageXOffset" in _window && "pageYOffset" in _window) {
-        pageXOffset = _window.pageXOffset;
-        pageYOffset = _window.pageYOffset;
-      } else {
-        zoomFactor = _getZoomFactor();
-        pageXOffset = _round(_document.documentElement.scrollLeft / zoomFactor);
-        pageYOffset = _round(_document.documentElement.scrollTop / zoomFactor);
-      }
+    if (el.getBoundingClientRect) {
+      var elRect = el.getBoundingClientRect();
+      var pageXOffset = _window.pageXOffset;
+      var pageYOffset = _window.pageYOffset;
       var leftBorderWidth = _document.documentElement.clientLeft || 0;
       var topBorderWidth = _document.documentElement.clientTop || 0;
-      info.left = rect.left + pageXOffset - leftBorderWidth;
-      info.top = rect.top + pageYOffset - topBorderWidth;
-      info.width = "width" in rect ? rect.width : rect.right - rect.left;
-      info.height = "height" in rect ? rect.height : rect.bottom - rect.top;
+      var leftBodyOffset = 0;
+      var topBodyOffset = 0;
+      if (_getStyle(_document.body, "position") === "relative") {
+        var bodyRect = _document.body.getBoundingClientRect();
+        var htmlRect = _document.documentElement.getBoundingClientRect();
+        leftBodyOffset = bodyRect.left - htmlRect.left || 0;
+        topBodyOffset = bodyRect.top - htmlRect.top || 0;
+      }
+      pos.left = elRect.left + pageXOffset - leftBorderWidth - leftBodyOffset;
+      pos.top = elRect.top + pageYOffset - topBorderWidth - topBodyOffset;
+      pos.width = "width" in elRect ? elRect.width : elRect.right - elRect.left;
+      pos.height = "height" in elRect ? elRect.height : elRect.bottom - elRect.top;
     }
-    return info;
+    return pos;
+  };
+  /**
+ * Determine is an element is visible somewhere within the document (page).
+ *
+ * @returns Boolean
+ * @private
+ */
+  var _isElementVisible = function(el) {
+    if (!el) {
+      return false;
+    }
+    var styles = _getComputedStyle(el, null);
+    var hasCssHeight = _parseFloat(styles.height) > 0;
+    var hasCssWidth = _parseFloat(styles.width) > 0;
+    var hasCssTop = _parseFloat(styles.top) >= 0;
+    var hasCssLeft = _parseFloat(styles.left) >= 0;
+    var cssKnows = hasCssHeight && hasCssWidth && hasCssTop && hasCssLeft;
+    var rect = cssKnows ? null : _getElementPosition(el);
+    var isVisible = styles.display !== "none" && styles.visibility !== "collapse" && (cssKnows || !!rect && (hasCssHeight || rect.height > 0) && (hasCssWidth || rect.width > 0) && (hasCssTop || rect.top >= 0) && (hasCssLeft || rect.left >= 0));
+    return isVisible;
+  };
+  /**
+ * Clear all existing timeouts and interval polling delegates.
+ *
+ * @returns `undefined`
+ * @private
+ */
+  var _clearTimeoutsAndPolling = function() {
+    _clearTimeout(_flashCheckTimeout);
+    _flashCheckTimeout = 0;
+    _clearInterval(_swfFallbackCheckInterval);
+    _swfFallbackCheckInterval = 0;
   };
   /**
  * Reposition the Flash object to cover the currently activated element.
@@ -59442,7 +59694,7 @@ var TreeMirrorClient = (function () {
   var _reposition = function() {
     var htmlBridge;
     if (_currentElement && (htmlBridge = _getHtmlBridge(_flashState.bridge))) {
-      var pos = _getDOMObjectPosition(_currentElement);
+      var pos = _getElementPosition(_currentElement);
       _extend(htmlBridge.style, {
         width: pos.width + "px",
         height: pos.height + "px",
@@ -59484,6 +59736,54 @@ var TreeMirrorClient = (function () {
       zIndex = _getSafeZIndex(_parseInt(val, 10));
     }
     return typeof zIndex === "number" ? zIndex : "auto";
+  };
+  /**
+ * Attempt to detect if ZeroClipboard is executing inside of a sandboxed iframe.
+ * If it is, Flash Player cannot be used, so ZeroClipboard is dead in the water.
+ *
+ * @see {@link http://lists.w3.org/Archives/Public/public-whatwg-archive/2014Dec/0002.html}
+ * @see {@link https://github.com/zeroclipboard/zeroclipboard/issues/511}
+ * @see {@link http://zeroclipboard.org/test-iframes.html}
+ *
+ * @returns `true` (is sandboxed), `false` (is not sandboxed), or `null` (uncertain) 
+ * @private
+ */
+  var _detectSandbox = function(doNotReassessFlashSupport) {
+    var effectiveScriptOrigin, frame, frameError, previousState = _flashState.sandboxed, isSandboxed = null;
+    doNotReassessFlashSupport = doNotReassessFlashSupport === true;
+    if (_pageIsFramed === false) {
+      isSandboxed = false;
+    } else {
+      try {
+        frame = window.frameElement || null;
+      } catch (e) {
+        frameError = {
+          name: e.name,
+          message: e.message
+        };
+      }
+      if (frame && frame.nodeType === 1 && frame.nodeName === "IFRAME") {
+        try {
+          isSandboxed = frame.hasAttribute("sandbox");
+        } catch (e) {
+          isSandboxed = null;
+        }
+      } else {
+        try {
+          effectiveScriptOrigin = document.domain || null;
+        } catch (e) {
+          effectiveScriptOrigin = null;
+        }
+        if (effectiveScriptOrigin === null || frameError && frameError.name === "SecurityError" && /(^|[\s\(\[@])sandbox(es|ed|ing|[\s\.,!\)\]@]|$)/.test(frameError.message.toLowerCase())) {
+          isSandboxed = true;
+        }
+      }
+    }
+    _flashState.sandboxed = isSandboxed;
+    if (previousState !== isSandboxed && !doNotReassessFlashSupport) {
+      _detectFlashSupport(_ActiveXObject);
+    }
+    return isSandboxed;
   };
   /**
  * Detect the Flash Player status, version, and plugin type.
@@ -59567,6 +59867,10 @@ var TreeMirrorClient = (function () {
  */
   _detectFlashSupport(_ActiveXObject);
   /**
+ * Always assess the `sandboxed` state of the page at important Flash-related moments.
+ */
+  _detectSandbox(true);
+  /**
  * A shell constructor for `ZeroClipboard` client instances.
  *
  * @constructor
@@ -59587,7 +59891,7 @@ var TreeMirrorClient = (function () {
  * @property {string}
  */
   _defineProperty(ZeroClipboard, "version", {
-    value: "2.1.6",
+    value: "2.2.0",
     writable: false,
     configurable: true,
     enumerable: true
@@ -59810,7 +60114,10 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _clientOn = function(eventType, listener) {
-    var i, len, events, added = {}, handlers = _clientMeta[this.id] && _clientMeta[this.id].handlers;
+    var i, len, events, added = {}, meta = _clientMeta[this.id], handlers = meta && meta.handlers;
+    if (!meta) {
+      throw new Error("Attempted to add new listener(s) to a destroyed ZeroClipboard client instance");
+    }
     if (typeof eventType === "string" && eventType) {
       events = eventType.toLowerCase().split(/\s+/);
     } else if (typeof eventType === "object" && eventType && typeof listener === "undefined") {
@@ -59836,16 +60143,23 @@ var TreeMirrorClient = (function () {
         });
       }
       if (added.error) {
-        var errorTypes = [ "disabled", "outdated", "unavailable", "deactivated", "overdue" ];
-        for (i = 0, len = errorTypes.length; i < len; i++) {
-          if (_flashState[errorTypes[i]]) {
+        for (i = 0, len = _flashStateErrorNames.length; i < len; i++) {
+          if (_flashState[_flashStateErrorNames[i].replace(/^flash-/, "")]) {
             this.emit({
               type: "error",
-              name: "flash-" + errorTypes[i],
+              name: _flashStateErrorNames[i],
               client: this
             });
             break;
           }
+        }
+        if (_zcSwfVersion !== undefined && ZeroClipboard.version !== _zcSwfVersion) {
+          this.emit({
+            type: "error",
+            name: "version-mismatch",
+            jsVersion: ZeroClipboard.version,
+            swfVersion: _zcSwfVersion
+          });
         }
       }
     }
@@ -59856,7 +60170,10 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _clientOff = function(eventType, listener) {
-    var i, len, foundIndex, events, perEventHandlers, handlers = _clientMeta[this.id] && _clientMeta[this.id].handlers;
+    var i, len, foundIndex, events, perEventHandlers, meta = _clientMeta[this.id], handlers = meta && meta.handlers;
+    if (!handlers) {
+      return this;
+    }
     if (arguments.length === 0) {
       events = _keys(handlers);
     } else if (typeof eventType === "string" && eventType) {
@@ -59923,6 +60240,9 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _clientClip = function(elements) {
+    if (!_clientMeta[this.id]) {
+      throw new Error("Attempted to clip element(s) to a destroyed ZeroClipboard client instance");
+    }
     elements = _prepClip(elements);
     for (var i = 0; i < elements.length; i++) {
       if (_hasOwn.call(elements, i) && elements[i] && elements[i].nodeType === 1) {
@@ -59995,6 +60315,9 @@ var TreeMirrorClient = (function () {
  * @private
  */
   var _clientDestroy = function() {
+    if (!_clientMeta[this.id]) {
+      return;
+    }
     this.unclip();
     this.off();
     delete _clientMeta[this.id];
@@ -60010,12 +60333,13 @@ var TreeMirrorClient = (function () {
     if (event.client && event.client !== this) {
       return false;
     }
-    var clippedEls = _clientMeta[this.id] && _clientMeta[this.id].elements;
+    var meta = _clientMeta[this.id];
+    var clippedEls = meta && meta.elements;
     var hasClippedEls = !!clippedEls && clippedEls.length > 0;
     var goodTarget = !event.target || hasClippedEls && clippedEls.indexOf(event.target) !== -1;
     var goodRelTarget = event.relatedTarget && hasClippedEls && clippedEls.indexOf(event.relatedTarget) !== -1;
     var goodClient = event.client && event.client === this;
-    if (!(goodTarget || goodRelTarget || goodClient)) {
+    if (!meta || !(goodTarget || goodRelTarget || goodClient)) {
       return false;
     }
     return true;
@@ -60023,16 +60347,17 @@ var TreeMirrorClient = (function () {
   /**
  * Handle the actual dispatching of events to a client instance.
  *
- * @returns `this`
+ * @returns `undefined`
  * @private
  */
   var _clientDispatchCallbacks = function(event) {
-    if (!(typeof event === "object" && event && event.type)) {
+    var meta = _clientMeta[this.id];
+    if (!(typeof event === "object" && event && event.type && meta)) {
       return;
     }
     var async = _shouldPerformAsync(event);
-    var wildcardTypeHandlers = _clientMeta[this.id] && _clientMeta[this.id].handlers["*"] || [];
-    var specificTypeHandlers = _clientMeta[this.id] && _clientMeta[this.id].handlers[event.type] || [];
+    var wildcardTypeHandlers = meta && meta.handlers["*"] || [];
+    var specificTypeHandlers = meta && meta.handlers[event.type] || [];
     var handlers = wildcardTypeHandlers.concat(specificTypeHandlers);
     if (handlers && handlers.length) {
       var i, len, func, context, eventCopy, originalContext = this;
@@ -60052,7 +60377,6 @@ var TreeMirrorClient = (function () {
         }
       }
     }
-    return this;
   };
   /**
  * Prepares the elements for clipping/unclipping.
@@ -60214,6 +60538,9 @@ var TreeMirrorClient = (function () {
  * @returns `this`
  */
   ZeroClipboard.prototype.setText = function(text) {
+    if (!_clientMeta[this.id]) {
+      throw new Error("Attempted to set pending clipboard data from a destroyed ZeroClipboard client instance");
+    }
     ZeroClipboard.setData("text/plain", text);
     return this;
   };
@@ -60223,6 +60550,9 @@ var TreeMirrorClient = (function () {
  * @returns `this`
  */
   ZeroClipboard.prototype.setHtml = function(html) {
+    if (!_clientMeta[this.id]) {
+      throw new Error("Attempted to set pending clipboard data from a destroyed ZeroClipboard client instance");
+    }
     ZeroClipboard.setData("text/html", html);
     return this;
   };
@@ -60232,6 +60562,9 @@ var TreeMirrorClient = (function () {
  * @returns `this`
  */
   ZeroClipboard.prototype.setRichText = function(richText) {
+    if (!_clientMeta[this.id]) {
+      throw new Error("Attempted to set pending clipboard data from a destroyed ZeroClipboard client instance");
+    }
     ZeroClipboard.setData("application/rtf", richText);
     return this;
   };
@@ -60241,6 +60574,9 @@ var TreeMirrorClient = (function () {
  * @returns `this`
  */
   ZeroClipboard.prototype.setData = function() {
+    if (!_clientMeta[this.id]) {
+      throw new Error("Attempted to set pending clipboard data from a destroyed ZeroClipboard client instance");
+    }
     ZeroClipboard.setData.apply(this, _args(arguments));
     return this;
   };
@@ -60251,6 +60587,9 @@ var TreeMirrorClient = (function () {
  * @returns `this`
  */
   ZeroClipboard.prototype.clearData = function() {
+    if (!_clientMeta[this.id]) {
+      throw new Error("Attempted to clear pending clipboard data from a destroyed ZeroClipboard client instance");
+    }
     ZeroClipboard.clearData.apply(this, _args(arguments));
     return this;
   };
@@ -60261,6 +60600,9 @@ var TreeMirrorClient = (function () {
  * @returns `String` or `Object`
  */
   ZeroClipboard.prototype.getData = function() {
+    if (!_clientMeta[this.id]) {
+      throw new Error("Attempted to get pending clipboard data from a destroyed ZeroClipboard client instance");
+    }
     return ZeroClipboard.getData.apply(this, _args(arguments));
   };
   if (typeof define === "function" && define.amd) {
@@ -60372,27 +60714,41 @@ define("ember-cli-zero-clipboard", ["ember-cli-zero-clipboard/index", "ember", "
 
 define('ember-cli-zero-clipboard/components/zero-clipboard', ['exports', 'ember'], function (exports, Ember) {
 
-	'use strict';
+  'use strict';
 
-	exports['default'] = Ember['default'].Component.extend({
-		attributeBindings: ['title', 'data-clipboard-text', 'data-clipboard-target'],
-		title: 'Copy to clipboard',
-		didInsertElement: function () {
-		  var client = new ZeroClipboard(this.get('element'));
+  exports['default'] = Ember['default'].Component.extend({
+    attributeBindings: ['title', 'data-clipboard-text', 'data-clipboard-target'],
+    title: 'Copy to clipboard',
+    zeroClipboardEvents: ['ready', 'beforeCopy', 'copy', 'afterCopy', 'destroy', 'error'],
 
-			//bind aftercopy to an ember event
-		  client.on("aftercopy", function(event) {
-				this.send('afterCopy', event);
-		  }.bind(this));
-		},
-		"data-clipboard-text": function(){
-			return this.get('text');
-		}.property('text'),
+    didInsertElement: function didInsertElement() {
+      var client = new ZeroClipboard(this.get('element'));
+      var self = this;
 
-		"data-clipboard-target": function(){
-			return this.get('cbTarget');
-		}.property('cbTarget')
-	});
+      //bind Zero Clipboard events to ember events
+      this.get('zeroClipboardEvents').forEach(function (action) {
+        client.on(action, Ember['default'].run.bind(this, function (event) {
+          try {
+            if (this.attrs[action]) {
+              this.attrs[action](event);
+            } else {
+              this.send(action, event);
+            }
+          } catch (error) {
+            Ember['default'].Logger.debug(error.message);
+          }
+        }));
+      }, self);
+    },
+
+    "data-clipboard-text": Ember['default'].computed('text', function () {
+      return this.get('text');
+    }),
+
+    "data-clipboard-target": Ember['default'].computed('cbTarget', function () {
+      return this.get('cbTarget');
+    })
+  });
 
 });
 define("ember-idx-accordion", ["ember-idx-accordion/index", "ember", "exports"], function(__index__, __Ember__, __exports__) {

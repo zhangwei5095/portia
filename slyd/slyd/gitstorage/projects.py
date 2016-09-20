@@ -102,7 +102,8 @@ class GitProjectsManager(ProjectsManager, GitProjectMixin):
             'changes': self.changed_files,
             'save': self.save_file,
             'copy': self.copy_data,
-            'download': self.download_project
+            'download': self.download_project,
+            'has_tag': self.has_tag
         }
         self.modify_request = {
             'download': self._render_file
@@ -140,14 +141,20 @@ class GitProjectsManager(ProjectsManager, GitProjectMixin):
         repoman = self._open_repo(name)
         if (repoman.publish_branch(self._get_branch(repoman),
                                    force=force) == True):
-            repoman.kill_branch(self._get_branch(repoman))
+            repoman.delete_branch(self._get_branch(repoman))
             return {'status': 'ok'}
         else:
             return {'status': 'conflict'}
 
+    def has_tag(self, name, tag_name):
+        repo = self._open_repo(name)
+        if ('refs/tags/%s' % tag_name) in repo._repo.refs:
+            return json.dumps({'status': True})
+        return json.dumps({'status': False})
+
     def discard_changes(self, name):
         repoman = self._open_repo(name)
-        repoman.kill_branch(self._get_branch(repoman))
+        repoman.delete_branch(self._get_branch(repoman))
 
     def project_revisions(self, name):
         repoman = self._open_repo(name)

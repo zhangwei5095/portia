@@ -1,40 +1,27 @@
 from __future__ import absolute_import
 
+import itertools
+import operator
 import re
 
-from itertools import groupby
-from operator import itemgetter
+from collections import OrderedDict
 
 from scrapy.http import Request
 
 from scrapely.extraction import InstanceBasedLearningExtractor
 from scrapely.htmlpage import HtmlPage, dict_to_page
 
-from slybot.linkextractor import HtmlLinkExtractor, RssLinkExtractor
+from slybot.linkextractor import (HtmlLinkExtractor, SitemapLinkExtractor,
+                                  PaginationExtractor)
+from slybot.linkextractor import create_linkextractor_from_specs
 from slybot.item import SlybotItem, create_slybot_item_descriptor
-from slybot.extractors import apply_extractors
-from slybot.utils import htmlpage_from_response
-
-
-def _process_extracted_data(extracted_data, item_descriptor, htmlpage):
-    processed_data = []
-    for exdict in extracted_data or ():
-        processed_attributes = []
-        for key, value in exdict.items():
-            if key == "variants":
-                processed_attributes.append(
-                    ("variants", _process_extracted_data(value,
-                                                         item_descriptor,
-                                                         htmlpage))
-                )
-            elif not key.startswith("_sticky"):
-                field_descriptor = item_descriptor.attribute_map.get(key)
-                if field_descriptor:
-                    value = [field_descriptor.adapt(x, htmlpage)
-                             for x in value]
-                processed_attributes.append((key, value))
-        processed_data.append(processed_attributes)
-    return [dict(p) for p in processed_data]
+from slybot.extractors import apply_extractors, add_extractors_to_descriptors
+from slybot.utils import (htmlpage_from_response, include_exclude_filter,
+                          _build_sample)
+from .extraction import SlybotIBLExtractor
+XML_APPLICATION_TYPE = re.compile('application/((?P<type>[a-z]+)\+)?xml').match
+_CLUSTER_NA = 'not available'
+_CLUSTER_OUTLIER = 'outlier'
 
 
 class Annotations(object):
@@ -42,54 +29,99 @@ class Annotations(object):
     Base Class for adding plugins to Portia Web and Slybot.
     """
 
-    def setup_bot(self, settings, spec, items, extractors):
+    def setup_bot(self, settings, spec, items, extractors, logger):
         """
         Perform any initialization needed for crawling using this plugin
         """
+        self.logger = logger
+        templates = map(self._get_annotated_template, spec['templates'])
+
         _item_template_pages = sorted((
-            [t['scrapes'], dict_to_page(t, 'annotated_body'),
-             t.get('extractors', [])]
-            for t in spec['templates'] if t.get('page_type', 'item') == 'item'
-        ), key=lambda pair: pair[0])
+            [t.get('scrapes'), dict_to_page(t, 'annotated_body'),
+             t.get('extractors', []), t.get('version', '0.12.0')]
+            for t in templates if t.get('page_type', 'item') == 'item'
+        ), key=lambda x: x[0])
+        self.item_classes = {}
+        self.template_scrapes = {template.get('page_id'): template['scrapes']
+                                 for template in templates}
+        if (settings.get('AUTO_PAGINATION') or
+                spec.get('links_to_follow') == 'auto'):
+            self.html_link_extractor = PaginationExtractor()
+        else:
+            self.html_link_extractor = HtmlLinkExtractor()
+        for schema_name, schema in items.items():
+            if schema_name not in self.item_classes:
+                if not schema.get('name'):
+                    schema['name'] = schema_name
+                item_cls = SlybotItem.create_iblitem_class(schema)
+                self.item_classes[schema_name] = item_cls
 
-        self.itemcls_info = {}
-        self.html_link_extractor = HtmlLinkExtractor()
-        self.rss_link_extractor = RssLinkExtractor()
-        for itemclass_name, triplets in groupby(_item_template_pages,
-                                                itemgetter(0)):
-            page_extractors_pairs = map(itemgetter(1, 2), triplets)
-            schema = items[itemclass_name]
-            item_cls = SlybotItem.create_iblitem_class(schema)
-
-            page_descriptor_pairs = []
-            for page, template_extractors in page_extractors_pairs:
-                item_descriptor = create_slybot_item_descriptor(schema)
+        # Create descriptors and apply additional extractors to fields
+        page_descriptor_pairs = []
+        self.schema_descriptors = {}
+        for default, template, template_extractors, v in _item_template_pages:
+            descriptors = OrderedDict()
+            for schema_name, schema in items.items():
+                item_descriptor = create_slybot_item_descriptor(schema,
+                                                                schema_name)
                 apply_extractors(item_descriptor, template_extractors,
                                  extractors)
-                page_descriptor_pairs.append((page, item_descriptor))
+                descriptors[schema_name] = item_descriptor
+            descriptor = descriptors.values() or [{}]
+            descriptors['#default'] = descriptors.get(default, descriptor[0])
+            self.schema_descriptors[template.page_id] = descriptors['#default']
+            page_descriptor_pairs.append((template, descriptors, v))
+            add_extractors_to_descriptors(descriptors, extractors)
 
-            extractor = InstanceBasedLearningExtractor(page_descriptor_pairs)
-
-            self.itemcls_info[itemclass_name] = {
-                'class': item_cls,
-                'descriptor': item_descriptor,
-                'extractor': extractor,
-            }
+        grouped = itertools.groupby(sorted(page_descriptor_pairs,
+                                           key=operator.itemgetter(2)),
+                                    lambda x: x[2] < '0.13.0')
+        self.extractors = []
+        for version, group in grouped:
+            if version:
+                self.extractors.append(
+                    InstanceBasedLearningExtractor(
+                        [(page, scrapes['#default'])
+                         for page, scrapes, version in group]))
+            else:
+                self.extractors.append(SlybotIBLExtractor(list(group)))
 
         # generate ibl extractor for links pages
         _links_pages = [dict_to_page(t, 'annotated_body')
-                        for t in spec['templates']
-                        if t.get('page_type') == 'links']
+                        for t in templates if t.get('page_type') == 'links']
         _links_item_descriptor = create_slybot_item_descriptor({'fields': {}})
         self._links_ibl_extractor = InstanceBasedLearningExtractor(
             [(t, _links_item_descriptor) for t in _links_pages]) \
             if _links_pages else None
 
         self.build_url_filter(spec)
+        # Clustering
+        self.template_names = [t.get('page_id') for t in spec['templates']]
+        if settings.get('PAGE_CLUSTERING'):
+            try:
+                import page_clustering
+                self.clustering = page_clustering.kmeans_from_samples(spec['templates'])
+                self.logger.info("Clustering activated")
+            except ImportError:
+                self.clustering = None
+                self.logger.warning(
+                    "Clustering could not be used because it is not installed")
+        else:
+            self.clustering = None
+
+    def _get_annotated_template(self, template):
+        if template.get('version', '0.12.0') >= '0.13.0':
+            _build_sample(template)
+        return template
 
     def handle_html(self, response, seen=None):
         htmlpage = htmlpage_from_response(response)
         items, link_regions = self.extract_items(htmlpage)
+        htmlpage.headers['n_items'] = len(items)
+        try:
+            response.meta['n_items'] = len(items)
+        except AttributeError:
+            pass # response not tied to any request
         for item in items:
             yield item
         for request in self._process_link_regions(htmlpage, link_regions):
@@ -97,70 +129,120 @@ class Annotations(object):
 
     def extract_items(self, htmlpage):
         """This method is also called from UI webservice to extract items"""
-        items = []
-        link_regions = []
-        for item_cls_name, info in self.itemcls_info.items():
-            item_descriptor = info['descriptor']
-            extractor = info['extractor']
-            extracted, _link_regions = self._do_extract_items_from(
-                htmlpage,
-                item_descriptor,
-                extractor,
-                item_cls_name,
-            )
-            items.extend(extracted)
-            link_regions.extend(_link_regions)
-        return items, link_regions
+        for extractor in self.extractors:
+            items, links = self._do_extract_items_from(htmlpage, extractor)
+            if items:
+                return items, links
+        return [], []
 
-    def _do_extract_items_from(self, htmlpage, item_descriptor, extractor,
-                               item_cls_name):
-        extracted_data, template = extractor.extract(htmlpage)
+    def _do_extract_items_from(self, htmlpage, extractor):
+        # Try to predict template to use
+        pref_template_id = None
+        template_cluster = _CLUSTER_NA
+        if self.clustering:
+            self.clustering.add_page(htmlpage)
+            if self.clustering.is_fit:
+                clt = self.clustering.classify(htmlpage)
+                if clt != -1:
+                    template_cluster = self.template_names[clt]
+                    pref_template_id = template_cluster
+                else:
+                    template_cluster = _CLUSTER_OUTLIER
+        extracted_data, template = extractor.extract(htmlpage, pref_template_id)
         link_regions = []
         for ddict in extracted_data or []:
             link_regions.extend(ddict.pop("_links", []))
-        processed_data = _process_extracted_data(extracted_data,
-                                                 item_descriptor,
-                                                 htmlpage)
+        descriptor = None
+        unprocessed = False
+        if template is not None and hasattr(template, 'descriptor'):
+            descriptor = template.descriptor()
+            if hasattr(descriptor, 'name'):
+                item_cls_name = descriptor.name
+            elif hasattr(descriptor, 'get'):
+                item_cls_name = descriptor.get('name',
+                                               descriptor.get('display_name'))
+            else:
+                item_cls_name = ''
+        else:
+            unprocessed = True
+            try:
+                descriptor = self.schema_descriptors[template.id]
+                item_cls_name = self.template_scrapes[template.id]
+            except AttributeError:
+                descriptor = sorted(self.schema_descriptors.items())[0][1]
+                item_cls_name = sorted(self.template_scrapes.items())[0][1]
+        item_cls = self.item_classes.get(item_cls_name)
         items = []
-        item_cls = self.itemcls_info[item_cls_name]['class']
-        for processed_attributes in processed_data:
-            item = item_cls(processed_attributes)
+        for processed_attributes in extracted_data or []:
+            if processed_attributes.get('_type') in self.item_classes:
+                _type = processed_attributes['_type']
+                item = self.item_classes[_type](processed_attributes)
+                item['_type'] = item.display_name()
+            elif unprocessed:
+                item = self._process_attributes(processed_attributes,
+                                                descriptor, htmlpage)
+                if item_cls:
+                    item = item_cls(item)
+            elif item_cls:
+                item = item_cls(processed_attributes)
+            else:
+                item = dict(processed_attributes)
             item['url'] = htmlpage.url
-            item['_type'] = item_cls_name
             item['_template'] = str(template.id)
+            item.setdefault('_type', item_cls_name)
+            if not isinstance(item, SlybotItem):
+                default_meta = {'type': 'text', 'required': False,
+                                'vary': False}
+                item_cls = SlybotItem.create_iblitem_class(
+                    {'fields': {k: default_meta for k in item}}
+                )
+                item = item_cls(**item)
+            if self.clustering:
+                item['_template_cluster'] = template_cluster
             items.append(item)
-
         return items, link_regions
+
+    def _process_attributes(self, item, descriptor, htmlpage):
+        new_item = {}
+        try:
+            attr_map = descriptor.attribute_map
+        except AttributeError:
+            attr_map = {}
+        page = getattr(htmlpage, 'htmlpage', htmlpage)
+        for field, value in item.items():
+            if field.startswith('_sticky'):
+                continue
+            if field == 'variants':
+                value = [self._process_attributes(v, descriptor, page)
+                         for v in value]
+            elif field in attr_map:
+                value = [attr_map[field].adapt(v, page) for v in value]
+            new_item[field] = value
+        return new_item
 
     def build_url_filter(self, spec):
         """make a filter for links"""
         respect_nofollow = spec.get('respect_nofollow', True)
-        patterns = spec.get('follow_patterns')
+
         if spec.get("links_to_follow") == "none":
             url_filterf = lambda x: False
-        elif patterns:
-            pattern = patterns[0] if len(patterns) == 1 \
-                else "(?:%s)" % '|'.join(patterns)
-            follow_pattern = re.compile(pattern)
+        elif spec.get("links_to_follow") == "all":
             if respect_nofollow:
-                url_filterf = lambda x: follow_pattern.search(x.url) \
-                    and not x.nofollow
+                url_filterf = lambda x: x.nofollow
             else:
-                url_filterf = lambda x: follow_pattern.search(x.url)
-        elif respect_nofollow:
-            url_filterf = lambda x: not x.nofollow
-        else:
-            url_filterf = bool
-        # apply exclude patterns
-        excludes = spec.get('exclude_patterns')
-        if excludes:
-            pattern = excludes[0] if len(excludes) == 1 \
-                else "(?:%s)" % '|'.join(excludes)
-            exclude_pattern = re.compile(pattern)
-            self.url_filterf = lambda x: not exclude_pattern.search(x.url) \
-                and url_filterf(x)
-        else:
-            self.url_filterf = url_filterf
+                url_filterf = lambda x: True
+        else: # patterns
+            patterns = spec.get('follow_patterns')
+            excludes = spec.get('exclude_patterns')
+            pattern_fn = include_exclude_filter(patterns, excludes)
+
+            if respect_nofollow:
+                url_filterf = lambda x: not x.nofollow and pattern_fn(x.url)
+            else:
+                url_filterf = lambda x: pattern_fn(x.url)
+
+        self.url_filterf = url_filterf
+
 
     def _filter_link(self, link, seen):
         url = link.url
@@ -211,8 +293,16 @@ class Annotations(object):
             if request is not None:
                 yield request
 
-    def handle_rss(self, response, seen):
-        for link in self.rss_link_extractor.links_to_follow(response):
+    def handle_xml(self, response, seen):
+        _type = XML_APPLICATION_TYPE(response.headers.get('Content-Type', ''))
+        _type = _type.groupdict()['type'] if _type else 'xml'
+        try:
+            link_extractor = create_linkextractor_from_specs({
+                'type': _type, 'value': ''
+            })
+        except ValueError:
+            link_extractor = SitemapLinkExtractor()
+        for link in link_extractor.links_to_follow(response):
             request = self._filter_link(link, seen)
             if request:
                 yield request

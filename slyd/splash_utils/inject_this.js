@@ -1,5 +1,17 @@
 MutationObserver._period = 500;
 
+// Keep a reference to some native methods, so we use the originals if
+// they are overridden by the page
+var Json = JSON;
+var JSONstringify = JSON.stringify;
+var arraySplice = Array.prototype.splice;
+var ArrayProto = Array.prototype;
+var ObjectProto = Object.prototype;
+var NumberProto = Number.prototype;
+var StringProto = String.prototype;
+var BooleanProto = Boolean.prototype;
+
+
 // Note: Variables here are not leaked to the global scope because the compiler wraps it in a function
 
 var MAX_DIALOGS = 15;  // Maximum number of dialogs (alert, confirm, prompt) before throwing an exception
@@ -17,11 +29,28 @@ var PortiaPage = function PortiaPage() {
 };
 
 PortiaPage.prototype.sendMutation = function(){
-    this.sendMessage('mutation', Array.prototype.splice.call(arguments, 0));
+    this.sendMessage('mutation', arraySplice.call(arguments, 0));
 };
 
 PortiaPage.prototype.sendMessage = function(action, message) {
-    __portiaApi.sendMessage(JSON.stringify([action, message]));
+    var oldAPtoJson = ArrayProto.toJSON;
+    var oldOPtoJson = ObjectProto.toJSON;
+    var oldNPtoJson = NumberProto.toJSON;
+    var oldSPtoJson = StringProto.toJSON;
+    var oldBPtoJson = BooleanProto.toJSON;
+    delete ArrayProto.toJSON;
+    delete ObjectProto.toJSON;
+    delete NumberProto.toJSON;
+    delete StringProto.toJSON;
+    delete BooleanProto.toJSON;
+
+    __portiaApi.sendMessage(JSONstringify.call(Json, [action, message]));
+
+    if(oldAPtoJson) { ArrayProto.toJSON   = oldAPtoJson; }
+    if(oldOPtoJson) { ObjectProto.toJSON  = oldOPtoJson; }
+    if(oldNPtoJson) { NumberProto.toJSON  = oldNPtoJson; }
+    if(oldSPtoJson) { StringProto.toJSON  = oldSPtoJson; }
+    if(oldBPtoJson) { BooleanProto.toJSON = oldBPtoJson; }
 };
 
 PortiaPage.prototype.url = function() {

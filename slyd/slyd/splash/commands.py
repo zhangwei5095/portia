@@ -5,6 +5,10 @@ import re
 import socket as _socket
 import six.moves.urllib_parse as urlparse
 import traceback
+import chardet
+import six
+import itertools
+from monotonic import monotonic
 
 import slyd.splash.utils
 
@@ -27,19 +31,28 @@ def load_page(data, socket):
         return {'error': 4001, 'message': 'Required parameter url'}
 
     socket.tab.loaded = False
+    meta = data.get('_meta', {})
 
-    def on_complete(error):
-        extra_meta = {'id': data.get('_meta', {}).get('id')}
-        if error:
-            extra_meta.update(error=4500, message='Unknown error')
+    def on_complete(is_error, error_info=None):
+        extra_meta = {'id': meta.get('id')}
+        if is_error:
+            msg = 'Unknown error' if error_info is None else error_info.text
+            extra_meta.update(error=4500, reason=msg)
         else:
             socket.tab.loaded = True
         socket.sendMessage(metadata(socket, extra_meta))
 
+    # Specify the user agent directly in the headers
+    # Workaround for https://github.com/scrapinghub/splash/issues/290
+    headers = {}
+    if "user_agent" in meta:
+        headers['User-Agent'] = meta['user_agent']
+
     socket.tab.go(data['url'],
                   lambda: on_complete(False),
-                  lambda: on_complete(True),
-                  baseurl=data['url'])
+                  lambda err=None: on_complete(True, err),
+                  baseurl=data.get('baseurl'),
+                  headers=headers)
 
 
 @open_tab
@@ -61,7 +74,7 @@ def resolve(data, socket):
         _socket.getaddrinfo(parsed.hostname, port)
     except KeyError:
         result['error'] = 'Can\'t create a spider without a start url'
-    except socket.gaierror:
+    except _socket.gaierror:
         result['error'] = 'Could not resolve "%s"' % url
     return result
 
@@ -77,7 +90,7 @@ def metadata(socket, extra={}):
         url = socket.tab.evaljs('location.href')
         res.update(
             url=url,
-            fp=hashlib.sha1(url).hexdigest(),
+            fp=hashlib.sha1(url.encode('utf8')).hexdigest(),
             response={
                 'headers': {},  # TODO: Get headers
                 'status': socket.tab.last_http_status()
@@ -97,10 +110,11 @@ def extract(socket):
             'links': {},
         }
     templates = socket.spiderspec.templates
-    url = str(socket.tab.url)
+    # Workarround for https://github.com/scrapinghub/splash/issues/259
+    url = socket.tab.evaljs('location.href')
     html = socket.tab.html()
     js_items, js_links = extract_data(url, html, socket.spider, templates)
-    raw_html = getattr(socket.tab, '_raw_html', None)
+    raw_html = socket.tab.network_manager._raw_html
     if raw_html:
         raw_items, links = extract_data(url, raw_html, socket.spider,
                                         templates)
@@ -119,6 +133,14 @@ def extract(socket):
     }
 
 
+def pause(data, socket):
+    socket.spent_time += monotonic() - socket.start_time
+
+
+def resume(data, socket):
+    socket.start_time = monotonic()
+
+
 def resize(data, socket):
     """Resize virtual tab viewport to match user's viewport"""
     try:
@@ -134,6 +156,27 @@ def close_tab(data, socket):
         socket.tab.close()
         socket.factory[socket].tab = None
 
+_valid_params = {
+    "suggestions.title": ('accepted', 'rejected', 'accepted_all', 'rejected_all'),
+    "suggestions.image": ('accepted', 'rejected', 'accepted_all', 'rejected_all'),
+    "suggestions.microdata": ('accepted', 'rejected', 'accepted_all', 'rejected_all'),
+    "suggestions.all": ('accepted', 'rejected'),
+}
+def log_event(data, socket):
+    event = data.get('event')
+    param = data.get('param')
+
+    if event not in _valid_params or param not in _valid_params[event]:
+        return
+
+    msg_data = {'session': socket.session_id,
+                'session_time': 0,
+                'user': socket.user.name,
+                'command': '%s.%s' % (event, param)}
+    msg = (u'Stat: id=%(session)s t=%(session_time)s '
+           u'user=%(user)s command=%(command)s' % (msg_data))
+    log.err(msg)
+
 
 class ProjectData(ProjectModifier):
     errors = slyd.splash.utils
@@ -146,13 +189,23 @@ class ProjectData(ProjectModifier):
     def save_template(self, data, socket):
         sample, meta = data.get('template'), data.get('_meta')
         path = ['spiders', meta.get('spider'), sample.get('name')]
-        if sample.pop('_new', False):
-            if socket.spider._filter_js_urls(sample['url']):
-                sample['original_body'] = socket.tab.html().decode('utf-8')
+        creating = sample.pop('_new', False)
+        if creating:
+            if socket.spider is None:
+                socket.open_spider(meta)
+            uses_js = bool(socket.spider._filter_js_urls(sample['url']))
+            if uses_js:
+                sample['original_body'] = socket.tab.html()
             else:
-                sample['original_body'] = socket.tab._raw_html.decode('utf-8')
-        return self.save_data(path, 'template', data=sample, socket=socket,
-                              meta=meta)
+                stated_encoding = socket.tab.evaljs('document.characterSet')
+                sample['original_body'] = self._decode(socket.tab.network_manager._raw_html,
+                                                       stated_encoding)
+        obj = self.save_data(path, 'template', data=sample, socket=socket,
+                             meta=meta)
+        if creating and obj:
+            obj['_uses_js'] = uses_js
+
+        return obj
 
     def save_extractors(self, data, socket):
         extractors, meta = data.get('extractors'), data.get('_meta')
@@ -180,17 +233,23 @@ class ProjectData(ProjectModifier):
         except BaseWSError as ex:
             print(('Other: %s' % ex))
             raise ex
-        except Exception as ex:
-            # XXX: Catch any other errors and log them leaving Websocket open
-            log.err(traceback.format_exc(ex))
         else:
-            try:
-                spec.savejson(obj, [s.encode('utf-8') for s in path])
-            except Exception as ex:
-                # XXX: Catch errors in saving to the backend
-                log.err(traceback.format_exc(ex))
+            spec.savejson(obj, [s.encode('utf-8') for s in path])
             socket.update_spider(meta, **{type: obj})
             return obj
+
+    def _decode(self, html, default=None):
+        if default is None:
+            default = []
+        elif isinstance(default, six.string_types):
+            default = [default]
+        for encoding in itertools.chain(default, ('utf-8', 'windows-1252')):
+            try:
+                return html.decode(encoding)
+            except UnicodeDecodeError:
+                pass
+        encoding = chardet.detect(html).get('encoding')
+        return html.decode(encoding)
 
 
 def update_project_data(data, socket):
